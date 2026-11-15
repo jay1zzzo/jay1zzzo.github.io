@@ -19,7 +19,7 @@ export default function ProjectCard({ label, title, summary, href }: Props) {
       gradientFrom="#FFC857"
       gradientTo="#B8862E"
     >
-      <article className="relative flex h-full min-h-48 flex-col gap-2 p-5">
+      <article className="relative flex h-full flex-col gap-1.5 p-4">
         <p className="label">[ {label} ]</p>
         <h3 className="font-serif text-xl font-semibold leading-snug">{title}</h3>
         <p className="text-sm text-muted-foreground">{summary}</p>
