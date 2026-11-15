@@ -52,4 +52,4 @@ I built a focus timer and task list for myself. It syncs across my Mac, PC and p
 
 ## What I learned
 
-[add here]
+Building in small steps works. Fixing a problem I have myself gets it improved quicker. Keeping it simple matters.

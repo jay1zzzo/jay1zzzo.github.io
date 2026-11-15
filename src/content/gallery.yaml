@@ -6,4 +6,4 @@
 # Every line needs: image, what, did, tool, alt.
 # Images: designs only, no photos of people. Nothing private.
 
-careers-fair-flyer: { image: "careers-fair-flyer.png", what: "BlayCare careers fair flyer", did: "[add here: what you did]", tool: "[add here]", alt: "A4 recruitment flyer headed We Are Hiring, for care workers in Derby, listing training, flexible shift times, staff benefits, how to apply, and the CQC Good rating. The staff photo is covered for privacy." }
+careers-fair-flyer: { image: "careers-fair-flyer.png", what: "BlayCare careers fair flyer", did: "Design and layout, the wording, applying the brand guidelines, and sending it to print.", tool: "Photopea and Canva", alt: "A4 recruitment flyer headed We Are Hiring, for care workers in Derby, listing training, flexible shift times, staff benefits, how to apply, and the CQC Good rating. The staff photo is covered for privacy." }

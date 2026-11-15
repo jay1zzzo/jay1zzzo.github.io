@@ -35,7 +35,7 @@ const items = await Promise.all(
         class="lightbox-trigger aspect-[4/3] overflow-hidden"
         data-lightbox-src={item.large}
         data-lightbox-alt={item.alt}
-        data-lightbox-caption={`${item.what}. ${item.did}. Tool: ${item.tool}.`}
+        data-lightbox-caption={[item.what, item.did].map((t) => t.replace(/[.\s]+$/, '')).join('. ') + '. Tool: ' + item.tool.replace(/[.\s]+$/, '') + '.'}
         aria-label={`Enlarge image: ${item.alt}`}
       >
         <Image src={item.src} alt={item.alt} width={600} loading="lazy" class="h-full w-full object-cover object-top" />

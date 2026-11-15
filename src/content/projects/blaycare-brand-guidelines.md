@@ -24,18 +24,18 @@ images:
 
 ## The problem
 
-[add here: why did BlayCare need consistent branding?]
+BlayCare's branding looked inconsistent, there were no written rules, different people made materials in their own way, and the old look was outdated.
 
 ## What I did
 
-[add here]
+I set the colour palette, the fonts and the logo rules. I decided the tone of voice with my manager.
 
 ## How the guidelines were applied
 
-- **Website:** [add here]
-- **Social media:** [add here]
-- **Newsletters:** [add here]
+- Website
+- Social media
+- Newsletters
 
 ## What I learned
 
-[add here]
+Writing the rules down helps other people follow them. Templates save time. Consistency builds trust.
