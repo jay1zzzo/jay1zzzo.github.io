@@ -38,7 +38,7 @@ const projects = defineCollection({
       // Alt text is required: the site won't build without it.
       stats: z.array(stat).optional(),          // number boxes near the top of the page
       imagesTitle: z.string().optional(),       // heading above the images, e.g. "Screenshots"
-      imagesLayout: z.enum(['grid', 'wide']).optional(), // "wide" = one image per row
+      imagesLayout: z.enum(['grid', 'wide', 'two']).optional(), // "wide" = one per row, "two" = two per row
       images: z
         .array(
           z.object({
