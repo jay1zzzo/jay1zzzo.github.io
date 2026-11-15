@@ -42,6 +42,7 @@ tools:
   - { name: "Adobe Photoshop", logo: "photoshop.svg", group: "Design & Creative" }
   - { name: "Canva", logo: "canva.svg", group: "Design & Creative" }
   - { name: "CapCut", group: "Design & Creative" }
+  - { name: "Photopea", logo: "photopea.svg", group: "Design & Creative" }
   - { name: "Adobe Lightroom", logo: "lightroom.svg", group: "Design & Creative" }
   - { name: "Cinema 4D", logo: "cinema4d.svg", group: "Design & Creative" }
   - { name: "Wix Studio", logo: "wix.svg", group: "Web Design & Development" }
