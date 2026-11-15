@@ -18,15 +18,27 @@ const home = defineCollection({
 
 const projects = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/projects' }),
-  schema: z.object({
-    title: z.string(),
-    label: z.string(),                       // shown as [ LABEL ]
-    category: z.enum(['marketing', 'tool']), // which list page it appears on
-    summary: z.string(),                     // one line on the card
-    order: z.number(),                       // 1 = first card
-    link: z.string().optional(),             // public link (repo or live site)
-    linkText: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      label: z.string(),                       // shown as [ LABEL ]
+      category: z.enum(['marketing', 'tool']), // which list page it appears on
+      summary: z.string(),                     // one line on the card
+      order: z.number(),                       // 1 = first card
+      link: z.string().optional(),             // public link (repo or live site)
+      linkText: z.string().optional(),
+      // Optional images shown on the project page (click to enlarge).
+      // Alt text is required: the site won't build without it.
+      images: z
+        .array(
+          z.object({
+            src: image(),
+            alt: z.string().min(1),
+            caption: z.string().optional(),
+          }),
+        )
+        .optional(),
+    }),
 });
 
 export const collections = { home, projects };

@@ -1,0 +1,112 @@
+---
+// One template for every project page. The words come from src/content/projects/*.md
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Lightbox from '../../components/Lightbox.astro';
+import { buttonVariants } from '@/components/ui/button';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((p) => ({ params: { slug: p.id }, props: { project: p } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const d = project.data;
+
+// A large version of each image for the click-to-enlarge window
+const images = await Promise.all(
+  (d.images ?? []).map(async (im) => ({
+    ...im,
+    large: await getImage({ src: im.src, width: 1600 }),
+  })),
+);
+---
+<Base title={d.title} description={d.summary}>
+  <article class="max-w-3xl">
+    <a href="/" class="font-mono text-xs tracking-wider text-muted-foreground uppercase no-underline hover:text-primary">
+      <span aria-hidden="true">←</span> Home
+    </a>
+
+    <p class="label mt-6">[ {d.label} ]</p>
+    <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">{d.title}</h1>
+    <p class="mt-4 text-lg text-muted-foreground">{d.summary}</p>
+
+    <div class="project-body mt-8">
+      <Content />
+    </div>
+
+    {images.length > 0 && (
+      <section aria-labelledby="images-heading" class="mt-10">
+        <h2 id="images-heading" class="label">[ Pages ]</h2>
+        <ul class="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {images.map((im) => (
+            <li>
+              <button
+                type="button"
+                class="lightbox-trigger"
+                data-lightbox-src={im.large.src}
+                data-lightbox-alt={im.alt}
+                data-lightbox-caption={im.caption ?? ''}
+                aria-label={`Enlarge image: ${im.alt}`}
+              >
+                <Image src={im.src} alt={im.alt} width={400} loading="lazy" />
+              </button>
+              {im.caption && <p class="mt-2 text-xs text-muted-foreground">{im.caption}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {d.link && (
+      <p class="mt-10">
+        <a href={d.link} rel="noopener" class={buttonVariants({ size: 'lg' }) + ' px-4'}>
+          {d.linkText ?? 'Visit'} <span aria-hidden="true">↗</span>
+        </a>
+      </p>
+    )}
+  </article>
+
+  {images.length > 0 && <Lightbox />}
+</Base>
+
+<style is:global>
+  /* Styles for the Markdown text on project pages */
+  .project-body h2 {
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    padding-top: 1rem;
+    border-top: var(--border-width) solid var(--site-line);
+    font-family: var(--site-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--site-accent);
+  }
+  .project-body h2::before { content: '[ '; }
+  .project-body h2::after { content: ' ]'; }
+  .project-body p,
+  .project-body ul {
+    margin-bottom: 1rem;
+    max-width: 65ch;
+  }
+  .project-body ul {
+    padding-left: 1.25rem;
+    list-style: square;
+  }
+  .project-body li {
+    margin-bottom: 0.4rem;
+  }
+  .project-body li::marker {
+    color: var(--site-accent);
+  }
+  .project-body strong {
+    font-weight: 600;
+  }
+  .project-body a {
+    color: var(--site-accent);
+    text-underline-offset: 3px;
+  }
+</style>

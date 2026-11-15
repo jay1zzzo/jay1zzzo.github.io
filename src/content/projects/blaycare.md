@@ -3,7 +3,7 @@ title: "BlayCare website"
 label: "Marketing"
 category: marketing
 summary: "Rebuilt BlayCare's website in Wix Studio: new copy, service pages, careers pages and enquiry forms. Launched 26 June 2026."
-order: 2
+order: 1
 # link: "[add here: BlayCare website address]"
 # linkText: "Visit the BlayCare website"
 ---

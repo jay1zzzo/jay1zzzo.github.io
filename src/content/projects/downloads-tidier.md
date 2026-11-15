@@ -3,7 +3,7 @@ title: "Downloads Tidier"
 label: "Tool / Open source"
 category: tool
 summary: "Sorts a messy Downloads folder by file type, with preview first and undo. It never deletes or overwrites. Free and open source."
-order: 1
+order: 3
 link: "https://github.com/jay1zzzo/downloads-tidier"
 linkText: "See the code on GitHub"
 ---
