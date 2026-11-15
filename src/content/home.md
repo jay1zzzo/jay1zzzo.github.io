@@ -22,10 +22,10 @@ longIntro: |
 
 # One belief per line, each starting with "- "
 beliefs:
-  - "Plan first, then build in small checked steps."
   - "Be honest about what I can't do yet."
-  - "Keep confidential data out of AI tools, and check AI output against the original."
-  - "Research before designing, and use evidence to justify decisions."
+  - "Practice makes perfect."
+  - "AI should make the boring parts easier, but creative work should keep a human touch."
+  - "A tool should make work easier to start and finish."
 
 contactButton: "Email me →"
 email: "jasonpbelgica@gmail.com"
