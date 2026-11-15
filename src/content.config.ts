@@ -1,6 +1,6 @@
 // Tells Astro what goes in each Markdown file, and checks nothing is missing.
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const home = defineCollection({
@@ -41,4 +41,25 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { home, projects };
+// Work gallery: one line per image in src/content/gallery.yaml
+const gallery = defineCollection({
+  loader: file('src/content/gallery.yaml'),
+  schema: z.object({
+    image: z.string(),          // file name inside src/assets/gallery/
+    what: z.string(),           // what it is
+    did: z.string(),            // what I did
+    tool: z.string(),           // tool used
+    alt: z.string().min(1),     // describes the image for screen readers
+  }),
+});
+
+// Text-only pages (Marketing intro, About)
+const pages = defineCollection({
+  loader: glob({ pattern: ['marketing.md', 'about.md'], base: './src/content' }),
+  schema: z.object({
+    title: z.string(),
+    intro: z.string().optional(),
+  }),
+});
+
+export const collections = { home, projects, gallery, pages };

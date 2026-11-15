@@ -25,15 +25,15 @@ const images = await Promise.all(
 ---
 <Base title={d.title} description={d.summary}>
   <article class="max-w-3xl">
-    <a href="/" class="font-mono text-xs tracking-wider text-muted-foreground uppercase no-underline hover:text-primary">
-      <span aria-hidden="true">←</span> Home
+    <a href={d.category === 'marketing' ? '/marketing' : '/tools'} class="font-mono text-xs tracking-wider text-muted-foreground uppercase no-underline hover:text-primary">
+      <span aria-hidden="true">←</span> {d.category === 'marketing' ? 'Marketing' : 'Tools'}
     </a>
 
     <p class="label mt-6">[ {d.label} ]</p>
     <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">{d.title}</h1>
     <p class="mt-4 text-lg text-muted-foreground">{d.summary}</p>
 
-    <div class="project-body mt-8">
+    <div class="prose-site mt-8">
       <Content />
     </div>
 
@@ -72,41 +72,3 @@ const images = await Promise.all(
   {images.length > 0 && <Lightbox />}
 </Base>
 
-<style is:global>
-  /* Styles for the Markdown text on project pages */
-  .project-body h2 {
-    margin-top: 2.25rem;
-    margin-bottom: 0.75rem;
-    padding-top: 1rem;
-    border-top: var(--border-width) solid var(--site-line);
-    font-family: var(--site-mono);
-    font-size: 0.8125rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--site-accent);
-  }
-  .project-body h2::before { content: '[ '; }
-  .project-body h2::after { content: ' ]'; }
-  .project-body p,
-  .project-body ul {
-    margin-bottom: 1rem;
-    max-width: 65ch;
-  }
-  .project-body ul {
-    padding-left: 1.25rem;
-    list-style: square;
-  }
-  .project-body li {
-    margin-bottom: 0.4rem;
-  }
-  .project-body li::marker {
-    color: var(--site-accent);
-  }
-  .project-body strong {
-    font-weight: 600;
-  }
-  .project-body a {
-    color: var(--site-accent);
-    text-underline-offset: 3px;
-  }
-</style>

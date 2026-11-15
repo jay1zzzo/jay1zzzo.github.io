@@ -5,6 +5,8 @@ import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard';
 import IntroToggle from '../components/IntroToggle';
 import { buttonVariants } from '@/components/ui/button';
+import Gallery from '../components/Gallery.astro';
+import Lightbox from '../components/Lightbox.astro';
 
 const home = (await getEntry('home', 'home'))!.data;
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -64,4 +66,17 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
       ))}
     </div>
   </section>
+
+  <!-- Work gallery preview: first 3 items from gallery.yaml -->
+  <section aria-labelledby="gallery-preview" class="mt-12">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <h2 id="gallery-preview" class="label">[ Work gallery ]</h2>
+      <a href="/marketing#gallery" class="font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
+        See all work <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <div class="mt-3"><Gallery limit={3} /></div>
+  </section>
+
+  <Lightbox />
 </Base>

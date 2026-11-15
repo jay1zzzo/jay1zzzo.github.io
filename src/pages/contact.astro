@@ -1,0 +1,32 @@
+---
+// Contact page. Email and LinkedIn come from src/content/home.md
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { buttonVariants } from '@/components/ui/button';
+
+const home = (await getEntry('home', 'home'))!.data;
+const linkedinShort = home.linkedin.replace(/^https?:\/\/(www\.)?/, '');
+---
+<Base title="Contact" description="How to contact Jason Belgica Paguntalan.">
+  <p class="label">[ Contact ]</p>
+  <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">Get in touch</h1>
+
+  <dl class="mt-10 grid max-w-xl gap-4">
+    <div class="border-2 border-border bg-card p-5">
+      <dt class="label">[ Email ]</dt>
+      <dd class="mt-2 break-all">
+        <a href={`mailto:${home.email}`} class="text-lg underline-offset-4 hover:text-primary hover:underline">{home.email}</a>
+      </dd>
+    </div>
+    <div class="border-2 border-border bg-card p-5">
+      <dt class="label">[ LinkedIn ]</dt>
+      <dd class="mt-2 break-all">
+        <a href={home.linkedin} rel="noopener" class="text-lg underline-offset-4 hover:text-primary hover:underline">{linkedinShort}</a>
+      </dd>
+    </div>
+  </dl>
+
+  <p class="mt-8">
+    <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'}>{home.contactButton}</a>
+  </p>
+</Base>

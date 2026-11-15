@@ -1,0 +1,14 @@
+# WORK GALLERY
+# To add a piece of work:
+#   1. Put the image in src/assets/gallery/
+#   2. Add ONE line below, in the same format. The name before the colon must be unique.
+# The first 3 lines also appear on the home page.
+# Every line needs: image, what, did, tool, alt.
+# Images: designs only, no photos of people. Nothing private.
+
+placeholder-1: { image: "placeholder-1.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 1" }
+placeholder-2: { image: "placeholder-2.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 2" }
+placeholder-3: { image: "placeholder-3.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 3" }
+placeholder-4: { image: "placeholder-4.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 4" }
+placeholder-5: { image: "placeholder-5.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 5" }
+placeholder-6: { image: "placeholder-6.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 6" }

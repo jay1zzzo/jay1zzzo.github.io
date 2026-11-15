@@ -1,0 +1,12 @@
+---
+// Tools page: lists every project with category: tool
+import Base from '../layouts/Base.astro';
+import ProjectList from '../components/ProjectList.astro';
+---
+<Base title="Tools" description="Small tools I've built.">
+  <p class="label">[ Tools ]</p>
+  <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">Tools</h1>
+  <p class="mt-4 max-w-[60ch] text-lg text-muted-foreground">Small tools I've built.</p>
+
+  <div class="mt-10"><ProjectList category="tool" /></div>
+</Base>

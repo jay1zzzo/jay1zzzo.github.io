@@ -1,0 +1,50 @@
+---
+// Work gallery grid. Reads src/content/gallery.yaml and src/assets/gallery/.
+// Click any image to enlarge it (needs <Lightbox /> on the same page).
+import { getCollection } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  limit?: number; // show only the first N items (used on the home page)
+}
+const { limit } = Astro.props;
+
+const files = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/gallery/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true },
+);
+
+const all = await getCollection('gallery');
+const items = await Promise.all(
+  all.slice(0, limit ?? all.length).map(async ({ data }) => {
+    const file = files[`/src/assets/gallery/${data.image}`];
+    if (!file) {
+      throw new Error(`Gallery: can't find "${data.image}" in src/assets/gallery/. Check the file name in gallery.yaml.`);
+    }
+    const large = await getImage({ src: file.default, width: 1600 });
+    return { ...data, src: file.default, large: large.src };
+  }),
+);
+---
+<ul class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  {items.map((item) => (
+    <li class="flex flex-col">
+      <button
+        type="button"
+        class="lightbox-trigger aspect-[4/3] overflow-hidden"
+        data-lightbox-src={item.large}
+        data-lightbox-alt={item.alt}
+        data-lightbox-caption={`${item.what}. ${item.did}. Tool: ${item.tool}.`}
+        aria-label={`Enlarge image: ${item.alt}`}
+      >
+        <Image src={item.src} alt={item.alt} width={600} loading="lazy" class="h-full w-full object-cover" />
+      </button>
+      <div class="mt-2 text-sm">
+        <p class="font-semibold">{item.what}</p>
+        <p class="text-muted-foreground">{item.did}</p>
+        <p class="label mt-1">[ {item.tool} ]</p>
+      </div>
+    </li>
+  ))}
+</ul>

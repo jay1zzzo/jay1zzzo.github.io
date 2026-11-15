@@ -171,3 +171,40 @@
     animation: none !important;
   }
 }
+
+  /* Styles for Markdown text (project, Marketing and About pages) */
+  .prose-site h2 {
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    padding-top: 1rem;
+    border-top: var(--border-width) solid var(--site-line);
+    font-family: var(--site-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--site-accent);
+  }
+  .prose-site h2::before { content: '[ '; }
+  .prose-site h2::after { content: ' ]'; }
+  .prose-site p,
+  .prose-site ul {
+    margin-bottom: 1rem;
+    max-width: 65ch;
+  }
+  .prose-site ul {
+    padding-left: 1.25rem;
+    list-style: square;
+  }
+  .prose-site li {
+    margin-bottom: 0.4rem;
+  }
+  .prose-site li::marker {
+    color: var(--site-accent);
+  }
+  .prose-site strong {
+    font-weight: 600;
+  }
+  .prose-site a {
+    color: var(--site-accent);
+    text-underline-offset: 3px;
+  }

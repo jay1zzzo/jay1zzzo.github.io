@@ -1,0 +1,22 @@
+---
+// About page. Words come from src/content/about.md
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { buttonVariants } from '@/components/ui/button';
+
+const page = (await getEntry('pages', 'about'))!;
+const { Content } = await render(page);
+const home = (await getEntry('home', 'home'))!.data;
+---
+<Base title="About" description="About Jason Belgica Paguntalan, Marketing Assistant.">
+  <p class="label">[ About ]</p>
+  <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">Jason Belgica Paguntalan</h1>
+
+  <div class="prose-site mt-8 max-w-3xl">
+    <Content />
+  </div>
+
+  <p class="mt-8">
+    <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'}>{home.contactButton}</a>
+  </p>
+</Base>
