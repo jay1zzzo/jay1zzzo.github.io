@@ -22,8 +22,6 @@ BlayCare needed stronger online visibility, clearer branding, better website usa
 - Used competitor benchmarking to find weaknesses in structure, SEO and trust signals.
 - Wrote separate personas for professional referrers and private families.
 
-Tools: Canva, Wix Studio, CapCut, Buffer, SEOptimer.
-
 ## What happened
 
 - The SEOptimer grade is now A+.
