@@ -49,6 +49,7 @@ tools:
   - { name: "Elementor", logo: "elementor.svg", group: "Web Design & Development" }
   - { name: "Meta Business Suite", logo: "meta.svg", group: "Marketing & Analytics" }
   - { name: "Meta Ads Manager", logo: "meta.svg", group: "Marketing & Analytics" }
+  - { name: "Buffer", logo: "buffer.svg", group: "Marketing & Analytics" }
   - { name: "SEOptimer", group: "Marketing & Analytics" }
   - { name: "Google Analytics", logo: "google-analytics.svg", group: "Marketing & Analytics" }
   - { name: "ChatGPT", logo: "chatgpt.svg", group: "AI & Development" }
