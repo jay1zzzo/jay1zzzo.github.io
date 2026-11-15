@@ -1,0 +1,111 @@
+/*
+  ==========================================================
+  SITE COLOURS AND FONTS: the ONE place to change them.
+  Change a value here and it updates everywhere on the site.
+  ==========================================================
+*/
+:root {
+  /* Colours */
+  --color-bg: #0e1116;          /* page background */
+  --color-card: #171b22;        /* card background */
+  --color-text: #eceff4;        /* main text */
+  --color-muted: #98a0ae;       /* quieter text */
+  --color-accent: #ffc857;      /* amber highlight */
+  --color-on-accent: #0e1116;   /* text sitting on amber */
+  --color-border: #2a303b;      /* lines and card edges */
+
+  /* Fonts */
+  --font-serif: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  /* Shape */
+  --radius: 2px;                /* sharp corners: never more than 2px */
+  --border-width: 2px;
+}
+
+/* ---------- Base page styles (you don't need to edit below) ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* keeps the footer at the bottom on short pages */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body > main {
+  flex: 1;
+}
+
+a {
+  color: inherit;
+}
+
+/* Clear amber outline when using the keyboard (Tab key) */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+/* Small monospace labels, e.g. [ TOOL / OPEN SOURCE ] */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* "Skip to content" link: hidden until you press Tab */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  text-decoration: none;
+  z-index: 10;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Page width and side spacing */
+.container {
+  width: 100%;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (min-width: 48rem) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+/* Respect people who turn off motion in their settings */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

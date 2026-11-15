@@ -1,15 +1,26 @@
 ---
-// Step 1 placeholder page. The real home page comes in step 4.
+// Home page. Step 2 shows only the frame; the real content arrives in step 4.
+import Base from '../layouts/Base.astro';
 ---
-<!doctype html>
-<html lang="en-GB">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jason Belgica Paguntalan</title>
-  </head>
-  <body>
-    <h1>Jason Belgica Paguntalan</h1>
-    <p>Step 1: the site is running. Design and content come next.</p>
-  </body>
-</html>
+<Base>
+  <p class="label">[ STEP 2 / LOOK AND FEEL ]</p>
+  <h1 class="demo-headline">
+    Hi, I'm Jason. I'm a Marketing Assistant who builds small tools to make work easier.
+  </h1>
+  <p class="demo-muted">Header, navigation, footer, colours and fonts are in. The home page content comes in step 4.</p>
+</Base>
+
+<style>
+  .demo-headline {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.1;
+    max-width: 20ch;
+    margin: 0.5rem 0 1rem;
+  }
+  .demo-muted {
+    color: var(--color-muted);
+    max-width: 60ch;
+  }
+</style>
