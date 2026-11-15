@@ -10,14 +10,14 @@ stats:
 link: "https://github.com/jay1zzzo/downloads-tidier"
 linkText: "See the code on GitHub"
 # Screenshots from the project's GitHub page (docs/images). Click to enlarge.
-imagesTitle: "Before and after"
+imagesTitle: "Screenshots"
 imagesLayout: wide
 images:
-  - src: "../../assets/projects/downloads-tidier/before.png"
-    alt: "A Downloads folder before tidying: dozens of loose installers, zip files, videos and images in one long list."
-    caption: "Before: a messy Downloads folder."
+  - src: "../../assets/projects/downloads-tidier/social-preview.png"
+    alt: "Downloads Tidier banner: Sort a messy Downloads folder by file type. Safely. Preview, apply, undo. Shows a tidied folder with Archives, Audio, Documents, Images, Installers, Other, Spreadsheets and Video folders. Never overwrites, never deletes, undo anytime, Python, no dependencies."
+    caption: "The project banner from GitHub."
   - src: "../../assets/projects/downloads-tidier/after.png"
-    alt: "The same folder after tidying: files sorted into Archives, Audio, Documents, Images, Installers, Other, Spreadsheets and Video folders, plus the tool's log file."
+    alt: "A Downloads folder after tidying: files sorted into Archives, Audio, Documents, Images, Installers, Other, Spreadsheets and Video folders, plus the tool's log file."
     caption: "After: sorted into folders by file type, plus the tool's log file."
 ---
 
