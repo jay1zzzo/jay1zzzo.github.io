@@ -2,7 +2,7 @@
 title: "BlayCare brand guidelines"
 label: "Marketing"
 category: marketing
-summary: "[add here: one line on what the brand guidelines cover and what you did]"
+summary: "BlayCare's brand guidelines: logos, colours, typography and tone of voice."
 order: 2
 # Guideline pages shown on this project's page. Click any image to enlarge it.
 # To swap a placeholder, replace the image file (keep the same name),

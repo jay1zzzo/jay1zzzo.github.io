@@ -27,8 +27,6 @@ BlayCare needed stronger online visibility, clearer branding, better website usa
 - The SEOptimer grade is now A+.
 - The careers page had 7 recruitment enquiries in its first two months.
 
-[add here: before and after screenshots]
-
 ## What I learned
 
 To justify creative decisions with research, audience needs and performance data.

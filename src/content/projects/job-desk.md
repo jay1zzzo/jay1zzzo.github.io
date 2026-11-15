@@ -2,7 +2,7 @@
 title: "Job Desk"
 label: "Tool"
 category: tool
-summary: "A job search app I built for myself. [add here: one line on what it does]"
+summary: "A job search workspace I adapted for myself from an open-source app. It collects vacancies, reviews how well they suit me, and tracks my applications."
 order: 5
 # No public link: there's no public repository for this app.
 # Screenshots from the hand-over pack: an isolated demo with fictional data only.
