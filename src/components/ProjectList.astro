@@ -13,12 +13,14 @@ const projects = (await getCollection('projects', (p) => p.data.category === cat
 ---
 <div class="grid gap-4 sm:grid-cols-2">
   {projects.map((p) => (
-    <ProjectCard
-      client:visible
-      label={p.data.label}
-      title={p.data.title}
-      summary={p.data.summary}
-      href={`/projects/${p.id}`}
-    />
+    <div class="rise-in">
+      <ProjectCard
+        client:visible
+        label={p.data.label}
+        title={p.data.title}
+        summary={p.data.summary}
+        href={`/projects/${p.id}`}
+      />
+    </div>
   ))}
 </div>

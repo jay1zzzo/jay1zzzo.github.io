@@ -3,6 +3,13 @@ import { defineCollection } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+// A number box, e.g. { value: 179, label: "tests" }. Numbers count up; text (like "A+") doesn't.
+const stat = z.object({
+  value: z.union([z.number(), z.string()]),
+  suffix: z.string().optional(), // e.g. "%"
+  label: z.string(),
+});
+
 const home = defineCollection({
   loader: glob({ pattern: 'home.md', base: './src/content' }),
   schema: z.object({
@@ -29,6 +36,7 @@ const projects = defineCollection({
       linkText: z.string().optional(),
       // Optional images shown on the project page (click to enlarge).
       // Alt text is required: the site won't build without it.
+      stats: z.array(stat).optional(),          // number boxes near the top of the page
       images: z
         .array(
           z.object({
@@ -59,6 +67,8 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     intro: z.string().optional(),
+    statsTitle: z.string().optional(),
+    stats: z.array(stat).optional(),
   }),
 });
 

@@ -1,9 +1,12 @@
 ---
 title: "Marketing"
 intro: "Marketing work I've done at BlayCare."
+# Number boxes for the Macmillan Coffee Morning (shown above the text below)
+statsTitle: "Macmillan Coffee Morning"
+stats:
+  - { value: 544, suffix: "%", label: "increase in views over a seven-day comparison, as reported by Meta" }
+  - { value: "About £50", label: "raised" }
 ---
-
-## Macmillan Coffee Morning
 
 I organised a Macmillan Coffee Morning for BlayCare. It raised about £50. Meta reported a 544% increase in views over a seven-day comparison.
 

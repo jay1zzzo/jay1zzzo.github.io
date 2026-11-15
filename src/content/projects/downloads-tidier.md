@@ -4,6 +4,9 @@ label: "Tool / Open source"
 category: tool
 summary: "Sorts a messy Downloads folder by file type, with preview first and undo. It never deletes or overwrites. Free and open source."
 order: 3
+stats:
+  - { value: 179, label: "tests" }
+  - { value: 3, label: "operating systems checked: Windows, macOS and Linux" }
 link: "https://github.com/jay1zzzo/downloads-tidier"
 linkText: "See the code on GitHub"
 ---

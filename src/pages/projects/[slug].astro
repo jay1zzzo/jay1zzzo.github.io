@@ -4,6 +4,7 @@ import { getCollection, render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Lightbox from '../../components/Lightbox.astro';
+import Stats from '../../components/Stats.astro';
 import { buttonVariants } from '@/components/ui/button';
 
 export async function getStaticPaths() {
@@ -32,6 +33,8 @@ const images = await Promise.all(
     <p class="label mt-6">[ {d.label} ]</p>
     <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">{d.title}</h1>
     <p class="mt-4 text-lg text-muted-foreground">{d.summary}</p>
+
+    {d.stats && <Stats stats={d.stats} />}
 
     <div class="prose-site mt-8">
       <Content />

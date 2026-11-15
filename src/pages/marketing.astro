@@ -6,6 +6,7 @@ import Base from '../layouts/Base.astro';
 import ProjectList from '../components/ProjectList.astro';
 import Gallery from '../components/Gallery.astro';
 import Lightbox from '../components/Lightbox.astro';
+import Stats from '../components/Stats.astro';
 
 const page = (await getEntry('pages', 'marketing'))!;
 const { Content } = await render(page);
@@ -26,7 +27,11 @@ const { Content } = await render(page);
     <div class="mt-4"><Gallery /></div>
   </section>
 
-  <div class="prose-site mt-6 max-w-3xl">
+  {page.data.stats && (
+    <div class="mt-12"><Stats title={page.data.statsTitle} stats={page.data.stats} /></div>
+  )}
+
+  <div class="prose-site mt-4 max-w-3xl">
     <Content />
   </div>
 
