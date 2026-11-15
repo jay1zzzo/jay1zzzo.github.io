@@ -7,6 +7,7 @@ import IntroToggle from '../components/IntroToggle';
 import { buttonVariants } from '@/components/ui/button';
 import Gallery from '../components/Gallery.astro';
 import Lightbox from '../components/Lightbox.astro';
+import ToolLogos from '../components/ToolLogos.astro';
 
 const home = (await getEntry('home', 'home'))!.data;
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -52,6 +53,9 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
       </ol>
     </section>
   </div>
+
+  <!-- App logos (list lives in home.md under "tools:") -->
+  {home.tools && home.tools.length > 0 && <ToolLogos tools={home.tools} />}
 
   <!-- Project cards -->
   <section aria-labelledby="work" class="mt-8">

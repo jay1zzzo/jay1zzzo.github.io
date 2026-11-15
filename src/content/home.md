@@ -19,4 +19,16 @@ beliefs:
 contactButton: "Email me →"
 email: "jasonpbelgica@gmail.com"
 linkedin: "https://www.linkedin.com/in/jason-belgica"
+
+# APPS I USE: shown as logos near the top of the home page.
+# One line per app. "icon" is the logo's name on simpleicons.org.
+# Leave "icon" out to show the name only (some apps aren't in the logo library).
+# "group" puts apps under a small heading, e.g. "Use regularly" or "Have used".
+tools:
+  - { name: "Canva", group: "Marketing" }
+  - { name: "Wix Studio", icon: "wix", group: "Marketing" }
+  - { name: "CapCut", group: "Marketing" }
+  - { name: "Buffer", icon: "buffer", group: "Marketing" }
+  - { name: "SEOptimer", group: "Marketing" }
+  - { name: "Claude Code", icon: "claude", group: "Building" }
 ---

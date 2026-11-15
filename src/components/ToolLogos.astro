@@ -1,0 +1,88 @@
+---
+// Row of app logos, grouped. Logos come from Simple Icons (CC0) and are drawn
+// at build time as plain SVG, so visitors download no extra JavaScript.
+// Apps without a logo in the library show as a name-only tile.
+import * as simpleIcons from 'simple-icons';
+
+interface Tool {
+  name: string;
+  icon?: string;
+  group?: string;
+}
+interface Props {
+  tools: Tool[];
+}
+const { tools } = Astro.props;
+
+type Icon = { slug: string; path: string };
+const all = Object.values(simpleIcons) as unknown as Icon[];
+const findIcon = (slug?: string) => (slug ? all.find((i) => i && i.slug === slug) : undefined);
+
+// Keep groups in the order they first appear in home.md
+const groups: { name: string; items: (Tool & { path?: string })[] }[] = [];
+for (const t of tools) {
+  const g = t.group ?? '';
+  let entry = groups.find((x) => x.name === g);
+  if (!entry) groups.push((entry = { name: g, items: [] }));
+  const icon = findIcon(t.icon);
+  if (t.icon && !icon) throw new Error(`Logo "${t.icon}" for ${t.name} isn't in Simple Icons. Check the name on simpleicons.org, or remove "icon".`);
+  entry.items.push({ ...t, path: icon?.path });
+}
+---
+<section aria-labelledby="tools-heading" class="mt-8">
+  <h2 id="tools-heading" class="label">[ Tools I use ]</h2>
+  <div class="mt-3 flex flex-wrap gap-x-8 gap-y-4">
+    {groups.map((g) => (
+      <div>
+        {g.name && <p class="label mb-2 text-[0.6875rem]">{g.name}</p>}
+        <ul class="flex flex-wrap gap-2">
+          {g.items.map((t) => (
+            <li class="tool-tile">
+              {t.path ? (
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+                  <path d={t.path} fill="currentColor" />
+                </svg>
+              ) : (
+                <span class="tool-initial" aria-hidden="true">{t.name.charAt(0)}</span>
+              )}
+              <span class="tool-name">{t.name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .tool-tile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0.375rem 0.75rem;
+    border: var(--border-width) solid var(--site-line);
+    border-radius: var(--radius);
+    background: var(--site-card);
+    color: var(--site-muted);
+  }
+  .tool-initial {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 2px solid currentColor;
+    border-radius: var(--radius);
+    font-family: var(--site-serif);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .tool-name {
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--site-text);
+  }
+</style>
