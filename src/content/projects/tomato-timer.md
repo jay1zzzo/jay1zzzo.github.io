@@ -5,7 +5,7 @@ category: tool
 summary: "A focus timer and task list I built for myself. It syncs across my Mac, PC and phone."
 order: 4
 link: "https://github.com/jay1zzzo/tomato-mcp"
-linkText: "See the code on GitHub"
+linkText: "See the Tomato Timer MCP server on GitHub"
 # Screenshots from the hand-over pack. All use demo data only.
 imagesTitle: "Screenshots"
 imagesLayout: two
@@ -49,6 +49,7 @@ I built a focus timer and task list for myself. It syncs across my Mac, PC and p
 - It runs as a web page, a Windows app and a Mac app (with a small floating timer window), plus a phone page for the task list.
 - It's one HTML file with plain CSS and JavaScript, with no framework.
 - Sync saves my data to a private GitHub repository. Each device keeps the newest edit to each item, and deleted items don't come back.
+- I also published a small MCP server that lets an AI app read and change my task list. Tomato Timer itself isn't available to install.
 
 ## What I learned
 
