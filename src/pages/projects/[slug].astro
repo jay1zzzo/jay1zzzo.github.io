@@ -26,7 +26,7 @@ const images = await Promise.all(
 ---
 <Base title={d.title} description={d.summary}>
   <article class="max-w-3xl">
-    <a href={d.category === 'marketing' ? '/marketing' : '/tools'} class="font-mono text-xs tracking-wider text-muted-foreground uppercase no-underline hover:text-primary">
+    <a href={d.category === 'marketing' ? '/marketing' : '/tools'} class="inline-block py-1 font-mono text-xs tracking-wider text-muted-foreground uppercase no-underline hover:text-primary">
       <span aria-hidden="true">←</span> {d.category === 'marketing' ? 'Marketing' : 'Tools'}
     </a>
 

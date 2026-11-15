@@ -117,12 +117,13 @@
   body > main {
     flex: 1;
   }
-  /* Clear amber outline when using the keyboard (Tab key) */
-  :focus-visible {
-    outline: 2px solid var(--site-accent);
-    outline-offset: 3px;
-    border-radius: var(--radius);
-  }
+}
+
+/* Clear amber outline when using the keyboard (Tab key).
+   Kept outside the layers above so nothing else can override it. */
+:focus-visible {
+  outline: 2px solid var(--site-accent) !important;
+  outline-offset: 3px !important;
 }
 
 /* Small monospace labels, e.g. [ TOOL / OPEN SOURCE ] */

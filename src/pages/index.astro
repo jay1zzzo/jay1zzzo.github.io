@@ -32,7 +32,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
         <a
           href={home.linkedin}
           rel="noopener"
-          class="font-mono text-xs tracking-wider text-muted-foreground uppercase underline-offset-4 hover:text-primary hover:underline"
+          class="inline-block py-1 font-mono text-xs tracking-wider text-muted-foreground uppercase underline-offset-4 hover:text-primary hover:underline"
         >
           LinkedIn
         </a>
@@ -75,7 +75,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
   <section aria-labelledby="gallery-preview" class="mt-12">
     <div class="flex flex-wrap items-baseline justify-between gap-2">
       <h2 id="gallery-preview" class="label">[ Work gallery ]</h2>
-      <a href="/marketing#gallery" class="font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
+      <a href="/marketing#gallery" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
         See all work <span aria-hidden="true">→</span>
       </a>
     </div>
