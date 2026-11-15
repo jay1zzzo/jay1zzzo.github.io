@@ -8,6 +8,11 @@ export default defineConfig({
   site: 'https://jay1zzzo.github.io',
   integrations: [react()],
 
+  // Keep text exactly as written: no automatic "smart" quotes or dashes.
+  markdown: {
+    smartypants: false,
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

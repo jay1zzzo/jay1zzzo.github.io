@@ -38,7 +38,7 @@ images:
 
 ## The problem
 
-[add here]
+I built it because I find it hard to stay on top of tasks, and I wanted something that helps me start and finish.
 
 ## What I did
 

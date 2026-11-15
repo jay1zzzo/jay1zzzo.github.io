@@ -23,9 +23,14 @@ export default function IntroToggle({ short, long }: Props) {
         <ToggleGroupItem value="short" className="px-4">Short</ToggleGroupItem>
         <ToggleGroupItem value="long" className="px-4">Long</ToggleGroupItem>
       </ToggleGroup>
-      <p aria-live="polite" className="max-w-[60ch] text-base text-muted-foreground">
-        {mode === 'short' ? short : long}
-      </p>
+      <div aria-live="polite" className="flex max-w-[65ch] flex-col gap-3 text-base text-muted-foreground">
+        {(mode === 'short' ? short : long)
+          .trim()
+          .split(/\n\s*\n/) // a blank line starts a new paragraph
+          .map((para, i) => (
+            <p key={i}>{para.trim()}</p>
+          ))}
+      </div>
     </div>
   );
 }
