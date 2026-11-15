@@ -20,9 +20,11 @@ const home = defineCollection({
     contactButton: z.string(),
     email: z.string(),
     linkedin: z.string(),
-    // Apps shown as logos near the top of the home page
+    // Tools & Technologies logo grid on the home page
+    toolsTitle: z.string().optional(),
+    toolsSubtitle: z.string().optional(),
     tools: z
-      .array(z.object({ name: z.string(), icon: z.string().optional(), group: z.string().optional() }))
+      .array(z.object({ name: z.string(), logo: z.string().optional(), group: z.string().optional() }))
       .optional(),
   }),
 });

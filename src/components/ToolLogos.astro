@@ -1,47 +1,52 @@
 ---
-// Row of app logos, grouped. Logos come from Simple Icons (CC0) and are drawn
-// at build time as plain SVG, so visitors download no extra JavaScript.
-// Apps without a logo in the library show as a name-only tile.
-import * as simpleIcons from 'simple-icons';
+// Tools & Technologies: a grid of app logos, grouped by category.
+// The list lives in src/content/home.md under "tools:".
+// Logo files live in src/assets/tools/ and are served as plain images
+// (no JavaScript). Apps without a logo show a lettered tile.
+import type { ImageMetadata } from 'astro';
 
 interface Tool {
   name: string;
-  icon?: string;
+  logo?: string;
   group?: string;
 }
 interface Props {
+  title?: string;
+  subtitle?: string;
   tools: Tool[];
 }
-const { tools } = Astro.props;
+const { title = 'Tools & Technologies', subtitle, tools } = Astro.props;
 
-type Icon = { slug: string; path: string };
-const all = Object.values(simpleIcons) as unknown as Icon[];
-const findIcon = (slug?: string) => (slug ? all.find((i) => i && i.slug === slug) : undefined);
+const files = import.meta.glob<{ default: ImageMetadata }>('/src/assets/tools/*.{svg,png,webp}', { eager: true });
 
 // Keep groups in the order they first appear in home.md
-const groups: { name: string; items: (Tool & { path?: string })[] }[] = [];
+const groups: { name: string; items: (Tool & { src?: string })[] }[] = [];
 for (const t of tools) {
   const g = t.group ?? '';
   let entry = groups.find((x) => x.name === g);
   if (!entry) groups.push((entry = { name: g, items: [] }));
-  const icon = findIcon(t.icon);
-  if (t.icon && !icon) throw new Error(`Logo "${t.icon}" for ${t.name} isn't in Simple Icons. Check the name on simpleicons.org, or remove "icon".`);
-  entry.items.push({ ...t, path: icon?.path });
+  let src: string | undefined;
+  if (t.logo) {
+    const f = files[`/src/assets/tools/${t.logo}`];
+    if (!f) throw new Error(`Tools: can't find "${t.logo}" in src/assets/tools/. Check the file name in home.md.`);
+    src = f.default.src;
+  }
+  entry.items.push({ ...t, src });
 }
 ---
-<section aria-labelledby="tools-heading" class="mt-8">
-  <h2 id="tools-heading" class="label">[ Tools I use ]</h2>
-  <div class="mt-3 flex flex-wrap gap-x-8 gap-y-4">
+<section aria-labelledby="tools-heading" class="mt-12">
+  <h2 id="tools-heading" class="label">[ {title} ]</h2>
+  {subtitle && <p class="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
+
+  <div class="mt-5 grid gap-6">
     {groups.map((g) => (
-      <div>
-        {g.name && <p class="label mb-2 text-[0.6875rem]">{g.name}</p>}
-        <ul class="flex flex-wrap gap-2">
+      <div class="md:grid md:grid-cols-[11rem_minmax(0,1fr)] md:items-start md:gap-6">
+        {g.name && <h3 class="tools-group">{g.name}</h3>}
+        <ul class="tools-grid">
           {g.items.map((t) => (
-            <li class="tool-tile">
-              {t.path ? (
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                  <path d={t.path} fill="currentColor" />
-                </svg>
+            <li class="tool-tile rise-in">
+              {t.src ? (
+                <img src={t.src} alt="" width="40" height="40" loading="lazy" decoding="async" class="tool-logo" />
               ) : (
                 <span class="tool-initial" aria-hidden="true">{t.name.charAt(0)}</span>
               )}
@@ -55,34 +60,65 @@ for (const t of tools) {
 </section>
 
 <style>
+  .tools-group {
+    margin-bottom: 0.75rem;
+    padding-top: 0.25rem;
+    font-family: var(--site-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--site-accent);
+  }
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
+    gap: 0.75rem;
+  }
   .tool-tile {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    min-height: 2.5rem;
-    padding: 0.375rem 0.75rem;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 7rem;
+    padding: 1rem 0.5rem 0.875rem;
+    text-align: center;
     border: var(--border-width) solid var(--site-line);
     border-radius: var(--radius);
     background: var(--site-card);
-    color: var(--site-muted);
+    transition: transform 150ms ease, border-color 150ms ease;
+  }
+  .tool-tile:hover {
+    transform: translateY(-2px);
+    border-color: var(--site-accent);
+  }
+  .tool-logo,
+  .tool-initial {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
   }
   .tool-initial {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 22px;
-    height: 22px;
-    border: 2px solid currentColor;
+    border: 2px solid var(--site-muted);
     border-radius: var(--radius);
     font-family: var(--site-serif);
-    font-size: 0.8125rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    line-height: 1;
+    color: var(--site-text);
   }
   .tool-name {
     font-family: var(--site-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    letter-spacing: 0.03em;
     color: var(--site-text);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tool-tile:hover {
+      transform: none;
+    }
   }
 </style>

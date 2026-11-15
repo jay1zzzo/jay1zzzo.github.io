@@ -20,15 +20,28 @@ contactButton: "Email me →"
 email: "jasonpbelgica@gmail.com"
 linkedin: "https://www.linkedin.com/in/jason-belgica"
 
-# APPS I USE: shown as logos near the top of the home page.
-# One line per app. "icon" is the logo's name on simpleicons.org.
-# Leave "icon" out to show the name only (some apps aren't in the logo library).
-# "group" puts apps under a small heading, e.g. "Use regularly" or "Have used".
+# TOOLS & TECHNOLOGIES: shown as a logo grid on the home page.
+# One line per app.
+#   logo:  file name of the logo in src/assets/tools/ (SVG or PNG).
+#          Leave it out to show a lettered tile instead.
+#   group: the heading the app sits under. Groups show in the order they first appear.
+toolsTitle: "Tools & Technologies"
+toolsSubtitle: "The tools I use to design, build, create and analyse."
 tools:
-  - { name: "Canva", group: "Marketing" }
-  - { name: "Wix Studio", icon: "wix", group: "Marketing" }
-  - { name: "CapCut", group: "Marketing" }
-  - { name: "Buffer", icon: "buffer", group: "Marketing" }
-  - { name: "SEOptimer", group: "Marketing" }
-  - { name: "Claude Code", icon: "claude", group: "Building" }
+  - { name: "Adobe Photoshop", logo: "photoshop.svg", group: "Design & Creative" }
+  - { name: "Canva", logo: "canva.svg", group: "Design & Creative" }
+  - { name: "CapCut", group: "Design & Creative" }
+  - { name: "Adobe Lightroom", logo: "lightroom.svg", group: "Design & Creative" }
+  - { name: "Cinema 4D", logo: "cinema4d.svg", group: "Design & Creative" }
+  - { name: "Wix Studio", logo: "wix.svg", group: "Web Design & Development" }
+  - { name: "WordPress", logo: "wordpress.svg", group: "Web Design & Development" }
+  - { name: "Elementor", logo: "elementor.svg", group: "Web Design & Development" }
+  - { name: "Meta Business Suite", logo: "meta.svg", group: "Marketing & Analytics" }
+  - { name: "Meta Ads Manager", logo: "meta.svg", group: "Marketing & Analytics" }
+  - { name: "SEOptimer", group: "Marketing & Analytics" }
+  - { name: "Google Analytics", logo: "google-analytics.svg", group: "Marketing & Analytics" }
+  - { name: "ChatGPT", logo: "chatgpt.svg", group: "AI & Development" }
+  - { name: "Claude", logo: "claude.svg", group: "AI & Development" }
+  - { name: "GitHub", logo: "github.svg", group: "AI & Development" }
+  - { name: "Visual Studio Code", logo: "vscode.svg", group: "AI & Development" }
 ---

@@ -54,9 +54,6 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
     </section>
   </div>
 
-  <!-- App logos (list lives in home.md under "tools:") -->
-  {home.tools && home.tools.length > 0 && <ToolLogos tools={home.tools} />}
-
   <!-- Project cards -->
   <section aria-labelledby="work" class="mt-8">
     <h2 id="work" class="label">[ Selected work ]</h2>
@@ -74,6 +71,11 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
       ))}
     </div>
   </section>
+
+  <!-- Tools & Technologies (list lives in home.md under "tools:") -->
+  {home.tools && home.tools.length > 0 && (
+    <ToolLogos title={home.toolsTitle} subtitle={home.toolsSubtitle} tools={home.tools} />
+  )}
 
   <!-- Work gallery preview: first 3 items from gallery.yaml -->
   <section aria-labelledby="gallery-preview" class="mt-12">
