@@ -1,26 +1,30 @@
 ---
-// Home page. Step 2 shows only the frame; the real content arrives in step 4.
+// Step 3 test page: shows the building blocks. The real home page comes in step 4.
 import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard';
+import IntroToggle from '../components/IntroToggle';
+import { buttonVariants } from '@/components/ui/button';
 ---
 <Base>
-  <p class="label">[ STEP 2 / LOOK AND FEEL ]</p>
-  <h1 class="demo-headline">
+  <p class="label">[ STEP 3 / BUILDING BLOCKS ]</p>
+  <h1 class="mt-2 mb-6 max-w-[20ch] font-serif text-4xl leading-tight font-semibold md:text-5xl">
     Hi, I'm Jason. I'm a Marketing Assistant who builds small tools to make work easier.
   </h1>
-  <p class="demo-muted">Header, navigation, footer, colours and fonts are in. The home page content comes in step 4.</p>
-</Base>
 
-<style>
-  .demo-headline {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    line-height: 1.1;
-    max-width: 20ch;
-    margin: 0.5rem 0 1rem;
-  }
-  .demo-muted {
-    color: var(--color-muted);
-    max-width: 60ch;
-  }
-</style>
+  <IntroToggle
+    client:load
+    short="(Test text) This is the short intro."
+    long="(Test text) This is the long intro. It's longer, so you can see the switch working."
+  />
+
+  <div class="mt-6 flex flex-wrap gap-3">
+    <a href="#" class={buttonVariants({ size: 'lg' })}>Email me →</a>
+    <a href="#" class={buttonVariants({ size: 'lg', variant: 'outline' })}>Outline button</a>
+  </div>
+
+  <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ProjectCard client:visible label="TOOL / OPEN SOURCE" title="Downloads Tidier" summary="(Test card) Hover over me to see the amber spotlight." href="#" />
+    <ProjectCard client:visible label="MARKETING" title="BlayCare website" summary="(Test card) Hover over me to see the amber spotlight." href="#" />
+    <ProjectCard client:visible label="TOOL" title="Tomato Timer" summary="(Test card) Hover over me to see the amber spotlight." href="#" />
+  </div>
+</Base>

@@ -71,7 +71,7 @@ const year = new Date().getFullYear();
 
 <style>
   .site-header {
-    border-bottom: var(--border-width) solid var(--color-border);
+    border-bottom: var(--border-width) solid var(--site-line);
   }
   .header-inner {
     display: flex;
@@ -83,7 +83,7 @@ const year = new Date().getFullYear();
     padding-bottom: 1rem;
   }
   .site-name {
-    font-family: var(--font-serif);
+    font-family: var(--site-serif);
     font-size: 1.125rem;
     font-weight: 600;
     text-decoration: none;
@@ -99,21 +99,21 @@ const year = new Date().getFullYear();
   .nav-link {
     display: inline-block;
     padding: 0.5rem 0; /* bigger tap area on phones */
-    font-family: var(--font-mono);
+    font-family: var(--site-mono);
     font-size: 0.8125rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     text-decoration: none;
-    color: var(--color-muted);
+    color: var(--site-muted);
     border-bottom: var(--border-width) solid transparent;
     transition: color 120ms, border-color 120ms;
   }
   .nav-link:hover {
-    color: var(--color-text);
+    color: var(--site-text);
   }
   .nav-link[aria-current='page'] {
-    color: var(--color-text);
-    border-bottom-color: var(--color-accent);
+    color: var(--site-text);
+    border-bottom-color: var(--site-accent);
   }
 
   main {
@@ -122,7 +122,7 @@ const year = new Date().getFullYear();
   }
 
   .site-footer {
-    border-top: var(--border-width) solid var(--color-border);
+    border-top: var(--border-width) solid var(--site-line);
   }
   .footer-inner {
     display: flex;
@@ -131,16 +131,16 @@ const year = new Date().getFullYear();
     gap: 0.5rem 1.5rem;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-    font-family: var(--font-mono);
+    font-family: var(--site-mono);
     font-size: 0.75rem;
-    color: var(--color-muted);
+    color: var(--site-muted);
   }
   .footer-inner a {
-    color: var(--color-muted);
+    color: var(--site-muted);
     text-decoration-thickness: 1px;
     text-underline-offset: 3px;
   }
   .footer-inner a:hover {
-    color: var(--color-accent);
+    color: var(--site-accent);
   }
 </style>
