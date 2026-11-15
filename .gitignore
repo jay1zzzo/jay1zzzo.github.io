@@ -1,0 +1,12 @@
+# Things git should never save
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+
+# Private working notes and Claude settings: kept on this computer only
+PLAN.md
+.claude/
