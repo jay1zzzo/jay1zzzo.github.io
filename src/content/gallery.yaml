@@ -7,8 +7,3 @@
 # Images: designs only, no photos of people. Nothing private.
 
 careers-fair-flyer: { image: "careers-fair-flyer.png", what: "BlayCare careers fair flyer", did: "[add here: what you did]", tool: "[add here]", alt: "A4 recruitment flyer headed We Are Hiring, for care workers in Derby, listing training, flexible shift times, staff benefits, how to apply, and the CQC Good rating. The staff photo is covered for privacy." }
-placeholder-2: { image: "placeholder-2.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 2" }
-placeholder-3: { image: "placeholder-3.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 3" }
-placeholder-4: { image: "placeholder-4.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 4" }
-placeholder-5: { image: "placeholder-5.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 5" }
-placeholder-6: { image: "placeholder-6.png", what: "[add here: what it is]", did: "[add here: what you did]", tool: "[add here]", alt: "Placeholder image for gallery item 6" }
