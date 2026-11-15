@@ -6,7 +6,8 @@ summary: "A job search app I built for myself. [add here: one line on what it do
 order: 5
 # No public link: there's no public repository for this app.
 # Screenshots from the hand-over pack: an isolated demo with fictional data only.
-imagesTitle: "Screenshots (demo data)"
+imagesTitle: "Screenshots"
+imagesNote: "Example data, not my real applications."
 imagesLayout: two
 images:
   - src: "../../assets/projects/job-desk/01-hero.png"

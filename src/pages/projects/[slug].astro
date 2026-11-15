@@ -43,6 +43,7 @@ const images = await Promise.all(
     {images.length > 0 && (
       <section aria-labelledby="images-heading" class="mt-10">
         <h2 id="images-heading" class="label">[ {d.imagesTitle ?? 'Images'} ]</h2>
+        {d.imagesNote && <p class="mt-1 text-sm text-muted-foreground">{d.imagesNote}</p>}
         <ul class={d.imagesLayout === 'wide' ? 'mt-3 grid gap-6' : d.imagesLayout === 'two' ? 'mt-3 grid gap-4 sm:grid-cols-2' : 'mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3'}>
           {images.map((im) => (
             <li class="rise-in">
