@@ -13,10 +13,9 @@ const home = (await getEntry('home', 'home'))!.data;
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 <Base>
-  <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-12">
-    <!-- Left: headline, intro, contact -->
-    <section aria-labelledby="headline">
-      <h1 id="headline" class="max-w-[26ch] font-serif text-[2rem] leading-[1.1] font-semibold sm:text-5xl lg:text-[2.875rem]">
+  <!-- Headline, intro, contact (full width) -->
+  <section aria-labelledby="headline">
+      <h1 id="headline" class="max-w-[28ch] font-serif text-[2rem] leading-[1.1] font-semibold sm:text-5xl lg:text-[3.25rem]">
         {home.headline.split(' ').map((word, i) => (
           <><span class="word-reveal" style={`animation-delay:${i * 55}ms`}>{word}</span>{' '}</>
         ))}
@@ -38,24 +37,23 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
           LinkedIn
         </a>
       </div>
-    </section>
+  </section>
 
-    <!-- Right: what I believe -->
-    <section aria-labelledby="beliefs" class="self-start border-2 border-border bg-card p-5">
-      <h2 id="beliefs" class="label">[ What I believe ]</h2>
-      <ol class="mt-3 space-y-2.5">
-        {home.beliefs.map((belief, i) => (
-          <li class="flex gap-3 text-sm leading-snug">
-            <span class="font-mono text-xs text-primary" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <span>{belief}</span>
-          </li>
-        ))}
-      </ol>
-    </section>
-  </div>
+  <!-- What I believe: an open strip, no box -->
+  <section aria-labelledby="beliefs" class="mt-10 border-t-2 border-border pt-5">
+    <h2 id="beliefs" class="label">[ What I believe ]</h2>
+    <ol class="mt-4 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
+      {home.beliefs.map((belief, i) => (
+        <li class="flex gap-3 text-sm leading-snug lg:flex-col lg:gap-2">
+          <span class="font-mono text-xs text-primary" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <span>{belief}</span>
+        </li>
+      ))}
+    </ol>
+  </section>
 
   <!-- Project cards -->
-  <section aria-labelledby="work" class="mt-8">
+  <section aria-labelledby="work" class="mt-12">
     <h2 id="work" class="label">[ Selected work ]</h2>
     <div class="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((p) => (
