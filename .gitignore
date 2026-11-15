@@ -10,3 +10,9 @@ Thumbs.db
 # Private working notes and Claude settings: kept on this computer only
 PLAN.md
 .claude/
+# Any other private working files (never published)
+notes/
+drafts/
+answers/
+*.local.md
+*.private.*
