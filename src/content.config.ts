@@ -37,6 +37,8 @@ const projects = defineCollection({
       // Optional images shown on the project page (click to enlarge).
       // Alt text is required: the site won't build without it.
       stats: z.array(stat).optional(),          // number boxes near the top of the page
+      imagesTitle: z.string().optional(),       // heading above the images, e.g. "Screenshots"
+      imagesLayout: z.enum(['grid', 'wide']).optional(), // "wide" = one image per row
       images: z
         .array(
           z.object({

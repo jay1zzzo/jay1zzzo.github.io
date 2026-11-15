@@ -9,6 +9,16 @@ stats:
   - { value: 3, label: "operating systems checked: Windows, macOS and Linux" }
 link: "https://github.com/jay1zzzo/downloads-tidier"
 linkText: "See the code on GitHub"
+# Screenshots from the project's GitHub page (docs/images). Click to enlarge.
+imagesTitle: "Before and after"
+imagesLayout: wide
+images:
+  - src: "../../assets/projects/downloads-tidier/before.png"
+    alt: "A Downloads folder before tidying: dozens of loose installers, zip files, videos and images in one long list."
+    caption: "Before: a messy Downloads folder."
+  - src: "../../assets/projects/downloads-tidier/after.png"
+    alt: "The same folder after tidying: files sorted into Archives, Audio, Documents, Images, Installers, Other, Spreadsheets and Video folders, plus the tool's log file."
+    caption: "After: sorted into folders by file type, plus the tool's log file."
 ---
 
 ## The problem

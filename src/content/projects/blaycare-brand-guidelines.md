@@ -7,6 +7,7 @@ order: 2
 # Guideline pages shown on this project's page. Click any image to enlarge it.
 # To swap a placeholder, replace the image file (keep the same name),
 # or change the file name here. Every image needs alt text.
+imagesTitle: "Guideline pages"
 images:
   - src: "../../assets/projects/blaycare-brand/page-1.png"
     alt: "[add here: describe guideline page 1, e.g. which part of the brand it shows]"
