@@ -9,18 +9,17 @@ order: 2
 # or change the file name here. Every image needs alt text.
 imagesTitle: "Guideline pages"
 images:
+  # From "BlayCare Brand Guidelines.pdf". Page 1's example images (staff names and faces)
+  # are covered for privacy.
   - src: "../../assets/projects/blaycare-brand/page-1.png"
-    alt: "[add here: describe guideline page 1, e.g. which part of the brand it shows]"
-    caption: "[add here]"
+    alt: "BlayCare Brand Guidelines page 1: three logo variations (primary, secondary and compact), five brand colours with hex and RGB values, Poppins and Inter typography, and tone of voice and imagery style. The example images area is covered for privacy."
+    caption: "Logos, colours, typography and tone of voice"
   - src: "../../assets/projects/blaycare-brand/page-2.png"
-    alt: "[add here: describe guideline page 2]"
-    caption: "[add here]"
+    alt: "BlayCare Brand Guidelines page 2, Using the BlayCare Brand: when to use each colour, how to use Poppins and Inter for headings, body copy, buttons and links, and suggested font sizes."
+    caption: "Using the brand: colour and type rules"
   - src: "../../assets/projects/blaycare-brand/page-3.png"
-    alt: "[add here: describe guideline page 3]"
-    caption: "[add here]"
-  - src: "../../assets/projects/blaycare-brand/page-4.png"
-    alt: "[add here: describe guideline page 4]"
-    caption: "[add here]"
+    alt: "BlayCare Brand Guidelines page 3: the current primary font, Poppins, in regular and bold, with secondary font options Nunito Sans and Inter."
+    caption: "Primary and secondary font options"
 ---
 
 ## The problem
