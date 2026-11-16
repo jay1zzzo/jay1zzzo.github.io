@@ -25,8 +25,7 @@ const paths: Record<IconName, string> = {
   megaphone: 'M3 11l13-6v14L3 13zM7 13v5h3v-4M19 9v6',
   snowflake: 'M12 2v20M3.5 7l17 10M3.5 17l17-10M9 3.5l3 2 3-2M9 20.5l3-2 3 2',
   browser: 'M3 5h18v14H3zM3 9h18M6 7h.01M9 7h.01',
-  briefcase: 'M3 8h18v11H3zM9 8V5h6v3M3 13h18',
-};
+  briefcase: 'M3 8h18v11H3zM9 8V5h6v3M3 13h18',};
 
 function Icon({ name }: { name: IconName }) {
   return (

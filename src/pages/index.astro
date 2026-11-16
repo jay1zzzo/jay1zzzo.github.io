@@ -2,7 +2,7 @@
 // Home page. Order: heading, About (Short/Long, reflections in Long), marketing work
 // (calm cards), tools, learning, technical projects, education, contact.
 // All words come from src/content/.
-import { getEntry, getCollection } from 'astro:content';
+import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import ProjectList from '../components/ProjectList.astro';
 import IntroToggle from '../components/IntroToggle';
@@ -12,7 +12,6 @@ import Certifications from '../components/Certifications.astro';
 import { buttonVariants } from '@/components/ui/button';
 
 const home = (await getEntry('home', 'home'))!.data;
-const practice = await getCollection('projects', (p) => p.data.category === 'practice');
 ---
 <Base>
   <!-- 1. Heading -->
@@ -58,16 +57,7 @@ const practice = await getCollection('projects', (p) => p.data.category === 'pra
     <div class="mt-3"><ProjectList category="marketing" featuredOnly variant="peek" /></div>
   </section>
 
-  <!-- 4. Practice projects (hidden until there are some) -->
-  {practice.length > 0 && (
-    <section aria-labelledby="practice" class="section-rule">
-      <h2 id="practice" class="label">[ Practice projects ]</h2>
-      <p class="mt-1 text-sm text-muted-foreground">Independent practice, not commissioned or affiliated.</p>
-      <div class="mt-3"><ProjectList category="practice" /></div>
-    </section>
-  )}
-
-  <!-- 5. Tools & Technologies, then what I'm learning -->
+  <!-- 4. Tools & Technologies, then what I'm learning -->
   {home.tools && home.tools.length > 0 && (
     <ToolLogos title={home.toolsTitle} subtitle={home.toolsSubtitle} tools={home.tools} />
   )}
