@@ -37,7 +37,6 @@ The readers were families choosing care and professionals making referrals.
 - Introduce BlayCare and its services.
 - Help families understand their care options.
 - Support professional referrals.
-- Encourage enquiries.
 - Replace outdated or inconsistent material.
 - Give families a straightforward route to an enquiry form. The printed version has a QR code for this. It is removed in the copies shown here.
 

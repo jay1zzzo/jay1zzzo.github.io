@@ -16,7 +16,7 @@ I rebuilt BlayCare's website in Wix Studio. It has new copy, service pages, care
 
 ## Purpose and audience
 
-BlayCare needed stronger online visibility, clearer branding, better website usability and clearer communication.
+BlayCare needed stronger online visibility, clearer branding, better website usability and communication.
 
 I wrote separate personas for the two main audiences: professional referrers and private families. They came from desk research and what I learned inside the business, not from interviews.
 
@@ -34,14 +34,14 @@ I also used the SEOptimer tool to benchmark their sites. I reviewed their struct
 - Rebuilt the website in Wix Studio.
 - Wrote the new copy.
 - Built the service pages, careers pages and enquiry forms.
-- Used competitor benchmarking to find weaknesses in structure, SEO and trust signals.
+- Benchmarked local competitors before building.
 - Used the Wix Studio editor and CMS to organise images and update text, visuals, layout and calls to action.
 - Worked on brand guidelines to give the site a clearer, more consistent look. These are on a separate page.
 
 ## Decisions
 
 - **Two audiences.** Separate personas for professional referrers and private families shaped what each page needed to say.
-- **Benchmarking first.** Competitor research on structure, SEO and trust signals showed where the old site was weak.
+- **Benchmarking first.** The research showed where the old site was weak.
 - **Choosing the platform.** I compared WordPress.com, Wix, Wix Studio and v0 for design flexibility, ease of maintenance by the team, responsiveness and fit for the business. I recommended Wix Studio. I only used v0 to explore ideas and mock-ups, not for the live site.
 - **A clear next step.** Enquiry forms and careers pages give each visitor somewhere to go.
 

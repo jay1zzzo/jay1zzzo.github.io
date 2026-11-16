@@ -35,7 +35,7 @@ outside:
 
 ## My story
 
-I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut near a corner shop, by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out as a kid and run there to play it. By seven I was already the one my older cousin asked to work the family computer.
+I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut near a corner shop, by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out and run there to play it. Around then I was also the one my older cousin asked to work the family computer.
 
 I always loved drawing, and my family knew me for it. The first drawing I remember is Simba from The Lion King. I made kites, and I wondered about space, rockets and aeroplanes.
 
@@ -51,7 +51,7 @@ The Instagram page is where I first did marketing for real. I made the graphics 
 
 I spent a couple of years at university, doing a foundation year and then starting an architecture degree, before moving into a marketing apprenticeship at BlayCare in March 2025. I'm now the Marketing Assistant. I rebuilt the website, wrote the brand guidelines and have worked on social media and newsletters. I passed my Level 3 Multichannel Marketer qualification in October 2026.
 
-Alongside the training from my apprenticeship with Althaus, a lot of my practical learning has been self-directed. As the sole in-house marketer, I've taken initiative, picked up new tools and worked through problems on my own.
+Alongside the training from my apprenticeship with Althaus, much of my learning has been self-directed, as the sole in-house marketer.
 
 More recently I've got interested in AI and what it makes possible: not just generating content, but building things, solving problems and making everyday tasks easier. I've built a productivity app, an MCP integration and some other small tools, with AI's help, and I'm still learning.
 

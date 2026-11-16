@@ -38,7 +38,7 @@ I built Tomato MCP with Claude Code. I decided what it should do, reviewed the w
 
 ## How it fits my other tools
 
-Tomato Timer keeps my tasks, and Tomato MCP lets an AI app work on the same list, so the two stay in step. It sits alongside Job Desk and Downloads Tidier as part of my interest in connecting AI apps to everyday work and making routine jobs simpler.
+Tomato MCP sits alongside Job Desk and Downloads Tidier as part of my interest in connecting AI apps to everyday work and making routine jobs simpler.
 
 ## Technical detail
 

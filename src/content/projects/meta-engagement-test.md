@@ -24,7 +24,7 @@ I set up the promotion, watched it while it ran, corrected it and reported on it
 ## Decisions
 
 - **An existing post.** I promoted a branded BlayCare service post instead of making new advert creative. It let me run a quick pilot.
-- **Get engagement as the objective.** I did not choose leads, purchases or website conversions. This was a visibility test.
+- **Engagement as the objective.** I did not choose leads, purchases or website conversions.
 - **A small budget.** I first set £12 (£4 a day for 3 days). Before launch I reduced it to £9 planned (£3 a day for 3 days).
 - **Stopping early.** I stopped it after about two days. Actual spend was £6.30.
 - **Fixing the audience while live.** I started with a broad adult audience, then corrected the location to Derby and Derbyshire. While it was running, I saw the location had expanded to the whole United Kingdom. I think Meta's Advantage+ setting was involved, but I have not verified that. I narrowed it back to Derby and Derbyshire and changed the caption at the same time.

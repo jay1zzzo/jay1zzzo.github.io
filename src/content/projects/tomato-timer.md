@@ -41,7 +41,7 @@ I built it because I find it hard to stay on top of tasks, and I wanted somethin
 
 ## What I made
 
-Tomato Timer is a focus timer and task list for myself. I built it first to help me keep on top of deadlines. It syncs across my Mac, PC and phone.
+Tomato Timer is a focus timer and task list for myself. It syncs across my Mac, PC and phone.
 
 - Focus and break sessions, with Today and Later task lists, favourites and drag-to-reorder.
 - Reminders, a small content calendar, a files area and a motivation board.
@@ -57,4 +57,4 @@ I later built a small connector that lets an AI app read and change the same tas
 
 ## What I learned
 
-Building in small steps works. Fixing a problem I have myself gets it improved quicker. Keeping it simple matters.
+Fixing a problem I have myself gets it improved quicker. Keeping it simple matters.

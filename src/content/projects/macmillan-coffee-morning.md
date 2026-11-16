@@ -25,11 +25,11 @@ A community coffee morning at the BlayCare office in aid of Macmillan Cancer Sup
 - Show BlayCare's care and community values.
 - Create content to help local visibility and engagement.
 
-The event was for staff, carers, clients and families. It was not a lead-generation exercise.
+It was not a lead-generation exercise.
 
 ## My contribution
 
-I supported the planning and coordination, and I made the promotional materials. Colleagues helped with the setup and on the day. My work included:
+Colleagues helped with the setup and on the day. My work included:
 
 - Invitation design and wording, and the tear-off RSVP slip.
 - Printed invitations and personal letters to clients.

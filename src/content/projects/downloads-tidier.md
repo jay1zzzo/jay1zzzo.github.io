@@ -40,5 +40,5 @@ I built it with Claude Code. I planned it first, then built it in 8 reviewed ste
 
 - Plan first, and build in small checked steps.
 - Safety matters more than speed when software touches people's files.
-- Test properly: 179 tests, on three operating systems.
+- Test properly, and on more than one operating system.
 - Be honest that I built it with Claude Code.
