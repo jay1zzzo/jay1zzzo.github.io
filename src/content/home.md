@@ -6,7 +6,7 @@
 headline: "Hi, I'm Jason. I'm a junior marketer who loves building tools that make work easier."
 
 
-shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles. I passed my Level 3 Multichannel Marketer qualification in October 2026. I'm organised, I learn quickly, I like building small tools to make work simpler, and I want to keep growing within a team."
+shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles, and I passed my Level 3 Multichannel Marketer qualification in October 2026. I like building small tools to make work simpler, and I've become really interested in doing that with AI, especially Claude Code. I want to keep growing within a team."
 
 # Long intro: a shorter cut of the About page story.
 # Optional: add  longLead: "..."  here to show a bold opening line above the Long text.
@@ -14,7 +14,9 @@ shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant 
 longIntro: |
   I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut near a corner shop, by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out and run there to play it. By seven I was already the one my older cousin asked to work the family computer.
 
-  As a teenager I got good at competitive games, and people who had no time started asking me to coach them. So I started selling that help online, through an eBay shop, which still has 100% positive feedback, and an Instagram page. I answered customer enquiries professionally, including the early-morning ones, with one eye open. That's when I realised I love marketing and seeing things grow.
+  As a teenager I got good at competitive games, and people who had no time started asking me to coach them. So I started selling that help online, through an eBay shop, which still has 100% positive feedback, and an Instagram page.
+
+  The Instagram page is where I first did marketing for real. I made the graphics and price lists myself, posted regularly, and used hashtags and replies to get it in front of more people. Offers and customer reviews helped build trust. I also answered customer enquiries professionally, including the early-morning ones, with one eye open. That's when I realised I love marketing and seeing things grow.
 
   I spent a couple of years at university, doing a foundation year and then starting an architecture degree, before moving into a marketing apprenticeship at BlayCare in March 2025. I'm now the Marketing Assistant. I rebuilt the website, wrote the brand guidelines and have worked on social media and newsletters. I passed my Level 3 Multichannel Marketer qualification in October 2026.
 
