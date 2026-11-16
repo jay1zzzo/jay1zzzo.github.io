@@ -16,3 +16,6 @@ drafts/
 answers/
 *.local.md
 *.private.*
+
+# Impeccable plugin settings: local only
+.impeccable/

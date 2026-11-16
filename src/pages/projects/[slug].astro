@@ -1,5 +1,6 @@
 ---
 // One template for every project page. The words come from src/content/projects/*.md
+// Marketing case studies show their evidence (images) first, then the written case study.
 import { getCollection, render } from 'astro:content';
 import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
@@ -16,48 +17,112 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 const d = project.data;
 
+const EDITED_NOTE = 'Personal details and sensitive content replaced for portfolio display.';
+
 // A large version of each image for the click-to-enlarge window
-const images = await Promise.all(
-  (d.images ?? []).map(async (im) => ({
-    ...im,
-    large: await getImage({ src: im.src, width: 1600 }),
-  })),
-);
+const prep = (list: NonNullable<typeof d.images>) =>
+  Promise.all(list.map(async (im) => ({ ...im, large: await getImage({ src: im.src, width: 1800 }) })));
+const images = await prep(d.images ?? []);
+const closeups = await prep(d.closeups ?? []);
+
+const backHref = d.category === 'tool' ? '/tools' : '/marketing';
+const backLabel = d.category === 'tool' ? 'Tools' : 'Marketing';
+const gridClass = (layout?: string) =>
+  layout === 'wide'
+    ? 'mt-3 grid gap-6'
+    : layout === 'two'
+      ? 'mt-3 grid gap-4 sm:grid-cols-2'
+      : 'mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3';
+const thumbWidth = (layout?: string) => (layout === 'wide' ? 1200 : layout === 'two' ? 800 : 500);
+const evidenceFirst = d.category !== 'tool';
 ---
 <Base title={d.title} description={d.summary}>
-  <article class="max-w-3xl">
-    <a href={d.category === 'marketing' ? '/marketing' : '/tools'} class="inline-block py-1 font-mono text-xs tracking-wider text-muted-foreground uppercase no-underline hover:text-primary">
-      <span aria-hidden="true">←</span> {d.category === 'marketing' ? 'Marketing' : 'Tools'}
+  <article class="max-w-4xl">
+    <a href={backHref} class="inline-block py-1 font-mono text-xs tracking-wider text-muted-foreground uppercase no-underline hover:text-primary">
+      <span aria-hidden="true">←</span> {backLabel}
     </a>
 
     <p class="label mt-6">[ {d.label} ]</p>
     <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">{d.title}</h1>
-    <p class="mt-4 text-lg text-muted-foreground">{d.summary}</p>
+    <p class="mt-4 max-w-[65ch] text-lg text-muted-foreground">{d.summary}</p>
 
     {d.stats && <Stats stats={d.stats} />}
 
-    <div class="prose-site mt-8">
-      <Content />
-    </div>
-
-    {images.length > 0 && (
-      <section aria-labelledby="images-heading" class="mt-10">
-        <h2 id="images-heading" class="label">[ {d.imagesTitle ?? 'Images'} ]</h2>
+    {evidenceFirst && images.length > 0 && (
+      <section aria-labelledby="images-heading" class="mt-8">
+        <h2 id="images-heading" class="label">[ {d.imagesTitle ?? 'Selected work'} ]</h2>
         {d.imagesNote && <p class="mt-1 text-sm text-muted-foreground">{d.imagesNote}</p>}
-        <ul class={d.imagesLayout === 'wide' ? 'mt-3 grid gap-6' : d.imagesLayout === 'two' ? 'mt-3 grid gap-4 sm:grid-cols-2' : 'mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3'}>
+        <ul class={gridClass(d.imagesLayout)}>
           {images.map((im) => (
-            <li class="rise-in">
+            <li>
               <button
                 type="button"
                 class="lightbox-trigger"
                 data-lightbox-src={im.large.src}
                 data-lightbox-alt={im.alt}
                 data-lightbox-caption={im.caption ?? ''}
+                data-lightbox-note={im.edited ? EDITED_NOTE : ''}
                 aria-label={`Enlarge image: ${im.alt}`}
               >
-                <Image src={im.src} alt={im.alt} width={d.imagesLayout === 'wide' ? 1200 : d.imagesLayout === 'two' ? 800 : 400} loading="lazy" />
+                <Image src={im.src} alt={im.alt} width={thumbWidth(d.imagesLayout)} sizes="(min-width: 640px) 33vw, 50vw" loading="lazy" />
               </button>
-              {im.caption && <p class="mt-2 text-xs text-muted-foreground">{im.caption}</p>}
+              {im.caption && <p class="mt-2 text-sm text-muted-foreground">{im.caption}</p>}
+              {im.edited && <p class="text-xs text-muted-foreground">{EDITED_NOTE}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <div class="prose-site mt-8">
+      <Content />
+    </div>
+
+    {!evidenceFirst && images.length > 0 && (
+      <section aria-labelledby="images-heading-b" class="mt-10">
+        <h2 id="images-heading-b" class="label">[ {d.imagesTitle ?? 'Images'} ]</h2>
+        {d.imagesNote && <p class="mt-1 text-sm text-muted-foreground">{d.imagesNote}</p>}
+        <ul class={gridClass(d.imagesLayout)}>
+          {images.map((im) => (
+            <li>
+              <button
+                type="button"
+                class="lightbox-trigger"
+                data-lightbox-src={im.large.src}
+                data-lightbox-alt={im.alt}
+                data-lightbox-caption={im.caption ?? ''}
+                data-lightbox-note={im.edited ? EDITED_NOTE : ''}
+                aria-label={`Enlarge image: ${im.alt}`}
+              >
+                <Image src={im.src} alt={im.alt} width={thumbWidth(d.imagesLayout)} sizes="(min-width: 640px) 50vw, 100vw" loading="lazy" />
+              </button>
+              {im.caption && <p class="mt-2 text-sm text-muted-foreground">{im.caption}</p>}
+              {im.edited && <p class="text-xs text-muted-foreground">{EDITED_NOTE}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {closeups.length > 0 && (
+      <section aria-labelledby="closeups-heading" class="mt-10">
+        <h2 id="closeups-heading" class="label">[ {d.closeupsTitle ?? 'Close-ups'} ]</h2>
+        <ul class="mt-3 grid gap-4 sm:grid-cols-2">
+          {closeups.map((im) => (
+            <li>
+              <button
+                type="button"
+                class="lightbox-trigger"
+                data-lightbox-src={im.large.src}
+                data-lightbox-alt={im.alt}
+                data-lightbox-caption={im.caption ?? ''}
+                data-lightbox-note={im.edited ? EDITED_NOTE : ''}
+                aria-label={`Enlarge image: ${im.alt}`}
+              >
+                <Image src={im.src} alt={im.alt} width={800} sizes="(min-width: 640px) 50vw, 100vw" loading="lazy" />
+              </button>
+              {im.caption && <p class="mt-2 text-sm text-muted-foreground">{im.caption}</p>}
+              {im.edited && <p class="text-xs text-muted-foreground">{EDITED_NOTE}</p>}
             </li>
           ))}
         </ul>
@@ -66,13 +131,16 @@ const images = await Promise.all(
 
     {d.link && (
       <p class="mt-10">
-        <a href={d.link} rel="noopener" class={buttonVariants({ size: 'lg' }) + ' px-4'}>
-          {d.linkText ?? 'Visit'} <span aria-hidden="true">↗</span>
+        <a
+          href={d.link}
+          rel="noopener"
+          class={buttonVariants({ size: 'lg' }) + ' h-auto max-w-full px-4 py-2 text-left leading-snug whitespace-normal'}
+        >
+          <span>{d.linkText ?? 'Visit'} <span aria-hidden="true">↗</span></span>
         </a>
       </p>
     )}
   </article>
 
-  {images.length > 0 && <Lightbox />}
+  {(images.length > 0 || closeups.length > 0) && <Lightbox />}
 </Base>
-

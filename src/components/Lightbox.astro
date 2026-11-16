@@ -1,42 +1,61 @@
 ---
 // The click-to-enlarge window. Put <Lightbox /> once on any page that has
 // enlargeable images. Any button with data-lightbox-src opens it.
+// Keyboard: Escape closes, Left/Right arrows move between the images on the page,
+// and focus returns to the image you opened.
 ---
 <dialog id="lightbox" class="lightbox" aria-label="Enlarged image">
-  <button type="button" class="lightbox-close" data-lightbox-close>
-    Close <span aria-hidden="true">×</span>
-  </button>
-  <img id="lightbox-img" alt="" />
+  <div class="lightbox-bar">
+    <span id="lightbox-count" class="lightbox-count" aria-live="polite"></span>
+    <span class="lightbox-actions">
+      <button type="button" class="lightbox-btn" data-lightbox-prev aria-label="Previous image">← Prev</button>
+      <button type="button" class="lightbox-btn" data-lightbox-next aria-label="Next image">Next →</button>
+      <button type="button" class="lightbox-btn" data-lightbox-close>Close <span aria-hidden="true">×</span></button>
+    </span>
+  </div>
+  <div class="lightbox-stage">
+    <img id="lightbox-img" alt="" />
+  </div>
   <p id="lightbox-caption" class="lightbox-caption"></p>
+  <p id="lightbox-note" class="lightbox-note"></p>
 </dialog>
 
 <style is:global>
   .lightbox {
-    max-width: min(92vw, 70rem);
-    max-height: 92vh;
+    width: min(94vw, 72rem);
+    max-height: 94vh;
     margin: auto;
     padding: 0;
+    overflow: auto;
     background: var(--site-card);
     color: var(--site-text);
     border: var(--border-width) solid var(--site-accent);
     border-radius: var(--radius);
   }
   .lightbox::backdrop {
-    background: rgb(14 17 22 / 0.88);
+    background: rgb(10 12 16 / 0.82);
   }
-  .lightbox img {
-    display: block;
-    width: auto;
-    height: auto;
-    max-width: min(88vw, 68rem);
-    max-height: calc(92vh - 6rem);
-    margin: 0 auto;
-    object-fit: contain;
+  .lightbox-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--site-card);
+    border-bottom: var(--border-width) solid var(--site-line);
   }
-  .lightbox-close {
-    display: block;
-    margin-left: auto;
-    padding: 0.5rem 0.75rem;
+  .lightbox-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .lightbox-btn {
+    min-height: 2.25rem;
+    padding: 0.25rem 0.75rem;
     font-family: var(--site-mono);
     font-size: 0.75rem;
     letter-spacing: 0.06em;
@@ -46,23 +65,52 @@
     border: 0;
     cursor: pointer;
   }
-  .lightbox-close:hover {
+  .lightbox-btn:hover {
     color: var(--site-accent);
   }
-  .lightbox-caption {
-    padding: 0.75rem 1rem 1rem;
-    font-size: 0.875rem;
+  .lightbox-count {
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
     color: var(--site-muted);
   }
-  .lightbox-caption:empty {
+  .lightbox-stage {
+    padding: 0.75rem;
+    background: #8a8a8a22;
+  }
+  .lightbox img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(94vh - 9rem);
+    margin: 0 auto;
+    object-fit: contain;
+    border: 1px solid var(--site-doc-border);
+    background: #fff;
+  }
+  .lightbox-caption {
+    padding: 0.75rem 1rem 0.25rem;
+    font-size: 0.9375rem;
+    color: var(--site-text);
+  }
+  .lightbox-note {
+    padding: 0 1rem 1rem;
+    font-size: 0.8125rem;
+    color: var(--site-muted);
+  }
+  .lightbox-caption:empty,
+  .lightbox-note:empty {
     display: none;
   }
-  /* The thumbnail buttons that open the window */
+
+  /* The thumbnail buttons that open the window. The border keeps pale documents
+     distinct from the page in both light and dark themes. */
   .lightbox-trigger {
     display: block;
     width: 100%;
     padding: 0;
-    border: var(--border-width) solid var(--site-line);
+    border: var(--border-width) solid var(--site-doc-border);
     border-radius: var(--radius);
     background: var(--site-card);
     cursor: zoom-in;
@@ -82,23 +130,50 @@
   const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
   const img = document.getElementById('lightbox-img') as HTMLImageElement | null;
   const caption = document.getElementById('lightbox-caption');
+  const note = document.getElementById('lightbox-note');
+  const count = document.getElementById('lightbox-count');
 
-  if (dialog && img && caption) {
+  if (dialog && img && caption && note && count) {
+    let triggers: HTMLElement[] = [];
+    let index = 0;
+    let opener: HTMLElement | null = null;
+
+    const show = (i: number) => {
+      const t = triggers[i];
+      if (!t) return;
+      index = i;
+      img.src = t.dataset.lightboxSrc ?? '';
+      img.alt = t.dataset.lightboxAlt ?? '';
+      caption.textContent = t.dataset.lightboxCaption ?? '';
+      note.textContent = t.dataset.lightboxNote ?? '';
+      count.textContent = triggers.length > 1 ? `Image ${i + 1} of ${triggers.length}` : '';
+      dialog.querySelectorAll<HTMLButtonElement>('[data-lightbox-prev], [data-lightbox-next]').forEach((b) => {
+        b.hidden = triggers.length < 2;
+      });
+    };
+    const step = (d: number) => show((index + d + triggers.length) % triggers.length);
+
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       const trigger = target.closest<HTMLElement>('[data-lightbox-src]');
       if (trigger) {
-        img.src = trigger.dataset.lightboxSrc ?? '';
-        img.alt = trigger.dataset.lightboxAlt ?? '';
-        caption.textContent = trigger.dataset.lightboxCaption ?? '';
+        triggers = [...document.querySelectorAll<HTMLElement>('[data-lightbox-src]')];
+        opener = trigger;
+        show(triggers.indexOf(trigger));
         dialog.showModal();
         return;
       }
-      // Close button, or a click on the dark area outside the image
-      if (target.closest('[data-lightbox-close]') || target === dialog) {
-        dialog.close();
-      }
+      if (target.closest('[data-lightbox-prev]')) return step(-1);
+      if (target.closest('[data-lightbox-next]')) return step(1);
+      // Close button, or a click on the dark area outside the window
+      if (target.closest('[data-lightbox-close]') || target === dialog) dialog.close();
     });
-    // Esc closes it automatically (built into <dialog>).
+
+    dialog.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+    });
+    // Escape closes the dialog natively; put focus back where the reader was.
+    dialog.addEventListener('close', () => opener?.focus());
   }
 </script>

@@ -1,26 +1,49 @@
 ---
-// A grid of project cards for one category ("marketing" or "tool").
+// A grid of project cards for one category, with thumbnails of the real work.
 import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import ProjectCard from './ProjectCard';
 
 interface Props {
-  category: 'marketing' | 'tool';
+  category: 'marketing' | 'tool' | 'practice';
+  featuredOnly?: boolean;            // only projects marked featured: true
+  columns?: 'three' | 'two' | 'four';
+  variant?: 'image' | 'peek';        // "peek": calm icon card with no picture
 }
-const { category } = Astro.props;
-const projects = (await getCollection('projects', (p) => p.data.category === category)).sort(
-  (a, b) => a.data.order - b.data.order,
+const { category, featuredOnly = false, columns = 'three', variant = 'image' } = Astro.props;
+
+const projects = (
+  await getCollection('projects', (p) => p.data.category === category && (!featuredOnly || p.data.featured))
+).sort((a, b) => a.data.order - b.data.order);
+
+const cards = await Promise.all(
+  projects.map(async (p) => ({
+    id: p.id,
+    ...p.data,
+    // The calm icon cards ("peek") show no picture, so skip making one
+    thumbUrl: p.data.thumb && variant !== 'peek' ? (await getImage({ src: p.data.thumb, width: 640, height: 480, fit: 'cover', position: 'top' })).src : undefined,
+  })),
 );
+const grid =
+  columns === 'two'
+    ? 'grid gap-4 sm:grid-cols-2'
+    : columns === 'four'
+      ? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-4'
+      : 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3';
 ---
-<div class="grid gap-4 sm:grid-cols-2">
-  {projects.map((p) => (
-    <div class="rise-in">
+{cards.length > 0 && (
+  <div class={grid}>
+    {cards.map((p) => (
       <ProjectCard
         client:visible
-        label={p.data.label}
-        title={p.data.title}
-        summary={p.data.summary}
+        label={p.label}
+        title={p.title}
+        summary={p.summary}
         href={`/projects/${p.id}`}
+        image={p.thumbUrl}
+        variant={variant}
+        icon={p.icon}
       />
-    </div>
-  ))}
-</div>
+    ))}
+  </div>
+)}

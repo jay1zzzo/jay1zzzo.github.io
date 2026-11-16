@@ -1,0 +1,11 @@
+# EDUCATION, QUALIFICATIONS AND CERTIFICATIONS
+# One line per item, newest first. Format:
+#   unique-name: { name: "Title", type: education, order: 1, detail: "Where and when", link: "https://public-link" }
+# type: education (qualifications and study) or certification (named certificates).
+# "detail" and "link" are optional. A group is hidden while it has no items.
+# Only add a certification once the exact title, date and validity are confirmed
+# (waiting on: HubSpot SEO certification, Meta Business Suite training, WordPress course).
+
+level-3-multichannel-marketer: { name: "Level 3 Multichannel Marketer", type: education, order: 1, featured: true, detail: "Apprenticeship qualification. Pass, completed October 2026.", provider: "Althaus Digital", providerLink: "https://althausdigital.co.uk/" }
+engineering-foundation: { name: "Engineering Foundation Pathways Programme", type: education, order: 2, detail: "University of Derby, completed 2022. A foundation programme, studying Mathematics, Physics, IT and Academic Skills." }
+gcses: { name: "GCSEs", type: education, order: 3, detail: "Seven at grade C, including English and Maths. St Benedict's Catholic Voluntary Academy, 2016." }

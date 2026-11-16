@@ -3,7 +3,8 @@ title: "Job Desk"
 label: "Tool"
 category: tool
 summary: "A job search workspace I adapted for myself from an open-source app. It collects vacancies, reviews how well they suit me, and tracks my applications."
-order: 5
+order: 4
+thumb: "../../assets/projects/job-desk/01-hero.png"
 # No public link: it isn't on GitHub and only runs on my Mac for now.
 # Screenshots: an isolated demo with made-up example data only. No real employers, applications, references, contact details or CV contents.
 imagesTitle: "Screenshots"

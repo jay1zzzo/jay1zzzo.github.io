@@ -1,22 +1,156 @@
 ---
-// About page. Words come from src/content/about.md
-import { getEntry, render } from 'astro:content';
+// About page. Words and photos come from src/content/about.md.
+// The story is split into paragraphs so each photo can sit under the paragraph it belongs to.
+import { getEntry } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Base from '../layouts/Base.astro';
+import Certifications from '../components/Certifications.astro';
+import Lightbox from '../components/Lightbox.astro';
 import { buttonVariants } from '@/components/ui/button';
 
 const page = (await getEntry('pages', 'about'))!;
-const { Content } = await render(page);
 const home = (await getEntry('home', 'home'))!.data;
+
+// Body: first block is the "## My story" heading, the rest are paragraphs.
+const blocks = (page.body ?? '').trim().split(/\n\s*\n/).map((b) => b.trim()).filter(Boolean);
+const heading = blocks[0]?.startsWith('## ') ? blocks.shift()!.replace(/^##\s*/, '') : '';
+const paragraphs = blocks;
+
+// A larger copy of each photo for the click-to-enlarge window
+const prep = async <T extends { src: ImageMetadata }>(list: T[] = []) =>
+  Promise.all(list.map(async (p) => ({ ...p, large: await getImage({ src: p.src, width: 1600 }) })));
+const photos = await prep(page.data.photos ?? []);
+const outside = await prep(page.data.outside ?? []);
+const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
 ---
-<Base title="About" description="About Jason Belgica Paguntalan, Marketing Assistant.">
+<Base title="About" description="About Jason Belgica Paguntalan, a junior marketer in the East Midlands.">
   <p class="label">[ About ]</p>
   <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">Jason Belgica Paguntalan</h1>
 
   <div class="prose-site mt-8 max-w-3xl">
-    <Content />
+    {heading && <h2>{heading}</h2>}
+    {paragraphs.map((para, i) => (
+      <>
+        <p>{para}</p>
+        {photos.filter((p) => p.after === i + 1).map((p) => (
+          <figure class={portrait(p) ? 'about-photo about-photo-portrait' : 'about-photo about-photo-landscape'}>
+            <button
+              type="button"
+              class="lightbox-trigger"
+              data-lightbox-src={p.large.src}
+              data-lightbox-alt={p.alt}
+              data-lightbox-caption={p.caption ?? ''}
+              aria-label={`Enlarge photo: ${p.alt}`}
+            >
+              <Image src={p.src} alt={p.alt} width={portrait(p) ? 640 : 960} sizes="(min-width: 640px) 26rem, 90vw" loading="lazy" />
+            </button>
+            {p.caption && <figcaption>{p.caption}</figcaption>}
+          </figure>
+        ))}
+      </>
+    ))}
   </div>
+
+  {page.data.interests && page.data.interests.length > 0 && (
+    <section aria-labelledby="interests-heading" class="mt-10">
+      <h2 id="interests-heading" class="label">[ {page.data.interestsTitle ?? 'Interested in'} ]</h2>
+      <ul class="interests mt-2">
+        {page.data.interests.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+  )}
+
+  {outside.length > 0 && (
+    <section aria-labelledby="outside-heading" class="mt-10">
+      <h2 id="outside-heading" class="label">[ {page.data.outsideTitle ?? 'Outside of work'} ]</h2>
+      <ul class="outside-row mt-3">
+        {outside.map((p) => (
+          <li>
+            <button
+              type="button"
+              class="lightbox-trigger"
+              data-lightbox-src={p.large.src}
+              data-lightbox-alt={p.alt}
+              data-lightbox-caption={p.caption ?? ''}
+              aria-label={`Enlarge photo: ${p.alt}`}
+            >
+              <Image src={p.src} alt={p.alt} width={640} sizes="(min-width: 640px) 33vw, 100vw" loading="lazy" />
+            </button>
+            {p.caption && <p class="photo-caption">{p.caption}</p>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <Certifications />
 
   <p class="mt-8">
     <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'}>{home.contactButton}</a>
   </p>
+
+  <Lightbox />
 </Base>
+
+<style>
+  /* Small photos, like a personal site: a fixed height, with the width worked out
+     from the photo's real proportions, so nothing is stretched or squeezed. */
+  .about-photo {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0.25rem 0 1.5rem;
+  }
+  .about-photo :global(.lightbox-trigger),
+  .outside-row :global(.lightbox-trigger) {
+    display: block;
+    width: auto;
+  }
+  .about-photo :global(img) {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 12rem;
+  }
+  .about-photo figcaption,
+  .photo-caption {
+    /* width 0 + min-width 100% lets the caption wrap under the photo
+       without making the photo's box wider */
+    width: 0;
+    min-width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--site-muted);
+  }
+  /* A quiet line of plain text separated by dots: no boxes, no borders. */
+  .interests {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 48rem;
+    font-size: 0.9375rem;
+    color: var(--site-muted);
+  }
+  .interests li:not(:last-child)::after {
+    content: '\00b7';
+    margin: 0 0.6rem;
+    color: var(--site-accent);
+  }
+  .outside-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem 1.25rem;
+    max-width: 48rem;
+  }
+  .outside-row li {
+    width: fit-content;
+    max-width: 100%;
+  }
+  .outside-row :global(img) {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 11rem;
+  }
+</style>

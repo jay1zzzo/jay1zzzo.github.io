@@ -9,6 +9,8 @@ interface Tool {
   name: string;
   logo?: string;
   group?: string;
+  chip?: boolean; // white logo: show on a dark tile in both themes
+  note?: string;  // e.g. "basic experience"
 }
 interface Props {
   title?: string;
@@ -34,9 +36,9 @@ for (const t of tools) {
   entry.items.push({ ...t, src });
 }
 ---
-<section aria-labelledby="tools-heading" class="mt-12">
+<section aria-labelledby="tools-heading" class="mt-14">
   <h2 id="tools-heading" class="label">[ {title} ]</h2>
-  {subtitle && <p class="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
+  {subtitle && <p class="mt-1 text-sm text-muted-foreground">{subtitle}<span class="hover-hint"> Hover a logo for its name.</span></p>}
 
   <div class="mt-5 grid gap-6">
     {groups.map((g) => (
@@ -44,13 +46,13 @@ for (const t of tools) {
         {g.name && <h3 class="tools-group">{g.name}</h3>}
         <ul class="tools-grid">
           {g.items.map((t) => (
-            <li class="tool-tile rise-in">
+            <li class="tool-tile">
               {t.src ? (
-                <img src={t.src} alt="" width="40" height="40" loading="lazy" decoding="async" class="tool-logo" />
+                <img src={t.src} alt="" width="32" height="32" loading="lazy" decoding="async" class={t.chip ? 'tool-logo tool-chip' : 'tool-logo'} />
               ) : (
                 <span class="tool-initial" aria-hidden="true">{t.name.charAt(0)}</span>
               )}
-              <span class="tool-name">{t.name}</span>
+              <span class="tool-name">{t.note ? `${t.name} · ${t.note}` : t.name}</span>
             </li>
           ))}
         </ul>
@@ -71,31 +73,50 @@ for (const t of tools) {
   }
   .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    gap: 0.25rem 0.5rem;
   }
+  .hover-hint {
+    display: none;
+  }
+  @media (hover: hover) {
+    /* Snug square boxes: the amber outline hugs the logo, with no extra space */
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.75rem;
+      /* Left-aligned rows: 8, 6, 4, 4, 2 make a neat staircase next to the labels */
+      justify-content: flex-start;
+    }
+    .hover-hint {
+      display: inline;
+    }
+  }
+  /* Borderless and quiet. Muted until hovered, then a thin amber outline. */
   .tool-tile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0.625rem;
-    min-height: 7rem;
-    padding: 1rem 0.5rem 0.875rem;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    padding: 0.625rem 0.3rem 0.5rem;
     text-align: center;
-    border: var(--border-width) solid var(--site-line);
+    border: 1px solid transparent;
     border-radius: var(--radius);
-    background: var(--site-card);
-    transition: transform 150ms ease, border-color 150ms ease;
+    background: transparent;
+    opacity: 0.72;
+    transition: transform 180ms ease, opacity 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
   }
   .tool-tile:hover {
-    transform: translateY(-2px);
+    opacity: 1;
+    transform: scale(1.06);
     border-color: var(--site-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--site-accent) 18%, transparent);
   }
   .tool-logo,
   .tool-initial {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
   }
   .tool-initial {
@@ -105,9 +126,14 @@ for (const t of tools) {
     border: 2px solid var(--site-muted);
     border-radius: var(--radius);
     font-family: var(--site-serif);
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--site-text);
+  }
+  .tool-chip {
+    padding: 3px;
+    background: var(--site-chip);
+    border-radius: var(--radius);
   }
   .tool-name {
     font-family: var(--site-mono);
@@ -116,9 +142,56 @@ for (const t of tools) {
     letter-spacing: 0.03em;
     color: var(--site-text);
   }
+  /* On screens with a mouse the name is a small quiet label that fades in on hover.
+     It stays in the page for screen readers. Touch screens keep the names showing. */
+  @media (hover: hover) {
+    .tool-tile {
+      position: relative;
+      width: 3rem;
+      height: 3rem;
+      padding: 0;
+      justify-content: center;
+    }
+    .tool-name {
+      position: absolute;
+      bottom: calc(100% - 0.25rem);
+      left: 50%;
+      z-index: 5;
+      padding: 0.2rem 0.5rem;
+      white-space: nowrap;
+      pointer-events: none;
+      background: var(--site-card);
+      border: 1px solid var(--site-line);
+      border-radius: var(--radius);
+      opacity: 0;
+      transform: translateX(-50%) translateY(3px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+    .tool-tile:hover .tool-name {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+  @media (hover: hover) and (prefers-reduced-motion: reduce) {
+    .tool-name {
+      transform: translateX(-50%);
+      transition: opacity 160ms ease;
+    }
+    .tool-tile:hover .tool-name {
+      transform: translateX(-50%);
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
+    .tool-tile,
     .tool-tile:hover {
       transform: none;
+      transition: opacity 180ms ease;
+    }
+  }
+  /* Touch screens have no hover, so show tools at full strength there. */
+  @media (hover: none) {
+    .tool-tile {
+      opacity: 1;
     }
   }
 </style>

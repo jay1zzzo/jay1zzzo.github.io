@@ -1,37 +1,47 @@
 ---
-// Marketing page: projects, work gallery, and other marketing work.
-// Words come from src/content/marketing.md and src/content/gallery.yaml.
-import { getEntry, render } from 'astro:content';
+// Marketing page: all marketing case studies, practice projects, qualifications,
+// the work gallery, and other marketing work.
+import { getEntry, getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import ProjectList from '../components/ProjectList.astro';
 import Gallery from '../components/Gallery.astro';
 import Lightbox from '../components/Lightbox.astro';
-import Stats from '../components/Stats.astro';
+import Certifications from '../components/Certifications.astro';
 
 const page = (await getEntry('pages', 'marketing'))!;
 const { Content } = await render(page);
+const practice = await getCollection('projects', (p) => p.data.category === 'practice');
+const gallery = await getCollection('gallery');
 ---
 <Base title="Marketing" description={page.data.intro}>
   <p class="label">[ Marketing ]</p>
   <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">{page.data.title}</h1>
   {page.data.intro && <p class="mt-4 max-w-[60ch] text-lg text-muted-foreground">{page.data.intro}</p>}
 
-  <section aria-labelledby="projects" class="mt-10">
-    <h2 id="projects" class="label">[ Projects ]</h2>
+  <section aria-labelledby="projects" class="mt-8">
+    <h2 id="projects" class="label">[ Case studies ]</h2>
     <div class="mt-3"><ProjectList category="marketing" /></div>
   </section>
 
-  <section aria-labelledby="work" class="mt-12" id="gallery">
-    <h2 id="work" class="label">[ Work gallery ]</h2>
-    <p class="mt-1 text-sm text-muted-foreground">Click any image to see it larger.</p>
-    <div class="mt-4"><Gallery /></div>
-  </section>
-
-  {page.data.stats && (
-    <div class="mt-12"><Stats title={page.data.statsTitle} stats={page.data.stats} /></div>
+  {practice.length > 0 && (
+    <section aria-labelledby="practice" class="mt-14">
+      <h2 id="practice" class="label">[ Practice projects ]</h2>
+      <p class="mt-1 text-sm text-muted-foreground">Independent practice, not commissioned or affiliated.</p>
+      <div class="mt-3"><ProjectList category="practice" /></div>
+    </section>
   )}
 
-  <div class="prose-site mt-4 max-w-3xl">
+  <Certifications />
+
+  {gallery.length > 0 && (
+    <section aria-labelledby="work" class="mt-14" id="gallery">
+      <h2 id="work" class="label">[ Work gallery ]</h2>
+      <p class="mt-1 text-sm text-muted-foreground">Click any image to see it larger. Faces and personal details are blurred or replaced.</p>
+      <div class="mt-4"><Gallery /></div>
+    </section>
+  )}
+
+  <div class="prose-site mt-6 max-w-3xl">
     <Content />
   </div>
 

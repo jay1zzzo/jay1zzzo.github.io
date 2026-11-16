@@ -1,90 +1,93 @@
 ---
-// Home page. All the words come from src/content/home.md and src/content/projects/.
+// Home page. Order: heading, About (Short/Long, reflections in Long), tools, learning,
+// marketing work (calm cards, real work appears on hover), technical projects,
+// education, contact. All words come from src/content/.
 import { getEntry, getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import ProjectCard from '../components/ProjectCard';
+import ProjectList from '../components/ProjectList.astro';
 import IntroToggle from '../components/IntroToggle';
-import { buttonVariants } from '@/components/ui/button';
-import Gallery from '../components/Gallery.astro';
-import Lightbox from '../components/Lightbox.astro';
 import ToolLogos from '../components/ToolLogos.astro';
+import LearningList from '../components/LearningList.astro';
+import Certifications from '../components/Certifications.astro';
+import { buttonVariants } from '@/components/ui/button';
 
 const home = (await getEntry('home', 'home'))!.data;
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const practice = await getCollection('projects', (p) => p.data.category === 'practice');
 ---
 <Base>
-  <!-- Headline, intro, contact (full width) -->
+  <!-- 1. Heading -->
   <section aria-labelledby="headline">
-      <h1 id="headline" class="max-w-[28ch] font-serif text-[2rem] leading-[1.1] font-semibold sm:text-5xl lg:text-[3.25rem]">
-        {home.headline.split(' ').map((word, i) => (
-          <><span class="word-reveal" style={`animation-delay:${i * 55}ms`}>{word}</span>{' '}</>
-        ))}
-      </h1>
-
-      <div class="mt-5">
-        <IntroToggle client:load short={home.shortIntro} long={home.longIntro} />
-      </div>
-
-      <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
-        <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'}>
-          {home.contactButton}
-        </a>
-        <a
-          href={home.linkedin}
-          rel="noopener"
-          class="inline-block py-1 font-mono text-xs tracking-wider text-muted-foreground uppercase underline-offset-4 hover:text-primary hover:underline"
-        >
-          LinkedIn
-        </a>
-      </div>
+    <p class="label">[ Portfolio ]</p>
+    <h1 id="headline" class="mt-2 max-w-[24ch] font-serif text-[2.25rem] leading-[1.08] font-semibold sm:text-5xl lg:text-[3.25rem]">
+      {home.headline}
+    </h1>
   </section>
 
-  <!-- What I believe: an open strip, no box -->
-  <section aria-labelledby="beliefs" class="mt-10 border-t-2 border-border pt-5">
-    <h2 id="beliefs" class="label">[ What I believe ]</h2>
-    <ol class="mt-4 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
-      {home.beliefs.map((belief, i) => (
-        <li class="flex gap-3 text-sm leading-snug lg:flex-col lg:gap-2">
-          <span class="font-mono text-xs text-primary" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-          <span>{belief}</span>
-        </li>
-      ))}
-    </ol>
-  </section>
-
-  <!-- Project cards -->
-  <section aria-labelledby="work" class="mt-12">
-    <h2 id="work" class="label">[ Selected work ]</h2>
-    <div class="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((p) => (
-        <div class="rise-in">
-          <ProjectCard
-            client:visible
-            label={p.data.label}
-            title={p.data.title}
-            summary={p.data.summary}
-            href={`/projects/${p.id}`}
-          />
-        </div>
-      ))}
+  <!-- 2. About: Short / Long -->
+  <section aria-labelledby="about" class="mt-6">
+    <h2 id="about" class="sr-only">About me</h2>
+    <div class="max-w-3xl">
+      <IntroToggle
+        client:load
+        short={home.shortIntro}
+        long={home.longIntro}
+        reflectionsTitle={home.reflectionsTitle}
+        reflections={home.reflections}
+      />
     </div>
   </section>
 
-  <!-- Tools & Technologies (list lives in home.md under "tools:") -->
+  <!-- 4. Tools & Technologies, then 5. what I'm learning -->
   {home.tools && home.tools.length > 0 && (
     <ToolLogos title={home.toolsTitle} subtitle={home.toolsSubtitle} tools={home.tools} />
   )}
+  {home.homeLearning && home.homeLearning.length > 0 && (
+    <LearningList title={home.learningTitle} items={home.homeLearning} />
+  )}
 
-  <!-- Work gallery preview: first 3 items from gallery.yaml -->
-  <section aria-labelledby="gallery-preview" class="mt-12">
+  <!-- 6. Selected marketing work: calm cards, the real work slides up on hover -->
+  <section aria-labelledby="work" class="mt-14">
     <div class="flex flex-wrap items-baseline justify-between gap-2">
-      <h2 id="gallery-preview" class="label">[ Work gallery ]</h2>
-      <a href="/marketing#gallery" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
-        See all work <span aria-hidden="true">→</span>
+      <h2 id="work" class="label">[ Selected marketing work ]</h2>
+      <a href="/marketing" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
+        All marketing work <span aria-hidden="true">→</span>
       </a>
     </div>
-    <div class="mt-3"><Gallery limit={3} /></div>
+    <p class="mt-1 text-sm text-muted-foreground">Open a project to see the work, with full previews.</p>
+    <div class="mt-3"><ProjectList category="marketing" featuredOnly variant="peek" /></div>
   </section>
 
-  <Lightbox />
+  <!-- 7. Practice projects (hidden until there are some) -->
+  {practice.length > 0 && (
+    <section aria-labelledby="practice" class="mt-14">
+      <h2 id="practice" class="label">[ Practice projects ]</h2>
+      <p class="mt-1 text-sm text-muted-foreground">Independent practice, not commissioned or affiliated.</p>
+      <div class="mt-3"><ProjectList category="practice" /></div>
+    </section>
+  )}
+
+  <!-- 8. Supporting technical projects -->
+  <section aria-labelledby="tech" class="mt-14">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <h2 id="tech" class="label">[ Supporting technical projects ]</h2>
+      <a href="/tools" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
+        All tools <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <p class="mt-1 text-sm text-muted-foreground">Small tools I've built or adapted to make my own work simpler.</p>
+    <div class="mt-3"><ProjectList category="tool" columns="four" /></div>
+  </section>
+
+  <!-- 9. Education and qualifications -->
+  <Certifications note={home.qualificationsNote} />
+
+  <!-- 10. Contact -->
+  <section aria-labelledby="contact" class="mt-14 border-t-2 border-border pt-8">
+    <h2 id="contact" class="label">[ Contact ]</h2>
+    <p class="mt-3 max-w-[65ch] text-muted-foreground">{home.contactText}</p>
+    <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3">
+      <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-5'}>{home.contactButton}</a>
+      <a href={home.linkedin} rel="noopener" class={buttonVariants({ size: 'lg', variant: 'outline' }) + ' px-5'}>LinkedIn</a>
+    </div>
+  </section>
 </Base>

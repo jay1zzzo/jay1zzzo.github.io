@@ -2,10 +2,9 @@
 title: "Tomato Timer"
 label: "Tool"
 category: tool
-summary: "A focus timer and task list I built for myself. It syncs across my Mac, PC and phone."
-order: 4
-link: "https://github.com/jay1zzzo/tomato-mcp"
-linkText: "See the Tomato Timer MCP server on GitHub"
+summary: "A focus timer and task list I built for myself to keep on top of deadlines. It syncs across my Mac, PC and phone."
+order: 1
+thumb: "../../assets/projects/tomato-timer/01-hero.png"
 # Screenshots from the hand-over pack. All use demo data only.
 imagesTitle: "Screenshots"
 imagesLayout: two
@@ -40,16 +39,21 @@ images:
 
 I built it because I find it hard to stay on top of tasks, and I wanted something that helps me start and finish.
 
-## What I did
+## What I made
 
-I built a focus timer and task list for myself. It syncs across my Mac, PC and phone.
+Tomato Timer is a focus timer and task list for myself. I built it first to help me keep on top of deadlines. It syncs across my Mac, PC and phone.
 
 - Focus and break sessions, with Today and Later task lists, favourites and drag-to-reorder.
 - Reminders, a small content calendar, a files area and a motivation board.
 - It runs as a web page, a Windows app and a Mac app (with a small floating timer window), plus a phone page for the task list.
-- It's one HTML file with plain CSS and JavaScript, with no framework.
-- Sync saves my data to a private GitHub repository. Each device keeps the newest edit to each item, and deleted items don't come back.
-- I also published a small MCP server that lets an AI app read and change my task list. Tomato Timer itself isn't available to install.
+- It is one HTML file with plain CSS and JavaScript, with no framework.
+- Sync saves my data to a private GitHub repository. Each device keeps the newest edit to each item, and deleted items do not come back.
+
+Tomato Timer is not a public product and cannot be installed.
+
+## Tomato MCP
+
+I later built a small connector that lets an AI app read and change the same task list. It has its own page: [Tomato MCP](/projects/tomato-mcp/).
 
 ## What I learned
 

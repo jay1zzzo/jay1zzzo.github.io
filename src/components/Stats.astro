@@ -1,7 +1,5 @@
 ---
-// Row of number boxes. Numbers count up once when they scroll into view.
-// The real number is always in the page first, so it shows even without
-// JavaScript, and nothing animates if "reduce motion" is switched on.
+// Row of number boxes. The numbers are shown immediately, with no animation.
 interface Stat {
   value: number | string;
   suffix?: string;
@@ -17,11 +15,11 @@ const { title = 'In numbers', stats } = Astro.props;
   <h2 class="label">[ {title} ]</h2>
   <dl class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
     {stats.map((s) => (
-      <div class="rise-in border-2 border-border bg-card p-4">
+      <div class="border-2 border-border bg-card p-4">
         <dt class="mt-2 text-sm text-muted-foreground">{s.label}</dt>
         <dd class="font-serif text-4xl leading-none font-semibold text-primary">
           {typeof s.value === 'number' ? (
-            <span data-count={s.value} data-suffix={s.suffix ?? ''}>{s.value}{s.suffix}</span>
+            <span>{s.value}{s.suffix}</span>
           ) : (
             <span>{s.value}</span>
           )}
@@ -35,38 +33,3 @@ const { title = 'In numbers', stats } = Astro.props;
   /* The label (dt) comes first in the code, as it should; this shows it under the number */
   div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
 </style>
-
-<script>
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const els = document.querySelectorAll<HTMLElement>('[data-count]');
-
-  if (!reduce && 'IntersectionObserver' in window) {
-    const run = (el: HTMLElement) => {
-      const target = Number(el.dataset.count);
-      const suffix = el.dataset.suffix ?? '';
-      el.setAttribute('aria-label', `${target}${suffix}`); // screen readers hear the real number
-      const start = performance.now();
-      const step = (now: number) => {
-        const p = Math.min((now - start) / 900, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = `${Math.round(target * eased)}${suffix}`;
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-      // Safety net: always end on the real number, even if the browser pauses animation
-      setTimeout(() => { el.textContent = `${target}${suffix}`; }, 1000);
-    };
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            run(e.target as HTMLElement);
-            io.unobserve(e.target); // only once
-          }
-        });
-      },
-      { threshold: 0.6 },
-    );
-    els.forEach((el) => io.observe(el));
-  }
-</script>

@@ -12,7 +12,7 @@ interface Props {
 
 const siteName = 'Jason Belgica Paguntalan';
 const linkedIn = 'https://www.linkedin.com/in/jason-belgica';
-const { title, description = 'Marketing Assistant who builds small tools to make work easier.' } = Astro.props;
+const { title, description = 'Junior marketer in the East Midlands with a Level 3 Multichannel Marketer qualification.' } = Astro.props;
 const pageTitle = title ? `${title} | ${siteName}` : siteName;
 
 const nav = [
@@ -33,6 +33,15 @@ const year = new Date().getFullYear();
     <meta name="description" content={description} />
     <!-- Hidden from search engines for now. Delete this line when you are ready to be found. -->
     <meta name="robots" content="noindex, nofollow" />
+    <!-- Sets the colour theme before the page paints, so there is no flash. -->
+    <script is:inline>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -55,6 +64,11 @@ const year = new Date().getFullYear();
             ))}
           </ul>
         </nav>
+        <button type="button" id="theme-toggle" class="theme-toggle" role="switch" aria-checked="true" aria-label="Dark mode">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" fill="currentColor"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g></svg>
+          <span class="theme-label" aria-hidden="true">Dark</span>
+        </button>
       </div>
     </header>
 
@@ -68,6 +82,29 @@ const year = new Date().getFullYear();
         <a href={linkedIn} rel="noopener">LinkedIn</a>
       </div>
     </footer>
+    <script>
+      // Theme toggle: remembers an explicit choice, and follows the device until then.
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      const label = btn?.querySelector('.theme-label');
+      const mq = window.matchMedia('(prefers-color-scheme: light)');
+      const apply = (t: string) => {
+        root.setAttribute('data-theme', t);
+        btn?.setAttribute('aria-checked', String(t === 'dark'));
+        if (label) label.textContent = t === 'dark' ? 'Dark' : 'Light';
+      };
+      apply(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+      btn?.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        apply(next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+      mq.addEventListener('change', (e) => {
+        let saved: string | null = null;
+        try { saved = localStorage.getItem('theme'); } catch (err) {}
+        if (saved !== 'light' && saved !== 'dark') apply(e.matches ? 'light' : 'dark');
+      });
+    </script>
   </body>
 </html>
 
@@ -97,6 +134,37 @@ const year = new Date().getFullYear();
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+  /* On phones: name and theme switch share the first row, navigation sits below */
+  @media (max-width: 40rem) {
+    .site-name { order: 1; }
+    .theme-toggle { order: 2; margin-left: auto; }
+    .header-inner > nav { order: 3; flex-basis: 100%; }
+  }
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 2.25rem;
+    padding: 0.25rem 0.75rem;
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--site-text);
+    background: transparent;
+    border: var(--border-width) solid var(--site-line);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 120ms, color 120ms;
+  }
+  .theme-toggle:hover {
+    border-color: var(--site-accent);
+    color: var(--site-accent);
+  }
+  :global(html[data-theme='light']) .icon-moon,
+  :global(html:not([data-theme='light'])) .icon-sun {
+    display: none;
   }
   .nav-link {
     display: inline-block;

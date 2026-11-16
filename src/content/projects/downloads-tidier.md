@@ -4,6 +4,7 @@ label: "Tool / Open source"
 category: tool
 summary: "Sorts a messy Downloads folder by file type, with preview first and undo. It never deletes or overwrites. Free and open source."
 order: 3
+thumb: "../../assets/projects/downloads-tidier/social-preview.png"
 stats:
   - { value: 179, label: "tests" }
   - { value: 3, label: "operating systems checked: Windows, macOS and Linux" }
