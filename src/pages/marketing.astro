@@ -7,6 +7,11 @@ import ProjectList from '../components/ProjectList.astro';
 import Gallery from '../components/Gallery.astro';
 import Lightbox from '../components/Lightbox.astro';
 import Certifications from '../components/Certifications.astro';
+import { Image, getImage } from 'astro:assets';
+import mockup from '../assets/projects/email-campaign/email-mockup.webp';
+
+const mockupLarge = await getImage({ src: mockup, width: 1250 });
+const mockupAlt = 'A marketing email mockup: a brief summary at the top, then the email with a headline, short paragraphs, a list of benefits and a book-a-valuation button.';
 
 const page = (await getEntry('pages', 'marketing'))!;
 const { Content } = await render(page);
@@ -43,7 +48,40 @@ const gallery = await getCollection('gallery');
     <Content />
   </div>
 
+  <figure class="mt-4 max-w-sm">
+    <button
+      type="button"
+      class="lightbox-trigger email-mockup"
+      data-lightbox-src={mockupLarge.src}
+      data-lightbox-alt={mockupAlt}
+      data-lightbox-caption="Email campaign mockup made for a job application. Not BlayCare work."
+      data-lightbox-note="Personal details and sensitive content replaced for portfolio display."
+      aria-label={`Enlarge image: ${mockupAlt}`}
+    >
+      <Image src={mockup} alt={mockupAlt} width={640} loading="lazy" class="email-mockup-img" />
+    </button>
+    <figcaption class="mt-2 text-sm text-muted-foreground">Email campaign mockup for a job application, not BlayCare work. Click to see the whole email.</figcaption>
+  </figure>
+
   <Certifications />
 
   <Lightbox />
 </Base>
+
+<style>
+  /* Show just the top of the tall email as a small preview; the full email opens in the lightbox. */
+  .email-mockup {
+    display: block;
+    width: 100%;
+    height: 14rem;
+    overflow: hidden;
+    border: 1px solid var(--site-line);
+  }
+  .email-mockup :global(.email-mockup-img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+</style>
