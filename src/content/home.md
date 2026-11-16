@@ -9,13 +9,12 @@ headline: "Hi, I'm Jason. I'm a junior marketer who loves building tools that ma
 shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles. I passed my Level 3 Multichannel Marketer qualification in October 2026. I'm organised, I learn quickly, I like building small tools to make work simpler, and I want to keep growing within a team."
 
 # Long intro: a shorter cut of the About page story.
+# Optional: add  longLead: "..."  here to show a bold opening line above the Long text.
 # Leave one blank line between paragraphs. Keep the two spaces at the start of each line.
 longIntro: |
-  I fell in love with computers at a Mortal Kombat arcade machine in a little wooden hut by the beach in Banate, Iloilo, in the Philippines. I used to sneak out as a kid and run there to play it. By seven I was the one my older cousin asked to work the family computer.
+  I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut near a corner shop, by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out and run there to play it. By seven I was already the one my older cousin asked to work the family computer.
 
-  As a teenager I got good at competitive games. I was one of the UK's highest-ranked Apex Legends players for several seasons. I was flown out to the Apex Legends Open LAN in New Orleans to play with two online friends I'd never met in person. It was one of the best experiences of my life.
-
-  Then people who had no time started asking me to coach them and help them rank up, so I started selling that help online. I opened an eBay shop, which still has 100% positive feedback, and an Instagram page offering the same services. I also answered customer enquiries professionally, including the early-morning ones, with one eye open. That's when I realised I love marketing and seeing things grow.
+  As a teenager I got good at competitive games, and people who had no time started asking me to coach them. So I started selling that help online, through an eBay shop, which still has 100% positive feedback, and an Instagram page. I answered customer enquiries professionally, including the early-morning ones, with one eye open. That's when I realised I love marketing and seeing things grow.
 
   I spent a couple of years at university, doing a foundation year and then starting an architecture degree, before moving into a marketing apprenticeship at BlayCare in March 2025. I'm now the Marketing Assistant. I rebuilt the website, wrote the brand guidelines and have worked on social media and newsletters. I passed my Level 3 Multichannel Marketer qualification in October 2026.
 
@@ -78,9 +77,19 @@ homeLearning:
   - { name: "Klaviyo Flows" }
   - { name: "HTML & CSS" }
   - { name: "Astro", note: "building this site" }
-# Shown under Education and qualifications (Jason's own words).
-qualificationsNote: "Alongside the training I received through my apprenticeship with Althaus, much of my practical learning has been self-directed. As the sole in-house marketer, I've had to take initiative, teach myself new tools and find solutions independently."
 
-# Shown above the contact buttons (Jason's own words).
-contactText: "That experience has made me resourceful and comfortable learning by doing. I'm now looking to take the next step in my career by joining a team where I can contribute what I've learned, collaborate with others and continue developing alongside more experienced professionals."
+# A quiet line under the learning tags: what I'm curious about, not claimed skills.
+interestsTitle: "Interested in"
+interests:
+  - "AI"
+  - "Automation"
+  - "Emerging tech"
+  - "E-commerce"
+  - "B2B"
+  - "CRM"
+  - "Email"
+  - "Paid ads"
+  - "Workflows"
+# Shown above the contact buttons: one paragraph, Jason's own words.
+contactText: "Alongside the training I received through my apprenticeship with Althaus, much of my practical learning has been self-directed. As the sole in-house marketer, I've had to take initiative, teach myself new tools and find solutions independently. That experience has made me resourceful and comfortable learning by doing. I'm now looking to take the next step in my career by joining a team where I can contribute what I've learned, collaborate with others and continue developing alongside more experienced professionals."
 ---

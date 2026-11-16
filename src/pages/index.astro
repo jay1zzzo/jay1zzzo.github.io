@@ -1,7 +1,7 @@
 ---
-// Home page. Order: heading, About (Short/Long, reflections in Long), tools, learning,
-// marketing work (calm cards, real work appears on hover), technical projects,
-// education, contact. All words come from src/content/.
+// Home page. Order: heading, About (Short/Long, reflections in Long), marketing work
+// (calm cards), tools, learning, technical projects, education, contact.
+// All words come from src/content/.
 import { getEntry, getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import ProjectList from '../components/ProjectList.astro';
@@ -18,8 +18,10 @@ const practice = await getCollection('projects', (p) => p.data.category === 'pra
   <!-- 1. Heading -->
   <section aria-labelledby="headline">
     <p class="label">[ Portfolio ]</p>
-    <h1 id="headline" class="mt-2 max-w-[24ch] font-serif text-[2.25rem] leading-[1.08] font-semibold sm:text-5xl lg:text-[3.25rem]">
-      {home.headline}
+    <h1 id="headline" class="mt-2 max-w-[34ch] font-serif text-balance text-[1.875rem] leading-[1.12] font-semibold sm:text-4xl lg:text-[2.5rem]">
+      {home.headline.split(' ').map((word, i) => (
+        <><span class="word-rise" style={`--i:${i}`}>{word}</span>{' '}</>
+      ))}
     </h1>
   </section>
 
@@ -30,6 +32,9 @@ const practice = await getCollection('projects', (p) => p.data.category === 'pra
       <IntroToggle
         client:load
         short={home.shortIntro}
+        longLead={home.longLead}
+        moreHref="/about"
+        moreLabel="Read the full story, with photos"
         long={home.longIntro}
         reflectionsTitle={home.reflectionsTitle}
         reflections={home.reflections}
@@ -37,40 +42,50 @@ const practice = await getCollection('projects', (p) => p.data.category === 'pra
     </div>
   </section>
 
-  <!-- 4. Tools & Technologies, then 5. what I'm learning -->
-  {home.tools && home.tools.length > 0 && (
-    <ToolLogos title={home.toolsTitle} subtitle={home.toolsSubtitle} tools={home.tools} />
-  )}
-  {home.homeLearning && home.homeLearning.length > 0 && (
-    <LearningList title={home.learningTitle} items={home.homeLearning} />
-  )}
-
-  <!-- 6. Selected marketing work: calm cards, the real work slides up on hover -->
-  <section aria-labelledby="work" class="mt-14">
+  <!-- 3. Selected marketing work: calm icon cards, the work is on each project page -->
+  <section aria-labelledby="work" class="section-rule">
     <div class="flex flex-wrap items-baseline justify-between gap-2">
       <h2 id="work" class="label">[ Selected marketing work ]</h2>
-      <a href="/marketing" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
-        All marketing work <span aria-hidden="true">→</span>
-      </a>
+      <span class="flex flex-wrap gap-x-5">
+        <a href="/marketing#gallery" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline [@media(pointer:coarse)]:py-3">
+          Work gallery <span aria-hidden="true">→</span>
+        </a>
+        <a href="/marketing" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline [@media(pointer:coarse)]:py-3">
+          All marketing work <span aria-hidden="true">→</span>
+        </a>
+      </span>
     </div>
-    <p class="mt-1 text-sm text-muted-foreground">Open a project to see the work, with full previews.</p>
+    <p class="mt-1 text-sm text-muted-foreground">Open any project to see the work and what I did.</p>
     <div class="mt-3"><ProjectList category="marketing" featuredOnly variant="peek" /></div>
   </section>
 
-  <!-- 7. Practice projects (hidden until there are some) -->
+  <!-- 4. Practice projects (hidden until there are some) -->
   {practice.length > 0 && (
-    <section aria-labelledby="practice" class="mt-14">
+    <section aria-labelledby="practice" class="section-rule">
       <h2 id="practice" class="label">[ Practice projects ]</h2>
       <p class="mt-1 text-sm text-muted-foreground">Independent practice, not commissioned or affiliated.</p>
       <div class="mt-3"><ProjectList category="practice" /></div>
     </section>
   )}
 
-  <!-- 8. Supporting technical projects -->
-  <section aria-labelledby="tech" class="mt-14">
+  <!-- 5. Tools & Technologies, then what I'm learning -->
+  {home.tools && home.tools.length > 0 && (
+    <ToolLogos title={home.toolsTitle} subtitle={home.toolsSubtitle} tools={home.tools} />
+  )}
+  {((home.homeLearning && home.homeLearning.length > 0) || (home.interests && home.interests.length > 0)) && (
+    <LearningList
+      title={home.learningTitle}
+      items={home.homeLearning ?? []}
+      interestsTitle={home.interestsTitle}
+      interests={home.interests ?? []}
+    />
+  )}
+
+  <!-- 6. Supporting technical projects -->
+  <section aria-labelledby="tech" class="section-rule">
     <div class="flex flex-wrap items-baseline justify-between gap-2">
       <h2 id="tech" class="label">[ Supporting technical projects ]</h2>
-      <a href="/tools" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline">
+      <a href="/tools" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline [@media(pointer:coarse)]:py-3">
         All tools <span aria-hidden="true">→</span>
       </a>
     </div>
@@ -78,11 +93,11 @@ const practice = await getCollection('projects', (p) => p.data.category === 'pra
     <div class="mt-3"><ProjectList category="tool" columns="four" /></div>
   </section>
 
-  <!-- 9. Education and qualifications -->
-  <Certifications note={home.qualificationsNote} />
+  <!-- 7. Education and qualifications -->
+  <Certifications />
 
-  <!-- 10. Contact -->
-  <section aria-labelledby="contact" class="mt-14 border-t-2 border-border pt-8">
+  <!-- 8. Contact -->
+  <section aria-labelledby="contact" class="section-rule">
     <h2 id="contact" class="label">[ Contact ]</h2>
     <p class="mt-3 max-w-[65ch] text-muted-foreground">{home.contactText}</p>
     <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3">

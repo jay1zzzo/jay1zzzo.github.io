@@ -1,11 +1,18 @@
-# EDUCATION, QUALIFICATIONS AND CERTIFICATIONS
+# EDUCATION, QUALIFICATIONS, CERTIFICATIONS AND SHORT COURSES
 # One line per item, newest first. Format:
 #   unique-name: { name: "Title", type: education, order: 1, detail: "Where and when", link: "https://public-link" }
-# type: education (qualifications and study) or certification (named certificates).
+# type: education (qualifications and study), certification (named certificates) or course (short courses).
 # "detail" and "link" are optional. A group is hidden while it has no items.
-# Only add a certification once the exact title, date and validity are confirmed
-# (waiting on: HubSpot SEO certification, Meta Business Suite training, WordPress course).
+# Certificate images and certification codes are never published, only the words.
 
 level-3-multichannel-marketer: { name: "Level 3 Multichannel Marketer", type: education, order: 1, featured: true, detail: "Apprenticeship qualification. Pass, completed October 2026.", provider: "Althaus Digital", providerLink: "https://althausdigital.co.uk/" }
 engineering-foundation: { name: "Engineering Foundation Pathways Programme", type: education, order: 2, detail: "University of Derby, completed 2022. A foundation programme, studying Mathematics, Physics, IT and Academic Skills." }
 gcses: { name: "GCSEs", type: education, order: 3, detail: "Seven at grade C, including English and Maths. St Benedict's Catholic Voluntary Academy, 2016." }
+
+hubspot-seo: { name: "SEO Certified", type: certification, order: 1, detail: "Valid 19 April 2026 to 19 May 2027.", provider: "HubSpot Academy", providerLabel: "Issued by", providerLink: "https://academy.hubspot.com/" }
+hubspot-social-media: { name: "Social Media Certified", type: certification, order: 2, detail: "Valid 7 July 2025 to 6 August 2027.", provider: "HubSpot Academy", providerLabel: "Issued by", providerLink: "https://academy.hubspot.com/" }
+
+skillshare-digital-marketing-strategy: { name: "Digital Marketing Strategy: Profitable Sales Funnel Fundamentals", type: course, order: 1, detail: "Skillshare, taught by Maggie Stara. 2026." }
+wordpress-website: { name: "Build a Full Website using WordPress", type: course, order: 2, detail: "Althaus Digital, on-demand, 2 hours. 2026." }
+meta-business-suite: { name: "Meta Business Suite training", type: course, order: 3, detail: "Althaus Digital, on-demand, 1 hour. 2026. Building an online presence with a Facebook Page and Messenger." }
+reputation-and-pr: { name: "Reputation and PR", type: course, order: 4, detail: "Althaus Digital, on-demand, 1 hour. 2026." }

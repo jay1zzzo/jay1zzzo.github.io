@@ -1,48 +1,57 @@
 ---
-// Education and qualifications, plus a separate Certifications group.
+// Education and qualifications, then Certifications (cards), then Short courses (compact tags).
 // Reads src/content/certifications.yaml. Each group is hidden when empty.
 // An item marked featured: true is shown as a large highlighted card.
 import { getCollection } from 'astro:content';
 
-interface Props {
-  note?: string; // shown under the Education and qualifications cards
-}
-const { note } = Astro.props;
 const all = (await getCollection('certifications')).sort((a, b) => a.data.order - b.data.order);
 const groups = [
-  { id: 'edu-heading', title: 'Education and qualifications', items: all.filter((c) => c.data.type === 'education') },
-  { id: 'cert-heading', title: 'Certifications', items: all.filter((c) => c.data.type === 'certification') },
+  { id: 'edu-heading', title: 'Education and qualifications', tags: false, items: all.filter((c) => c.data.type === 'education') },
+  { id: 'cert-heading', title: 'Certifications', tags: false, items: all.filter((c) => c.data.type === 'certification') },
+  { id: 'course-heading', title: 'Short courses', tags: true, items: all.filter((c) => c.data.type === 'course') },
 ].filter((g) => g.items.length > 0);
 ---
-{groups.map((g) => (
-  <section aria-labelledby={g.id} class="mt-14">
+{groups.map((g, gi) => (
+  <section aria-labelledby={g.id} class={gi === 0 ? 'section-rule' : 'mt-10'}>
     <h2 id={g.id} class="label">[ {g.title} ]</h2>
-    <ul class="mt-3 grid gap-3 sm:grid-cols-2">
-      {g.items.map((c) => (
-        <li
-          class={
-            c.data.featured
-              ? 'border border-primary/60 bg-card p-5 sm:col-span-2'
-              : 'border border-border bg-card p-4'
-          }
-        >
-          <p class={c.data.featured ? 'font-serif text-2xl leading-snug font-semibold' : 'font-serif text-lg leading-snug font-semibold'}>
-            {c.data.link ? <a href={c.data.link} rel="noopener" class="underline-offset-4 hover:underline">{c.data.name}</a> : c.data.name}
-          </p>
-          {c.data.detail && <p class="mt-1 text-sm text-muted-foreground">{c.data.detail}</p>}
-          {c.data.provider && (
-            <p class="mt-2 text-sm">
-              <span class="text-muted-foreground">Trained by </span>
-              {c.data.providerLink ? (
-                <a href={c.data.providerLink} rel="noopener" class="text-primary underline underline-offset-4">{c.data.provider}</a>
-              ) : (
-                <span>{c.data.provider}</span>
-              )}
+    {g.tags ? (
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {g.items.map((c) => (
+          <li class="max-w-full border border-border bg-card px-3 py-2 transition-colors duration-200 hover:border-primary/50">
+            <p class="text-sm leading-snug">
+              {c.data.link ? <a href={c.data.link} rel="noopener" class="underline-offset-4 hover:underline">{c.data.name}</a> : c.data.name}
             </p>
-          )}
-        </li>
-      ))}
-    </ul>
-    {note && g.id === 'edu-heading' && <p class="mt-4 max-w-[65ch] text-base leading-relaxed text-muted-foreground">{note}</p>}
+            {c.data.detail && <p class="mt-0.5 text-xs text-muted-foreground">{c.data.detail}</p>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <ul class="mt-3 grid gap-3 sm:grid-cols-2">
+        {g.items.map((c) => (
+          <li
+            class={
+              c.data.featured
+                ? 'border border-primary/60 bg-card p-5 transition-colors duration-200 hover:border-primary sm:col-span-2'
+                : 'border border-border bg-card p-4 transition-colors duration-200 hover:border-primary/50'
+            }
+          >
+            <p class={c.data.featured ? 'font-serif text-2xl leading-snug font-semibold' : 'font-serif text-lg leading-snug font-semibold'}>
+              {c.data.link ? <a href={c.data.link} rel="noopener" class="underline-offset-4 hover:underline">{c.data.name}</a> : c.data.name}
+            </p>
+            {c.data.detail && <p class="mt-1 text-sm text-muted-foreground">{c.data.detail}</p>}
+            {c.data.provider && (
+              <p class="mt-2 text-sm">
+                <span class="text-muted-foreground">{c.data.providerLabel ?? 'Trained by'} </span>
+                {c.data.providerLink ? (
+                  <a href={c.data.providerLink} rel="noopener" class="text-primary underline underline-offset-4">{c.data.provider}</a>
+                ) : (
+                  <span>{c.data.provider}</span>
+                )}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
   </section>
 ))}

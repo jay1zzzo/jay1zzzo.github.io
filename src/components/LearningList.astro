@@ -1,6 +1,7 @@
 ---
-// "Learning and in progress": compact tags for what I am working on now.
-// Reads the homeLearning list in src/content/home.md. Hidden if empty.
+// "Learning and in progress": compact tags for what I am working on now, with a quiet
+// "Interested in" line underneath. Reads homeLearning and interests in src/content/home.md.
+// Hidden if there is nothing to show.
 interface Item {
   name: string;
   note?: string;
@@ -8,19 +9,58 @@ interface Item {
 interface Props {
   title?: string;
   items: Item[];
+  interestsTitle?: string;
+  interests?: string[];
 }
-const { title = 'Learning and in progress', items } = Astro.props;
+const { title = 'Learning and in progress', items, interestsTitle = 'Interested in', interests = [] } = Astro.props;
 ---
-{items.length > 0 && (
+{(items.length > 0 || interests.length > 0) && (
   <section aria-labelledby="learning-heading" class="mt-12">
     <h2 id="learning-heading" class="label">[ {title} ]</h2>
-    <ul class="mt-3 flex flex-wrap gap-2">
-      {items.map((i) => (
-        <li class="border-2 border-border bg-card px-3 py-1.5 text-sm">
-          <span class="font-mono text-xs tracking-wide">{i.name}</span>
-          {i.note && <span class="ml-2 text-xs text-muted-foreground">{i.note}</span>}
-        </li>
-      ))}
-    </ul>
+    {items.length > 0 && (
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {items.map((i) => (
+          <li class="border border-border bg-card px-3 py-1.5 text-sm transition-colors duration-200 hover:border-primary/50">
+            <span class="font-mono text-xs tracking-wide">{i.name}</span>
+            {i.note && <span class="ml-2 text-xs text-muted-foreground">{i.note}</span>}
+          </li>
+        ))}
+      </ul>
+    )}
+    {interests.length > 0 && (
+      <div class="interests-row mt-4">
+        <p class="label">{interestsTitle}</p>
+        <ul class="interests">
+          {interests.map((x) => <li>{x}</li>)}
+        </ul>
+      </div>
+    )}
   </section>
 )}
+
+<style>
+  /* A quiet line of plain text separated by dots: no boxes, no borders. */
+  .interests-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 1rem;
+  }
+  .interests {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.9375rem;
+    color: var(--site-muted);
+  }
+  .interests li {
+    transition: color 200ms ease;
+  }
+  .interests li:hover {
+    color: var(--site-text);
+  }
+  .interests li:not(:last-child)::after {
+    content: '\00b7';
+    margin: 0 0.6rem;
+    color: var(--site-accent);
+  }
+</style>

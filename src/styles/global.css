@@ -171,6 +171,36 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--site-muted);
+  text-wrap: balance; /* stops a lone closing bracket sitting on its own line */
+}
+
+/* Headline: each word eases up a few pixels, one after another, once when the page opens */
+.word-rise {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: word-rise 700ms cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+  animation-delay: calc(var(--i) * 60ms);
+}
+@keyframes word-rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* No animation, but the words must still be visible */
+  .word-rise {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The main home page sections: room above, and a hairline to mark where each one starts */
+.section-rule {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--site-line);
 }
 
 /* "Skip to content" link: hidden until you press Tab */
@@ -216,7 +246,7 @@
     margin-top: 2.25rem;
     margin-bottom: 0.75rem;
     padding-top: 1rem;
-    border-top: var(--border-width) solid var(--site-line);
+    border-top: 1px solid var(--site-line);
     font-family: var(--site-mono);
     font-size: 0.8125rem;
     letter-spacing: 0.06em;

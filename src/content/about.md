@@ -19,18 +19,6 @@ photos:
     after: 5
     alt: "Me standing with my arms folded in a large hall, in front of three giant inflatable dinosaur figures."
     caption: "At the LAN event in New Orleans."
-# A quiet line of interests (what I'm curious about, not claimed skills).
-interestsTitle: "Interested in"
-interests:
-  - "AI"
-  - "Automation"
-  - "Emerging tech"
-  - "E-commerce"
-  - "B2B"
-  - "CRM"
-  - "Email"
-  - "Paid ads"
-  - "Workflows"
 # The small photo row at the end.
 outsideTitle: "Outside of work"
 outside:

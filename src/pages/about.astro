@@ -52,15 +52,6 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
     ))}
   </div>
 
-  {page.data.interests && page.data.interests.length > 0 && (
-    <section aria-labelledby="interests-heading" class="mt-10">
-      <h2 id="interests-heading" class="label">[ {page.data.interestsTitle ?? 'Interested in'} ]</h2>
-      <ul class="interests mt-2">
-        {page.data.interests.map((x) => <li>{x}</li>)}
-      </ul>
-    </section>
-  )}
-
   {outside.length > 0 && (
     <section aria-labelledby="outside-heading" class="mt-10">
       <h2 id="outside-heading" class="label">[ {page.data.outsideTitle ?? 'Outside of work'} ]</h2>
@@ -122,19 +113,6 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
     font-size: 0.8125rem;
     line-height: 1.35;
     color: var(--site-muted);
-  }
-  /* A quiet line of plain text separated by dots: no boxes, no borders. */
-  .interests {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 48rem;
-    font-size: 0.9375rem;
-    color: var(--site-muted);
-  }
-  .interests li:not(:last-child)::after {
-    content: '\00b7';
-    margin: 0 0.6rem;
-    color: var(--site-accent);
   }
   .outside-row {
     display: flex;

@@ -16,6 +16,7 @@ const home = defineCollection({
     headline: z.string(),
     intro: z.string().optional(),
     shortIntro: z.string(),
+    longLead: z.string().optional(), // a one-line opener shown in bold above the Long intro
     longIntro: z.string(),
     reflectionsTitle: z.string(),
     reflections: z.array(z.object({ title: z.string(), text: z.string() })),
@@ -29,6 +30,8 @@ const home = defineCollection({
       .array(z.object({ name: z.string(), logo: z.string().optional(), group: z.string().optional(), chip: z.boolean().optional(), note: z.string().optional() }))
       .optional(),
     // Things I am learning or working on now, shown as tags under Tools & Technologies
+    interestsTitle: z.string().optional(), // label for the quiet "Interested in" line under Learning
+    interests: z.array(z.string()).optional(),
     qualificationsNote: z.string().optional(), // a short note shown under Education and qualifications
     contactText: z.string().optional(),        // the sentence above the contact buttons
     learningTitle: z.string().optional(),
@@ -107,8 +110,6 @@ const pages = defineCollection({
       photos: z
         .array(z.object({ src: image(), after: z.number(), alt: z.string().min(1), caption: z.string().optional() }))
         .optional(),
-      interestsTitle: z.string().optional(),
-      interests: z.array(z.string()).optional(), // a quiet "Interested in" line on the About page
       outsideTitle: z.string().optional(),
       outside: z
         .array(z.object({ src: image(), alt: z.string().min(1), caption: z.string().optional() }))
@@ -121,10 +122,11 @@ const certifications = defineCollection({
   loader: file('src/content/certifications.yaml'),
   schema: z.object({
     name: z.string(),
-    type: z.enum(['education', 'certification']).default('education'),
+    type: z.enum(['education', 'certification', 'course']).default('education'),
     order: z.number().default(99), // 1 = shown first (newest first)
     featured: z.boolean().optional(),   // show as the large highlighted card
     provider: z.string().optional(),    // e.g. who trained me
+    providerLabel: z.string().optional(), // the words before the provider, default "Trained by"
     providerLink: z.string().optional(),
     detail: z.string().optional(), // e.g. "Pass, October 2026"
     link: z.string().optional(),   // public verification link, if there is one
