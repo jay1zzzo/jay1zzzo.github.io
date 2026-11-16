@@ -44,7 +44,7 @@ linkedin: "https://www.linkedin.com/in/jason-belgica"
 #          Leave it out to show a lettered tile instead.
 #   group: the heading the app sits under. Groups show in the order they first appear.
 toolsTitle: "Tools & Technologies"
-toolsSubtitle: "Tools I have used. Experience varies by tool."
+toolsSubtitle: "Tools I have used."
 tools:
   - { name: "Adobe Photoshop", logo: "photoshop.svg", group: "Design & Creative" }
   - { name: "Canva", logo: "canva.svg", group: "Design & Creative" }

@@ -38,7 +38,7 @@ for (const t of tools) {
 ---
 <section aria-labelledby="tools-heading" class="section-rule">
   <h2 id="tools-heading" class="label">[ {title} ]</h2>
-  {subtitle && <p class="mt-1 text-sm text-muted-foreground">{subtitle}<span class="hover-hint"> Hover a logo for its name.</span></p>}
+  {subtitle && <p class="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
 
   <div class="mt-5 grid gap-6">
     {groups.map((g) => (
@@ -76,9 +76,6 @@ for (const t of tools) {
     grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
     gap: 0.25rem 0.5rem;
   }
-  .hover-hint {
-    display: none;
-  }
   @media (hover: hover) {
     /* Snug square boxes: the amber outline hugs the logo, with no extra space */
     .tools-grid {
@@ -87,9 +84,6 @@ for (const t of tools) {
       gap: 0.5rem 0.75rem;
       /* Left-aligned rows: 8, 6, 4, 4, 2 make a neat staircase next to the labels */
       justify-content: flex-start;
-    }
-    .hover-hint {
-      display: inline;
     }
   }
   /* Borderless and quiet. Muted until hovered, then a thin amber outline. */
