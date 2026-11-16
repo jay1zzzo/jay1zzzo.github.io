@@ -73,6 +73,8 @@ export default function ProjectCard({ label, title, summary, href, image, varian
           <p className="text-sm text-muted-foreground">{summary}</p>
           <a
             href={href}
+            data-umami-event="Project card click"
+            data-umami-event-project={title}
             className="mt-auto pt-3 font-mono text-xs tracking-wider text-primary uppercase no-underline after:absolute after:inset-0 after:content-[''] hover:underline"
           >
             View project <span aria-hidden="true">→</span>

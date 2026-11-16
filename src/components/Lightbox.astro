@@ -161,6 +161,8 @@
         opener = trigger;
         show(triggers.indexOf(trigger));
         dialog.showModal();
+        // Counts which images get opened (only if visitor statistics are switched on)
+        (window as any).umami?.track?.('Image opened', { image: (trigger.dataset.lightboxCaption ?? '').slice(0, 80) });
         return;
       }
       if (target.closest('[data-lightbox-prev]')) return step(-1);

@@ -78,7 +78,7 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
   <Certifications />
 
   <p class="mt-8">
-    <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'}>{home.contactButton}</a>
+    <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'} data-umami-event="Email me click" data-umami-event-where="About">{home.contactButton}</a>
   </p>
 
   <Lightbox />

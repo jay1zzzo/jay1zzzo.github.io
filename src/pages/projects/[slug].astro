@@ -134,6 +134,8 @@ const evidenceFirst = d.category !== 'tool';
         <a
           href={d.link}
           rel="noopener"
+          data-umami-event="Project external link click"
+          data-umami-event-project={d.title}
           class={buttonVariants({ size: 'lg' }) + ' h-auto max-w-full px-4 py-2 text-left leading-snug whitespace-normal'}
         >
           <span>{d.linkText ?? 'Visit'} <span aria-hidden="true">↗</span></span>

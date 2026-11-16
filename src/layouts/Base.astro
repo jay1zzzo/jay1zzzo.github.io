@@ -4,6 +4,7 @@ import '@fontsource-variable/fraunces';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
+import { analytics } from '../analytics';
 
 interface Props {
   title?: string;        // e.g. "Tools" → browser tab says "Tools | Jason Belgica Paguntalan"
@@ -42,6 +43,34 @@ const year = new Date().getFullYear();
         document.documentElement.setAttribute('data-theme', t);
       })();
     </script>
+    {analytics.websiteId && (
+      <>
+        <!-- Skips your own visits: open any page of the site with ?notrack once on a device (and ?track to switch counting back on). -->
+        <script is:inline>
+          (function () {
+            try {
+              var q = location.search;
+              if (q.indexOf('notrack') > -1) localStorage.setItem('notrack', '1');
+              if (q.indexOf('track') > -1 && q.indexOf('notrack') === -1) localStorage.removeItem('notrack');
+            } catch (e) {}
+          })();
+          function umamiBeforeSend(type, payload) {
+            try { if (localStorage.getItem('notrack') === '1') return false; } catch (e) {}
+            return payload;
+          }
+        </script>
+        <script
+          is:inline
+          defer
+          src={analytics.scriptSrc}
+          data-website-id={analytics.websiteId}
+          data-domains={analytics.domain}
+          data-exclude-search="true"
+          data-do-not-track="true"
+          data-before-send="umamiBeforeSend"
+        ></script>
+      </>
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -57,6 +86,8 @@ const year = new Date().getFullYear();
                   class="nav-link"
                   href={item.href}
                   aria-current={current === item.href ? 'page' : undefined}
+                  data-umami-event="Menu click"
+                  data-umami-event-page={item.label}
                 >
                   {item.label}
                 </a>
@@ -78,8 +109,8 @@ const year = new Date().getFullYear();
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <span>© {year} {siteName}</span>
-        <a href={linkedIn} rel="noopener">LinkedIn</a>
+        <span>© {year} {siteName}{analytics.websiteId && ' · Privacy-friendly visitor statistics, no cookies.'}</span>
+        <a href={linkedIn} rel="noopener" data-umami-event="LinkedIn click" data-umami-event-where="Footer">LinkedIn</a>
       </div>
     </footer>
     <script>

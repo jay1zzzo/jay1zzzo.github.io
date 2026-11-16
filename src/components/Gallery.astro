@@ -149,7 +149,8 @@ const items = await Promise.all(
     const strip = g.querySelector<HTMLElement>('.gallery-strip');
     if (!strip) return;
     const step = (dir: number) => strip.scrollBy({ left: dir * Math.round(strip.clientWidth * 0.8) });
-    g.querySelector('[data-gallery-prev]')?.addEventListener('click', () => step(-1));
-    g.querySelector('[data-gallery-next]')?.addEventListener('click', () => step(1));
+    const count = (direction: string) => (window as any).umami?.track?.('Gallery arrow', { direction });
+    g.querySelector('[data-gallery-prev]')?.addEventListener('click', () => { step(-1); count('left'); });
+    g.querySelector('[data-gallery-next]')?.addEventListener('click', () => { step(1); count('right'); });
   });
 </script>

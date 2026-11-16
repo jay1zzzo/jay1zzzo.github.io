@@ -15,18 +15,18 @@ const linkedinShort = home.linkedin.replace(/^https?:\/\/(www\.)?/, '');
     <div class="border-2 border-border bg-card p-5">
       <dt class="label">[ Email ]</dt>
       <dd class="mt-2 break-all">
-        <a href={`mailto:${home.email}`} class="inline-block py-1 text-lg underline-offset-4 hover:text-primary hover:underline">{home.email}</a>
+        <a href={`mailto:${home.email}`} data-umami-event="Email address click" data-umami-event-where="Contact" class="inline-block py-1 text-lg underline-offset-4 hover:text-primary hover:underline">{home.email}</a>
       </dd>
     </div>
     <div class="border-2 border-border bg-card p-5">
       <dt class="label">[ LinkedIn ]</dt>
       <dd class="mt-2 break-all">
-        <a href={home.linkedin} rel="noopener" class="inline-block py-1 text-lg underline-offset-4 hover:text-primary hover:underline">{linkedinShort}</a>
+        <a href={home.linkedin} rel="noopener" data-umami-event="LinkedIn click" data-umami-event-where="Contact" class="inline-block py-1 text-lg underline-offset-4 hover:text-primary hover:underline">{linkedinShort}</a>
       </dd>
     </div>
   </dl>
 
   <p class="mt-8">
-    <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'}>{home.contactButton}</a>
+    <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-4'} data-umami-event="Email me click" data-umami-event-where="Contact">{home.contactButton}</a>
   </p>
 </Base>

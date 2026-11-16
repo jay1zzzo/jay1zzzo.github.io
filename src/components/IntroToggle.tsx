@@ -55,7 +55,12 @@ export default function IntroToggle({ short, long, longLead, moreHref, moreLabel
         type="single"
         variant="outline"
         value={mode}
-        onValueChange={(v) => v && setMode(v as Mode)}
+        onValueChange={(v) => {
+          if (!v) return;
+          setMode(v as Mode);
+          // Counts which version people open (only if visitor statistics are switched on)
+          (window as any).umami?.track?.('Intro toggle', { version: v });
+        }}
         aria-label="Intro length"
         className="w-fit gap-2"
       >
@@ -86,6 +91,7 @@ export default function IntroToggle({ short, long, longLead, moreHref, moreLabel
           <p>
             <a
               href={moreHref}
+              data-umami-event="Read full story link"
               className="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline [@media(pointer:coarse)]:py-3"
             >
               {moreLabel} <span aria-hidden="true">→</span>

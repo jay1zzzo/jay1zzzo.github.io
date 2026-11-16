@@ -10,6 +10,10 @@ thumb: "../../assets/work/newsletter-ai-safety.webp"
 imagesTitle: "Selected pages"
 imagesLayout: two
 images:
+  - src: "../../assets/work/newsletter-october-page-1.webp"
+    alt: "BlayCare Monthly, October 2026, page 1: a welcome banner, a carer of the month panel, October birthdays, local events in Derby, Halloween safety tips and a fire safety refresher. The photograph, names and birthday names are blurred."
+    caption: "October 2026, page 1: the regular sections, with local events and safety tips."
+    edited: true
   - src: "../../assets/work/newsletter-ai-safety.webp"
     alt: "BlayCare Monthly, October 2026, page 2. A guidance page headed Using AI Safely in Healthcare, with safe and unsafe practice columns, steps for writing care notes, a quick check question and a closing reminder panel."
     caption: "October 2026, page 2: a guidance page with a quick-check question."
@@ -31,7 +35,7 @@ closeups:
 
 ## Overview
 
-BlayCare Monthly is a newsletter for staff. Two pages are shown: a guidance page and a wellbeing page. Other pages include staff names and photographs, so they are not shown here.
+BlayCare Monthly is a newsletter for staff. Three pages are shown: a first page with the regular sections, a guidance page and a wellbeing page. Staff names and photographs are blurred, and other pages are not shown here.
 
 ## Purpose and audience
 
