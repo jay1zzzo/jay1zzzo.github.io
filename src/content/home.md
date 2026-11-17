@@ -13,11 +13,11 @@ headline: "Jason Belgica Paguntalan, junior marketer"
 
 # The Bio. A blank line starts a new paragraph. Keep two spaces at the start of each line.
 shortIntro: |
-  I'm Jason, the Marketing Assistant at BlayCare in the East Midlands, where I started as an apprentice in March 2025. I'm passionate about marketing, and I focus on content creation: social media, newsletters, staff profiles and design work, alongside looking after the website. I do my creative work myself, because that's what I enjoy.
+  I'm Jason, a junior marketer in the East Midlands. I joined BlayCare as an apprentice in March 2025 and have since passed my Level 3 Multichannel Marketer qualification. I look after social media, newsletters, staff profiles, design and the website. The creative side is what I enjoy most: writing the copy, designing the layouts and editing the photos myself.
 
-  I'm also really interested in AI, especially Claude Code, and I like using it to build small tools and solve problems.
+  I'm also into IT, automation and building useful tools. I use Claude Code for personal projects and to solve everyday problems, and I'm excited by what it can do for productivity. I like knowing how things work and making them work better.
 
-  I love finding ways to connect with people. I'm excited to keep learning and being creative, and to work with data to track and drive growth, taking on more responsibility and helping businesses grow as part of a team.
+  Next, I want to get better at data and analytics, and take on more responsibility in a team.
 
 # The Long story and its photos live in src/content/about.md.
 
