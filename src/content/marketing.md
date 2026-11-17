@@ -3,7 +3,7 @@ title: "Marketing"
 intro: "Marketing work I've done at BlayCare, with the reasoning behind it."
 ---
 
-## Other marketing work
+## Also worked on
 
 - Social content and scheduling
 - Monthly newsletters

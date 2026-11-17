@@ -16,8 +16,9 @@ interface Props {
   title?: string;
   subtitle?: string;
   tools: Tool[];
+  embedded?: boolean; // true when shown inside another section (no outer section or heading)
 }
-const { title = 'Tools & Technologies', subtitle, tools } = Astro.props;
+const { title = 'Tools & Technologies', subtitle, tools, embedded = false } = Astro.props;
 
 const files = import.meta.glob<{ default: ImageMetadata }>('/src/assets/tools/*.{svg,png,webp}', { eager: true });
 
@@ -36,13 +37,17 @@ for (const t of tools) {
   entry.items.push({ ...t, src });
 }
 ---
-<section aria-labelledby="tools-heading" class="section-rule">
-  <h2 id="tools-heading" class="label">[ {title} ]</h2>
+<section aria-labelledby="tools-heading" class={embedded ? '' : 'section-rule'}>
+  {embedded ? (
+    <h3 id="tools-heading" class="label">{title}</h3>
+  ) : (
+    <h2 id="tools-heading" class="section-title">{title}</h2>
+  )}
   {subtitle && <p class="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
 
-  <div class="mt-5 grid gap-6">
+  <div class={embedded ? 'mt-4 grid gap-4' : 'mt-5 grid gap-6'}>
     {groups.map((g) => (
-      <div class="md:grid md:grid-cols-[11rem_minmax(0,1fr)] md:items-start md:gap-6">
+      <div class={embedded ? '' : 'md:grid md:grid-cols-[11rem_minmax(0,1fr)] md:items-start md:gap-6'}>
         {g.name && <h3 class="tools-group">{g.name}</h3>}
         <ul class="tools-grid">
           {g.items.map((t) => (

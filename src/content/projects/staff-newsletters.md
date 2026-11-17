@@ -43,9 +43,7 @@ The audience was BlayCare staff. Editions went out through WhatsApp or another s
 
 - Company updates.
 - Staff recognition.
-- Event promotion and participation.
 - Wellbeing advice and resources.
-- Reminders and required actions.
 
 ## My contribution
 

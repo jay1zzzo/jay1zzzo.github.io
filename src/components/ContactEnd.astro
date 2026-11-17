@@ -1,0 +1,102 @@
+---
+// The end of the home page: a short line, the email address with a Copy button
+// (many people have no mail app set up, so a mailto button alone can do nothing),
+// then Email me and LinkedIn.
+import { buttonVariants } from '@/components/ui/button';
+
+interface Props {
+  text?: string;
+  email: string;
+  linkedin: string;
+  button: string;
+}
+const { text, email, linkedin, button } = Astro.props;
+---
+<div data-contact-end>
+  {text && <p class="mt-3 max-w-[65ch] text-muted-foreground">{text}</p>}
+
+  <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+    <a href={`mailto:${email}`} class="email-address" data-umami-event="Email address click" data-umami-event-where="Home">{email}</a>
+    <button type="button" class="copy-btn" data-copy={email}>Copy</button>
+    <span class="copy-status" role="status" aria-live="polite"></span>
+  </div>
+
+  <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-3">
+    <a href={`mailto:${email}`} class={buttonVariants({ size: 'lg' }) + ' px-5'} data-umami-event="Email me click" data-umami-event-where="Home bottom">{button}</a>
+    <a href={linkedin} rel="noopener" class={buttonVariants({ size: 'lg', variant: 'outline' }) + ' px-5'} data-umami-event="LinkedIn click" data-umami-event-where="Home bottom">LinkedIn</a>
+  </div>
+</div>
+
+<style>
+  .email-address {
+    font-family: var(--site-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    word-break: break-all;
+    text-underline-offset: 5px;
+    color: var(--site-text);
+  }
+  .email-address:hover {
+    color: var(--site-accent);
+    text-decoration: underline;
+  }
+  .copy-btn {
+    padding: 0.35rem 0.85rem;
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--site-text);
+    background: transparent;
+    border: 1px solid var(--site-line);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: color 150ms, border-color 150ms;
+  }
+  .copy-btn:hover {
+    color: var(--site-accent);
+    border-color: var(--site-accent);
+  }
+  @media (pointer: coarse) {
+    .copy-btn {
+      min-height: 2.75rem;
+    }
+  }
+  .copy-status {
+    font-size: 0.8125rem;
+    color: var(--site-accent);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-contact-end]').forEach((root) => {
+    const btn = root.querySelector<HTMLButtonElement>('.copy-btn');
+    const status = root.querySelector<HTMLElement>('.copy-status');
+    const link = root.querySelector<HTMLAnchorElement>('.email-address');
+    if (!btn || !status) return;
+    let timer: number | undefined;
+    const say = (msg: string) => {
+      status.textContent = msg;
+      clearTimeout(timer);
+      timer = window.setTimeout(() => (status.textContent = ''), 2500);
+    };
+    btn.addEventListener('click', async () => {
+      const email = btn.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(email);
+        (window as any).umami?.track?.('Email copied');
+        say('Copied');
+      } catch {
+        // Copying is blocked: select the address so it can be copied by hand.
+        if (link) {
+          const range = document.createRange();
+          range.selectNodeContents(link);
+          const sel = window.getSelection();
+          sel?.removeAllRanges();
+          sel?.addRange(range);
+        }
+        say('Select and copy the address');
+      }
+    });
+  });
+</script>

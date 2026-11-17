@@ -51,9 +51,7 @@ From the research, I recommended earlier trust signals, clearer service copy, vi
 
 ## Outcomes
 
-The SEOptimer audit grade is now A+. This is an audit score for the site's technical and on-page checks. It is not a measure of enquiries or sales.
-
-I have not included traffic or enquiry figures, because I do not have dated sources for them to show here.
+The SEOptimer audit grade is now A+. This is an audit score for the site's technical and on-page checks, not a measure of enquiries or sales. I have not included traffic or enquiry figures, because I do not have dated sources for them to show here.
 
 ## What I learned
 

@@ -13,7 +13,7 @@ const groups = [
 ---
 {groups.map((g, gi) => (
   <section aria-labelledby={g.id} class={gi === 0 ? 'section-rule' : 'mt-10'}>
-    <h2 id={g.id} class="label">[ {g.title} ]</h2>
+    <h2 id={g.id} class="section-title">{g.title}</h2>
     {g.tags ? (
       <ul class="mt-3 flex flex-wrap gap-2">
         {g.items.map((c) => (

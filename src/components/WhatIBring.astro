@@ -1,0 +1,108 @@
+---
+// "What I bring": three short columns under the headline. Each one links to the proof.
+// The words live in src/content/home.md under "bring:".
+interface Item {
+  number: string;
+  title: string;
+  text: string;
+  href: string;
+  linkText: string;
+}
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+<ul class="bring" aria-label="What I bring">
+  {items.map((i) => (
+    <li class="bring-item">
+      <p class="bring-number" aria-hidden="true">{i.number}</p>
+      <h2 class="bring-title">{i.title}</h2>
+      <p class="bring-text">{i.text}</p>
+      <a href={i.href} class="bring-link" data-umami-event="What I bring link" data-umami-event-where={i.title}>
+        {i.linkText} <span aria-hidden="true">→</span>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .bring {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 3.5rem;
+    border-top: 1px solid var(--site-line);
+  }
+  .bring-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--site-line);
+  }
+  .bring-number {
+    font-family: var(--site-mono);
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--site-accent);
+  }
+  .bring-title {
+    margin-top: 0.75rem;
+    font-family: var(--site-serif);
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .bring-text {
+    margin-top: 0.25rem;
+    max-width: 32ch;
+    font-size: 0.9375rem;
+    color: var(--site-muted);
+  }
+  .bring-link {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.25rem 0;
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--site-accent);
+    text-underline-offset: 4px;
+  }
+  .bring-link:hover {
+    text-decoration: underline;
+  }
+  @media (pointer: coarse) {
+    .bring-link {
+      padding: 0.75rem 0;
+    }
+  }
+  @media (min-width: 768px) {
+    .bring {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-bottom: 1px solid var(--site-line);
+    }
+    .bring-item {
+      padding: 1.5rem 1.5rem 1.5rem 0;
+      border-bottom: 0;
+    }
+    .bring-item + .bring-item {
+      padding-left: 1.5rem;
+      border-left: 1px solid var(--site-line);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .bring-item {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: bring-in 600ms cubic-bezier(0.22, 0.8, 0.3, 1) forwards;
+    }
+    .bring-item:nth-child(1) { animation-delay: 700ms; }
+    .bring-item:nth-child(2) { animation-delay: 820ms; }
+    .bring-item:nth-child(3) { animation-delay: 940ms; }
+  }
+  @keyframes bring-in {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

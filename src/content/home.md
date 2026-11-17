@@ -6,24 +6,12 @@
 headline: "Hi, I'm Jason. I'm a junior marketer who loves building tools that make work easier."
 
 
-shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles, and I passed my Level 3 Multichannel Marketer qualification in October 2026. I like building small tools, and I've become really interested in doing that with AI, especially Claude Code. I want to keep growing within a team."
+shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles. I like building small tools, and I've become really interested in doing that with AI, especially Claude Code. I want to keep growing within a team."
 
-# Long intro: a shorter cut of the About page story.
-# Optional: add  longLead: "..."  here to show a bold opening line above the Long text.
-# Leave one blank line between paragraphs. Keep the two spaces at the start of each line.
-longIntro: |
-  I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut near a corner shop, by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out and run there to play it. Around then I was also the one my older cousin asked to work the family computer.
+# The Long story and its photos live in src/content/about.md.
 
-  As a teenager I got good at competitive games, and people who had no time started asking me to coach them. So I started selling that help online, through an eBay shop, which still has 100% positive feedback, and an Instagram page.
-
-  The Instagram page is where I first did marketing for real. I made the graphics and price lists myself, posted regularly, and used hashtags and replies to get it in front of more people. Offers and customer reviews helped build trust. I also answered customer enquiries professionally, including the early-morning ones, with one eye open. That's when I realised I love marketing and seeing things grow.
-
-  I spent a couple of years at university, doing a foundation year and then starting an architecture degree, before moving into a marketing apprenticeship at BlayCare in March 2025. I'm now the Marketing Assistant. I rebuilt the website, wrote the brand guidelines and have worked on social media and newsletters. I passed my Level 3 Multichannel Marketer qualification in October 2026.
-
-  I'm still the person colleagues call when a computer won't behave, and these days I build small tools too. I'm a junior who wants to contribute now and keep learning and growing within a team long term.
-
-# Shown only under the Long About. Each has a short heading and one sentence.
-reflectionsTitle: "What I've Learned So Far"
+# Shown under the Long About. Each has a short heading and one sentence.
+reflectionsTitle: "What I've learned so far"
 reflections:
   - title: "Putting in the hours helps"
     text: "Getting better at something takes time, practice and consistency."
@@ -33,6 +21,12 @@ reflections:
     text: "I like figuring things out myself, but I can learn a lot from people with more experience."
   - title: "I like making useful things"
     text: "Whether it's a website, a design or an app, I want it to have a purpose."
+
+# WHAT I BRING: three short columns under the headline. Each links to the proof.
+bring:
+  - { number: "01", title: "Design", text: "Newsletters, brochures, invitations and social graphics.", href: "/marketing#gallery", linkText: "Work gallery" }
+  - { number: "02", title: "Digital", text: "A website rebuild, social media and a small paid Facebook test.", href: "/marketing#projects", linkText: "Case studies" }
+  - { number: "03", title: "Tools", text: "Small apps and an AI connector that make work simpler.", href: "/tools", linkText: "Tools" }
 
 contactButton: "Email me →"
 email: "jasonpbelgica@gmail.com"
@@ -72,7 +66,7 @@ tools:
   - { name: "Trello", logo: "trello.svg", group: "Planning & Workflow" }
 
 # LEARNING AND IN PROGRESS: shown as tags under Tools & Technologies.
-learningTitle: "Learning and in progress"
+learningTitle: "Currently learning"
 homeLearning:
   - { name: "Email marketing" }
   - { name: "CRM practice" }
@@ -91,5 +85,5 @@ interests:
   - "Paid ads"
   - "Workflows"
 # Shown above the contact buttons: one paragraph, Jason's own words.
-contactText: "Alongside the training I received through my apprenticeship with Althaus, much of my practical learning has been self-directed. As the sole in-house marketer, I've had to take initiative, teach myself new tools and find solutions independently. That experience has made me resourceful and comfortable learning by doing. I'm now looking to take the next step in my career by joining a team where I can contribute what I've learned, collaborate with others and continue developing alongside more experienced professionals."
+contactText: "As the sole in-house marketer, I've taken initiative and taught myself new tools. I'm now looking to join a team where I can contribute, collaborate and keep learning from more experienced people."
 ---

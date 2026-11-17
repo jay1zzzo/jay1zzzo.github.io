@@ -32,7 +32,6 @@ const items = await Promise.all(
 ---
 <div class="gallery">
   <div class="gallery-bar">
-    <span class="gallery-hint">Scroll sideways, or use the arrows.</span>
     <span class="gallery-arrows">
       <button type="button" class="gallery-arrow" data-gallery-prev aria-label="Scroll the gallery left">←</button>
       <button type="button" class="gallery-arrow" data-gallery-next aria-label="Scroll the gallery right">→</button>
@@ -53,7 +52,7 @@ const items = await Promise.all(
           <Image src={item.src} alt={item.alt} width={560} loading="lazy" />
         </button>
         <p class="gallery-title">{item.what}</p>
-        {item.tool && <p class="label gallery-tool">[ {item.tool} ]</p>}
+        {item.tool && <p class="label gallery-tool">{item.tool}</p>}
       </li>
     ))}
   </ul>
@@ -63,7 +62,7 @@ const items = await Promise.all(
   .gallery-bar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 0.75rem;
     margin-bottom: 0.5rem;
   }

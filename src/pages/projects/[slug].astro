@@ -42,7 +42,7 @@ const evidenceFirst = d.category !== 'tool';
       <span aria-hidden="true">←</span> {backLabel}
     </a>
 
-    <p class="label mt-6">[ {d.label} ]</p>
+    <p class="label mt-6">{d.label}</p>
     <h1 class="mt-2 font-serif text-2xl leading-tight font-semibold sm:text-3xl">{d.title}</h1>
     <p class="mt-4 max-w-[65ch] text-lg text-muted-foreground">{d.summary}</p>
 
@@ -50,7 +50,7 @@ const evidenceFirst = d.category !== 'tool';
 
     {evidenceFirst && images.length > 0 && (
       <section aria-labelledby="images-heading" class="mt-8">
-        <h2 id="images-heading" class="label">[ {d.imagesTitle ?? 'Selected work'} ]</h2>
+        <h2 id="images-heading" class="section-title">{d.imagesTitle ?? 'Selected work'}</h2>
         {d.imagesNote && <p class="mt-1 text-sm text-muted-foreground">{d.imagesNote}</p>}
         <ul class={gridClass(d.imagesLayout)}>
           {images.map((im) => (
@@ -80,7 +80,7 @@ const evidenceFirst = d.category !== 'tool';
 
     {!evidenceFirst && images.length > 0 && (
       <section aria-labelledby="images-heading-b" class="mt-10">
-        <h2 id="images-heading-b" class="label">[ {d.imagesTitle ?? 'Images'} ]</h2>
+        <h2 id="images-heading-b" class="section-title">{d.imagesTitle ?? 'Images'}</h2>
         {d.imagesNote && <p class="mt-1 text-sm text-muted-foreground">{d.imagesNote}</p>}
         <ul class={gridClass(d.imagesLayout)}>
           {images.map((im) => (
@@ -106,7 +106,7 @@ const evidenceFirst = d.category !== 'tool';
 
     {closeups.length > 0 && (
       <section aria-labelledby="closeups-heading" class="mt-10">
-        <h2 id="closeups-heading" class="label">[ {d.closeupsTitle ?? 'Close-ups'} ]</h2>
+        <h2 id="closeups-heading" class="section-title">{d.closeupsTitle ?? 'Close-ups'}</h2>
         <ul class="mt-3 grid gap-4 sm:grid-cols-2">
           {closeups.map((im) => (
             <li>

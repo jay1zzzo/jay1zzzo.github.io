@@ -1,6 +1,7 @@
 ---
 title: "About"
-# Photos in the story. "after" is the paragraph number the photo sits under.
+# The Long story on the home page. Each paragraph is separated by a blank line.
+# Photos: "after" is the paragraph number the photo sits under.
 # Alt text is required. Photos are web copies; the originals stay private.
 photos:
   - src: "../assets/about/toddler.webp"
@@ -8,15 +9,11 @@ photos:
     alt: "A photograph of me as a toddler, smiling and sitting on a small chair outdoors."
     caption: "Me as a toddler."
   - src: "../assets/about/video-edit.webp"
-    after: 3
+    after: 2
     alt: "A video editing timeline open on a computer screen, with clips lined up below the preview window."
     caption: "One of my own video editing projects."
-  - src: "../assets/about/pc-upgrade.webp"
-    after: 4
-    alt: "The inside of an open PC case, showing the motherboard, processor and cooling."
-    caption: "Upgrading my PC."
   - src: "../assets/about/new-orleans-lan.webp"
-    after: 5
+    after: 4
     alt: "Me standing with my arms folded in a large hall, in front of three giant inflatable dinosaur figures."
     caption: "At the LAN event in New Orleans."
 # The small photo row at the end.
@@ -33,26 +30,14 @@ outside:
     caption: "Another view I photographed."
 ---
 
-## My story
+I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out and run there to play it. Around then I was also the one my older cousin asked to work the family computer.
 
-I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut near a corner shop, by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out and run there to play it. Around then I was also the one my older cousin asked to work the family computer.
+I've always liked making things. As a kid it was drawing. As a teenager it moved onto the computer: Minecraft texture packs and logos in Photoshop, then intros and gaming montages in Sony Vegas, After Effects and Cinema 4D. I definitely couldn't afford them, so let's just say my copies weren't from the official store (shhh). I learned them from YouTube tutorials and a lot of trial and error.
 
-I always loved drawing, and my family knew me for it. The first drawing I remember is Simba from The Lion King. I made kites, and I wondered about space, rockets and aeroplanes.
+The same curiosity took me into the technical side. I built and upgraded my own PC, made private servers for browser games, and made websites on Wix, just to see how they worked.
 
-In my teenage years, drawing moved onto the computer. I made Minecraft texture packs in Photoshop, logos, banners, plus my own skins and capes, pixel by pixel, and shared them with friends. Then I started watching FaZe montages and edits on YouTube and wanted to know how people made them. Sony Vegas, After Effects and Cinema 4D came next. I definitely couldn't afford them, so let's just say my copies weren't from the official store (shhh). I learned them from YouTube tutorials and a lot of trial and error, and made intros and gaming montages for myself and my friends. I didn't think of it as learning design or editing. I just liked making things and working out how they worked.
+I also got good at competitive games. For several seasons I was one of the UK's highest-ranked Apex Legends players, and I was flown out to the Apex Legends Open LAN in New Orleans. People started asking me to coach them, so I sold that help through an eBay shop, which still has 100% positive feedback, and an Instagram page. Making the graphics, posting regularly and answering customer enquiries, including the early-morning ones, is where I first did marketing for real, and where I realised I love seeing things grow.
 
-The same curiosity took me into the technical side. I built and upgraded my own PC. I made private servers for browser games, which meant port forwarding, MySQL, phpMyAdmin and Hamachi, and the wifi would drop out while I was testing so my friends could get on. I made websites on Wix just out of curiosity, and I became the person friends and family asked for computer help and edits.
+After a couple of years at university, I joined BlayCare as a marketing apprentice in March 2025. I'm now the Marketing Assistant: I rebuilt the website, wrote the brand guidelines and work on social media and newsletters. As the sole in-house marketer, much of my learning has been self-directed.
 
-As a teenager I got good at competitive games. For several seasons I was one of the UK's highest-ranked Apex Legends players, and I was flown out to the Apex Legends Open LAN in New Orleans to play with two online friends I'd never met in person. It was one of the best experiences of my life.
-
-Then people who had no time started asking me to coach them and help them rank up, so I started selling that help online. I opened an eBay shop, which still has 100% positive feedback, and an Instagram page.
-
-The Instagram page is where I first did marketing for real. I made the graphics and price lists myself, posted regularly, and used hashtags and replies to get it in front of more people. Offers and customer reviews helped build trust. I also answered customer enquiries professionally, including the early-morning ones, with one eye open. That's when I realised I love marketing and seeing things grow.
-
-I spent a couple of years at university, doing a foundation year and then starting an architecture degree, before moving into a marketing apprenticeship at BlayCare in March 2025. I'm now the Marketing Assistant. I rebuilt the website, wrote the brand guidelines and have worked on social media and newsletters. I passed my Level 3 Multichannel Marketer qualification in October 2026.
-
-Alongside the training from my apprenticeship with Althaus, much of my learning has been self-directed, as the sole in-house marketer.
-
-More recently I've got interested in AI and what it makes possible: not just generating content, but building things, solving problems and making everyday tasks easier. I've built a productivity app, an MCP integration and some other small tools, with AI's help, and I'm still learning.
-
-I'm still the person colleagues call when a computer won't behave. I'm a junior who wants to join a team, contribute now and learn from people with more experience.
+That mix of design, marketing and tinkering is why I'm drawn to AI and automation now. I've built a productivity app, an MCP integration and other small tools with AI's help, to make everyday work simpler. Next, I want to join a team where I can contribute now, learn from people with more experience, and keep growing, especially in email marketing and CRM.

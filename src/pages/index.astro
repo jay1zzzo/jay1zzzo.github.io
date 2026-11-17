@@ -5,18 +5,18 @@
 import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import ProjectList from '../components/ProjectList.astro';
-import IntroToggle from '../components/IntroToggle';
-import ToolLogos from '../components/ToolLogos.astro';
+import AboutSwitch from '../components/AboutSwitch.astro';
+import ContactEnd from '../components/ContactEnd.astro';
+import Lightbox from '../components/Lightbox.astro';
+import SkillsAndCerts from '../components/SkillsAndCerts.astro';
 import LearningList from '../components/LearningList.astro';
-import Certifications from '../components/Certifications.astro';
-import { buttonVariants } from '@/components/ui/button';
 
 const home = (await getEntry('home', 'home'))!.data;
 ---
 <Base>
   <!-- 1. Heading -->
   <section aria-labelledby="headline">
-    <p class="label">[ Portfolio ]</p>
+    <p class="label">Marketing portfolio</p>
     <h1 id="headline" class="mt-2 max-w-[34ch] font-serif text-balance text-[1.5rem] leading-[1.2] font-semibold sm:text-[1.75rem] lg:text-[1.875rem]">
       {home.headline.split(' ').map((word, i) => (
         <><span class="word-rise" style={`--i:${i}`}>{word}</span>{' '}</>
@@ -24,27 +24,24 @@ const home = (await getEntry('home', 'home'))!.data;
     </h1>
   </section>
 
-  <!-- 2. About: Short / Long -->
-  <section aria-labelledby="about" class="mt-6">
-    <h2 id="about" class="sr-only">About me</h2>
-    <div class="max-w-3xl">
-      <IntroToggle
-        client:load
-        short={home.shortIntro}
-        longLead={home.longLead}
-        moreHref="/about"
-        moreLabel="Read the full story, with photos"
-        long={home.longIntro}
-        reflectionsTitle={home.reflectionsTitle}
-        reflections={home.reflections}
-      />
+  <!-- Switched off, saved: the "See my work" and "Email me" buttons under the headline, and the
+       Design / Digital / Tools columns (src/components/WhatIBring.astro, words in home.md under "bring:").
+       To bring the columns back: add  import WhatIBring from '../components/WhatIBring.astro';  at the top
+       and  {home.bring && home.bring.length > 0 && <WhatIBring items={home.bring} />}  here. -->
+
+  <!-- 2. About: Short / Long, straight under the headline -->
+  <section id="about" aria-labelledby="about-heading" class="mt-8 scroll-mt-20">
+    <!-- The visible "About me" heading is switched off. To bring it back, change class="sr-only" to class="section-title". -->
+    <h2 id="about-heading" class="sr-only">About me</h2>
+    <div>
+      <AboutSwitch short={home.shortIntro} reflectionsTitle={home.reflectionsTitle} reflections={home.reflections} />
     </div>
   </section>
 
   <!-- 3. Selected marketing work: calm icon cards, the work is on each project page -->
   <section aria-labelledby="work" class="section-rule">
-    <div class="flex flex-wrap items-baseline justify-between gap-2">
-      <h2 id="work" class="label">[ Selected marketing work ]</h2>
+    <div class="flex flex-wrap items-end justify-between gap-2">
+      <h2 id="work" class="section-title">Selected work</h2>
       <span class="flex flex-wrap gap-x-5">
         <a href="/marketing#gallery" data-umami-event="Work gallery link" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline [@media(pointer:coarse)]:py-3">
           Work gallery <span aria-hidden="true">→</span>
@@ -59,7 +56,7 @@ const home = (await getEntry('home', 'home'))!.data;
 
   <!-- 4. Tools & Technologies, then what I'm learning -->
   {home.tools && home.tools.length > 0 && (
-    <ToolLogos title={home.toolsTitle} subtitle={home.toolsSubtitle} tools={home.tools} />
+    <SkillsAndCerts tools={home.tools} toolsTitle={home.toolsSubtitle?.replace(/\.$/, '')} />
   )}
   {((home.homeLearning && home.homeLearning.length > 0) || (home.interests && home.interests.length > 0)) && (
     <LearningList
@@ -72,26 +69,20 @@ const home = (await getEntry('home', 'home'))!.data;
 
   <!-- 6. Supporting technical projects -->
   <section aria-labelledby="tech" class="section-rule">
-    <div class="flex flex-wrap items-baseline justify-between gap-2">
-      <h2 id="tech" class="label">[ Supporting technical projects ]</h2>
+    <div class="flex flex-wrap items-end justify-between gap-2">
+      <h2 id="tech" class="section-title">Tools I've built</h2>
       <a href="/tools" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline [@media(pointer:coarse)]:py-3">
         All tools <span aria-hidden="true">→</span>
       </a>
     </div>
-    <p class="mt-1 text-sm text-muted-foreground">Small tools I've built or adapted to make my own work simpler.</p>
     <div class="mt-3"><ProjectList category="tool" columns="four" /></div>
   </section>
 
-  <!-- 7. Education and qualifications -->
-  <Certifications />
-
   <!-- 8. Contact -->
-  <section aria-labelledby="contact" class="section-rule">
-    <h2 id="contact" class="label">[ Contact ]</h2>
-    <p class="mt-3 max-w-[65ch] text-muted-foreground">{home.contactText}</p>
-    <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3">
-      <a href={`mailto:${home.email}`} class={buttonVariants({ size: 'lg' }) + ' px-5'} data-umami-event="Email me click" data-umami-event-where="Home">{home.contactButton}</a>
-      <a href={home.linkedin} rel="noopener" class={buttonVariants({ size: 'lg', variant: 'outline' }) + ' px-5'} data-umami-event="LinkedIn click" data-umami-event-where="Home">LinkedIn</a>
-    </div>
+  <section id="contact" aria-labelledby="contact-heading" class="section-rule scroll-mt-20">
+    <h2 id="contact-heading" class="section-title">Get in touch</h2>
+    <ContactEnd text={home.contactText} email={home.email} linkedin={home.linkedin} button={home.contactButton} />
   </section>
+
+  <Lightbox />
 </Base>

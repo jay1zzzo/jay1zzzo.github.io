@@ -19,8 +19,9 @@ const pageTitle = title ? `${title} | ${siteName}` : siteName;
 const nav = [
   { label: 'Marketing', href: '/marketing' },
   { label: 'Tools', href: '/tools' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  // To bring the About link back, remove the two slashes in front of the next line.
+  // { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '');
 const year = new Date().getFullYear();

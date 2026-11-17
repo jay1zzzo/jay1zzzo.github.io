@@ -16,10 +16,12 @@ const home = defineCollection({
     headline: z.string(),
     intro: z.string().optional(),
     shortIntro: z.string(),
-    longLead: z.string().optional(), // a one-line opener shown in bold above the Long intro
-    longIntro: z.string(),
     reflectionsTitle: z.string(),
     reflections: z.array(z.object({ title: z.string(), text: z.string() })),
+    // "What I bring": three short columns under the headline, each linking to the proof
+    bring: z
+      .array(z.object({ number: z.string(), title: z.string(), text: z.string(), href: z.string(), linkText: z.string() }))
+      .optional(),
     contactButton: z.string(),
     email: z.string(),
     linkedin: z.string(),

@@ -67,5 +67,3 @@ These are things I would change, not results.
 - Track RSVPs and actual attendance more consistently.
 - Gather structured feedback from attendees.
 - Keep the results together after the event.
-- Use more photos of real people, with consent, and short clips.
-- Post thank-you content and add clearer digital calls to action.

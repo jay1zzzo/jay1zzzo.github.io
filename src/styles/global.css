@@ -164,14 +164,14 @@
   outline-offset: 3px !important;
 }
 
-/* Small monospace labels, e.g. [ TOOL / OPEN SOURCE ] */
+/* Small monospace labels, e.g. TOOL / OPEN SOURCE */
 .label {
   font-family: var(--site-mono);
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--site-muted);
-  text-wrap: balance; /* stops a lone closing bracket sitting on its own line */
+  text-wrap: balance;
 }
 
 /* Headline: each word eases up a few pixels, one after another, once when the page opens */
@@ -198,9 +198,24 @@
 
 /* The main home page sections: room above, and a hairline to mark where each one starts */
 .section-rule {
-  margin-top: 4rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--site-line);
+  margin-top: 5rem;
+}
+
+/* Section headings: a plain heading with a short amber line above it */
+.section-title {
+  font-family: var(--site-serif);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--site-text);
+}
+.section-title::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 3px;
+  margin-bottom: 0.75rem;
+  background: var(--site-accent);
 }
 
 /* "Skip to content" link: hidden until you press Tab */
@@ -243,18 +258,22 @@
 
   /* Styles for Markdown text (project, Marketing and About pages) */
   .prose-site h2 {
-    margin-top: 2.25rem;
+    margin-top: 2.75rem;
     margin-bottom: 0.75rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--site-line);
-    font-family: var(--site-mono);
-    font-size: 0.8125rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--site-accent);
+    font-family: var(--site-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--site-text);
   }
-  .prose-site h2::before { content: '[ '; }
-  .prose-site h2::after { content: ' ]'; }
+  .prose-site h2::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin-bottom: 0.75rem;
+    background: var(--site-accent);
+  }
   .prose-site p,
   .prose-site ul {
     margin-bottom: 1rem;
