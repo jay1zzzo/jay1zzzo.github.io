@@ -79,7 +79,7 @@ export default function IntroToggle({ short, long, longLead, moreHref, moreLabel
         }
       >
         {shown === 'long' && longLead && (
-          <p className="font-serif text-xl leading-snug font-semibold text-foreground">{longLead}</p>
+          <p className="font-serif text-lg leading-snug font-semibold text-foreground">{longLead}</p>
         )}
         {(shown === 'short' ? short : long)
           .trim()

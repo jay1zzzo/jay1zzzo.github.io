@@ -17,7 +17,7 @@ const { title = 'In numbers', stats } = Astro.props;
     {stats.map((s) => (
       <div class="border-2 border-border bg-card p-4">
         <dt class="mt-2 text-sm text-muted-foreground">{s.label}</dt>
-        <dd class="font-serif text-4xl leading-none font-semibold text-primary">
+        <dd class="font-serif text-2xl leading-none font-semibold text-primary">
           {typeof s.value === 'number' ? (
             <span>{s.value}{s.suffix}</span>
           ) : (

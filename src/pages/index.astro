@@ -17,7 +17,7 @@ const home = (await getEntry('home', 'home'))!.data;
   <!-- 1. Heading -->
   <section aria-labelledby="headline">
     <p class="label">[ Portfolio ]</p>
-    <h1 id="headline" class="mt-2 max-w-[34ch] font-serif text-balance text-[1.875rem] leading-[1.12] font-semibold sm:text-4xl lg:text-[2.5rem]">
+    <h1 id="headline" class="mt-2 max-w-[34ch] font-serif text-balance text-[1.5rem] leading-[1.2] font-semibold sm:text-[1.75rem] lg:text-[1.875rem]">
       {home.headline.split(' ').map((word, i) => (
         <><span class="word-rise" style={`--i:${i}`}>{word}</span>{' '}</>
       ))}

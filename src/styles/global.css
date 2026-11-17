@@ -23,7 +23,7 @@
   --destructive: #ff6b6b;
 
   /* Fonts */
-  --site-serif: 'Fraunces Variable', Georgia, serif;
+  --site-serif: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
   --site-body: 'Inter Variable', system-ui, sans-serif;
   --site-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 

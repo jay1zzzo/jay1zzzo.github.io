@@ -20,7 +20,7 @@ const gallery = await getCollection('gallery');
 ---
 <Base title="Marketing" description={page.data.intro}>
   <p class="label">[ Marketing ]</p>
-  <h1 class="mt-2 font-serif text-4xl leading-tight font-semibold sm:text-5xl">{page.data.title}</h1>
+  <h1 class="mt-2 font-serif text-2xl leading-tight font-semibold sm:text-3xl">{page.data.title}</h1>
   {page.data.intro && <p class="mt-4 max-w-[60ch] text-lg text-muted-foreground">{page.data.intro}</p>}
 
   {gallery.length > 0 && (

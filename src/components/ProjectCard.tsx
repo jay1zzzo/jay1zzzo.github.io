@@ -68,7 +68,7 @@ export default function ProjectCard({ label, title, summary, href, image, varian
         <div className={`flex flex-1 flex-col gap-1.5 p-4 ${peek ? 'min-h-48' : ''}`}>
           {peek && icon && <Icon name={icon} />}
           <p className="label">[ {label} ]</p>
-          <h3 className="font-serif text-xl leading-snug font-semibold">{title}</h3>
+          <h3 className="font-serif text-lg leading-snug font-semibold">{title}</h3>
           <p className="text-sm text-muted-foreground">{summary}</p>
           <a
             href={href}
