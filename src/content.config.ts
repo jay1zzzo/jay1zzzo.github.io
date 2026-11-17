@@ -15,6 +15,7 @@ const home = defineCollection({
   schema: z.object({
     headline: z.string(),
     intro: z.string().optional(),
+    creativeNote: z.string().optional(), // a short line under the headline about doing the creative work myself
     shortIntro: z.string(),
     reflectionsTitle: z.string(),
     reflections: z.array(z.object({ title: z.string(), text: z.string() })),

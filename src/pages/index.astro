@@ -22,6 +22,7 @@ const home = (await getEntry('home', 'home'))!.data;
         <><span class="word-rise" style={`--i:${i}`}>{word}</span>{' '}</>
       ))}
     </h1>
+    {home.creativeNote && <p class="mt-4 max-w-[60ch] text-lg text-muted-foreground">{home.creativeNote}</p>}
   </section>
 
   <!-- Switched off, saved: the "See my work" and "Email me" buttons under the headline, and the

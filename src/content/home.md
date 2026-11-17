@@ -6,6 +6,9 @@
 headline: "Hi, I'm Jason. I'm a junior marketer who loves building tools that make work easier."
 
 
+# Shown right under the headline.
+creativeNote: "I do my creative work myself, because I really value human creativity. And I use AI as a tool to build things that make work simpler."
+
 shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles. I like building small tools, and I've become really interested in doing that with AI, especially Claude Code. I want to keep growing within a team, take on more responsibility and help businesses grow."
 
 # The Long story and its photos live in src/content/about.md.
