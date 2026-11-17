@@ -14,27 +14,19 @@ import LearningList from '../components/LearningList.astro';
 const home = (await getEntry('home', 'home'))!.data;
 ---
 <Base>
-  <!-- 1. Heading -->
-  <section aria-labelledby="headline">
-    <p class="label">Marketing portfolio</p>
-    <h1 id="headline" class="mt-2 max-w-[34ch] font-serif text-balance text-[1.5rem] leading-[1.2] font-semibold sm:text-[1.75rem] lg:text-[1.875rem]">
-      {home.headline.split(' ').map((word, i) => (
-        <><span class="word-rise" style={`--i:${i}`}>{word}</span>{' '}</>
-      ))}
-    </h1>
-    {home.creativeNote && <p class="mt-4 max-w-[60ch] text-lg text-muted-foreground">{home.creativeNote}</p>}
-  </section>
+  <!-- The page title is hidden but kept for search engines and screen readers.
+       To bring the big headline back, replace this line with the old h1 (see home.md). -->
+  <h1 class="sr-only">{home.headline}</h1>
 
   <!-- Switched off, saved: the "See my work" and "Email me" buttons under the headline, and the
        Design / Digital / Tools columns (src/components/WhatIBring.astro, words in home.md under "bring:").
        To bring the columns back: add  import WhatIBring from '../components/WhatIBring.astro';  at the top
        and  {home.bring && home.bring.length > 0 && <WhatIBring items={home.bring} />}  here. -->
 
-  <!-- 2. About: Short / Long, straight under the headline -->
-  <section id="about" aria-labelledby="about-heading" class="mt-8 scroll-mt-20">
-    <!-- The visible "About me" heading is switched off. To bring it back, change class="sr-only" to class="section-title". -->
-    <h2 id="about-heading" class="sr-only">About me</h2>
-    <div>
+  <!-- 2. Bio: the page opens here. "More about me" opens the longer story. -->
+  <section id="about" aria-labelledby="about-heading" class="scroll-mt-20">
+    <h2 id="about-heading" class="section-title">Bio</h2>
+    <div class="mt-3">
       <AboutSwitch short={home.shortIntro} reflectionsTitle={home.reflectionsTitle} reflections={home.reflections} />
     </div>
   </section>

@@ -3,12 +3,21 @@
 # Edit the words between the quotes. Keep the quotes and the line names
 # (headline:, shortIntro: and so on) exactly as they are.
 
-headline: "Hi, I'm Jason. I'm a junior marketer who loves building tools and seeing things grow."
+# The page title for search engines and screen readers. It is not shown on the page any more.
+# The old big headline, saved in case you want it back:
+#   "Hi, I'm Jason. I'm a junior marketer who loves building tools and seeing things grow."
+headline: "Jason Belgica Paguntalan, junior marketer"
 
 # Optional line under the headline. Switched off: the same idea now sits in shortIntro.
 # To bring it back, add:  creativeNote: "your words"
 
-shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles. I do my creative work myself, because I really value human creativity, and I've become really interested in using AI, especially Claude Code, to build small tools and solve problems. I want to keep growing within a team, take on more responsibility and help businesses grow."
+# The Bio. A blank line starts a new paragraph. Keep two spaces at the start of each line.
+shortIntro: |
+  I'm Jason, the Marketing Assistant at BlayCare in the East Midlands, where I started as an apprentice in March 2025. I'm passionate about marketing, and I focus on content creation: social media, newsletters, staff profiles and design work, alongside looking after the website. I do my creative work myself, because that's what I enjoy.
+
+  I'm also really interested in AI, especially Claude Code, and I like using it to build small tools and solve problems.
+
+  I love finding ways to connect with people. I'm excited to keep learning and being creative, and to work with data to track and drive growth, taking on more responsibility and helping businesses grow as part of a team.
 
 # The Long story and its photos live in src/content/about.md.
 

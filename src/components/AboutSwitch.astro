@@ -25,13 +25,13 @@ const outside = await prep(page.data.outside ?? []);
 const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
 ---
 <div class="about-switch" data-about-switch>
-  <div class="switch-buttons" role="group" aria-label="Intro length">
+  <div class="switch-buttons" role="group" aria-label="Short bio or more about me">
     <button type="button" class="switch-btn" data-mode="short" aria-pressed="true">Short</button>
-    <button type="button" class="switch-btn" data-mode="long" aria-pressed="false">Long</button>
+    <button type="button" class="switch-btn" data-mode="long" aria-pressed="false">More about me</button>
   </div>
 
-  <div class="switch-panel" data-panel="short" aria-live="polite">
-    <p>{short}</p>
+  <div class="switch-panel story" data-panel="short" aria-live="polite">
+    {short.trim().split(/\n\s*\n/).map((para) => <p>{para.trim()}</p>)}
   </div>
 
   <div class="switch-panel story" data-panel="long" hidden>
@@ -109,6 +109,7 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
   }
   .switch-btn {
     min-width: 6.5rem;
+    white-space: nowrap;
     padding: 0.5rem 1rem;
     font-family: var(--site-mono);
     font-size: 0.75rem;
