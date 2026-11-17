@@ -209,14 +209,8 @@
   line-height: 1.2;
   color: var(--site-text);
 }
-.section-title::before {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 3px;
-  margin-bottom: 0.75rem;
-  background: var(--site-accent);
-}
+/* The short amber line above headings is switched off. To bring it back, add this:
+   .section-title::before { content: ''; display: block; width: 28px; height: 3px; margin-bottom: 0.75rem; background: var(--site-accent); } */
 
 /* "Skip to content" link: hidden until you press Tab */
 .skip-link {
@@ -265,14 +259,6 @@
     font-weight: 600;
     line-height: 1.25;
     color: var(--site-text);
-  }
-  .prose-site h2::before {
-    content: '';
-    display: block;
-    width: 28px;
-    height: 3px;
-    margin-bottom: 0.75rem;
-    background: var(--site-accent);
   }
   .prose-site p,
   .prose-site ul {
