@@ -40,4 +40,4 @@ I also got good at competitive games. For several seasons I was one of the UK's 
 
 After a couple of years at university, I joined BlayCare as a marketing apprentice in March 2025. I'm now the Marketing Assistant: I rebuilt the website, wrote the brand guidelines and work on social media and newsletters. As the sole in-house marketer, much of my learning has been self-directed.
 
-That mix of design, marketing and tinkering is why I'm drawn to AI and automation now. I've built a productivity app, an MCP integration and other small tools with AI's help, to make everyday work simpler. Next, I want to join a team where I can contribute now, learn from people with more experience, and keep growing, especially in email marketing and CRM.
+That mix of design, marketing and tinkering is why I'm drawn to AI and automation now. I've built a productivity app, an MCP integration and other small tools with AI's help, to solve everyday problems. Next, I want to join a team where I can contribute now, learn from people with more experience, and keep growing, especially in email marketing and CRM.

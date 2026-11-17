@@ -3,13 +3,12 @@
 # Edit the words between the quotes. Keep the quotes and the line names
 # (headline:, shortIntro: and so on) exactly as they are.
 
-headline: "Hi, I'm Jason. I'm a junior marketer who loves building tools that make work easier."
+headline: "Hi, I'm Jason. I'm a junior marketer who loves building tools and seeing things grow."
 
+# Optional line under the headline. Switched off: the same idea now sits in shortIntro.
+# To bring it back, add:  creativeNote: "your words"
 
-# Shown right under the headline.
-creativeNote: "I do my creative work myself, because I really value human creativity. And I use AI as a tool to build things that make work simpler."
-
-shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles. I like building small tools, and I've become really interested in doing that with AI, especially Claude Code. I want to keep growing within a team, take on more responsibility and help businesses grow."
+shortIntro: "I'm based in the East Midlands and work as the Marketing Assistant at BlayCare, where I started as an apprentice in March 2025. I look after the website, social media, newsletters and staff profiles. I do my creative work myself, because I really value human creativity, and I've become really interested in using AI, especially Claude Code, to build small tools and solve problems. I want to keep growing within a team, take on more responsibility and help businesses grow."
 
 # The Long story and its photos live in src/content/about.md.
 
