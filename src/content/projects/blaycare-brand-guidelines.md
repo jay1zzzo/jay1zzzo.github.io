@@ -26,9 +26,6 @@ closeups:
     alt: "The outside spread of the adult care brochure, using BlayCare's blue, white and dark navy with a bold sans serif for headings. People in the photograph are blurred."
     caption: "Adult care brochure."
     edited: true
-  - src: "../../assets/work/newsletter-ai-safety.webp"
-    alt: "A page from the BlayCare staff newsletter using the same blues, with rounded panels and clear headings."
-    caption: "Staff newsletter page."
   - src: "../../assets/work/womens-day.webp"
     alt: "International Women's Day social media graphic using BlayCare's logo and blue, with two members of staff whose faces are blurred."
     caption: "Social media graphic."

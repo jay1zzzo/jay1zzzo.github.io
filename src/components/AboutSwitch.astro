@@ -36,8 +36,7 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
 
   <div class="switch-panel story" data-panel="long" hidden>
     {paragraphs.map((para, i) => (
-      <>
-        <p>{para}</p>
+      <div class="story-row">
         {photos.filter((p) => p.after === i + 1).map((p) => (
           <figure class={portrait(p) ? 'about-photo about-photo-portrait' : 'about-photo about-photo-landscape'}>
             <button
@@ -53,7 +52,8 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
             {p.caption && <figcaption>{p.caption}</figcaption>}
           </figure>
         ))}
-      </>
+        <p>{para}</p>
+      </div>
     ))}
 
     {reflections.length > 0 && (
@@ -125,9 +125,11 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
   .switch-btn:hover {
     color: var(--site-text);
   }
+  /* The chosen one is filled, so it's clear which version is showing */
   .switch-btn[aria-pressed='true'] {
-    color: var(--site-accent);
-    border-color: color-mix(in srgb, var(--site-accent) 70%, transparent);
+    color: var(--site-on-accent);
+    background: var(--site-accent);
+    border-color: var(--site-accent);
   }
   @media (pointer: coarse) {
     .switch-btn {
@@ -146,8 +148,44 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
     opacity: 0;
     transform: translateY(4px);
   }
-  .story > p {
+  .story > p,
+  .story-row > p {
     margin-bottom: 1rem;
+  }
+  /* Phones: each photo sits under its paragraph. Wide screens: the photo floats on the right,
+     beside the paragraph it belongs to, and the text wraps round it. */
+  .story-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .story-row > p {
+    order: 1;
+  }
+  .story-row .about-photo {
+    order: 2;
+  }
+  @media (min-width: 1024px) {
+    .about-switch {
+      max-width: none;
+    }
+    .switch-panel[data-panel='long'] {
+      max-width: 58rem;
+    }
+    .story-row {
+      display: block;
+    }
+    .story-row .about-photo {
+      float: right;
+      clear: right;
+      margin: 0.35rem 0 1.25rem 2.5rem;
+    }
+    .story-row .about-photo :global(img) {
+      height: 12rem;
+    }
+    .reflections,
+    .outside {
+      max-width: 62rem;
+    }
   }
   @media (prefers-reduced-motion: reduce) {
     .switch-panel {
@@ -183,6 +221,7 @@ const portrait = (p: { src: ImageMetadata }) => p.src.height >= p.src.width;
   }
 
   .reflections {
+    clear: both;
     margin-top: 2.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--site-line);

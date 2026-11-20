@@ -6,7 +6,7 @@ icon: newspaper
 summary: "A monthly staff newsletter, BlayCare Monthly, that I designed, wrote and distributed."
 order: 2
 featured: true
-thumb: "../../assets/work/newsletter-ai-safety.webp"
+thumb: "../../assets/work/newsletter-october-page-1.webp"
 imagesTitle: "Selected pages"
 imagesLayout: two
 images:
@@ -14,28 +14,15 @@ images:
     alt: "BlayCare Monthly, October 2026, page 1: a welcome banner, a carer of the month panel, October birthdays, local events in Derby, Halloween safety tips and a fire safety refresher. The photograph, names and birthday names are blurred."
     caption: "October 2026, page 1: the regular sections, with local events and safety tips."
     edited: true
-  - src: "../../assets/work/newsletter-ai-safety.webp"
-    alt: "BlayCare Monthly, October 2026, page 2. A guidance page headed Using AI Safely in Healthcare, with safe and unsafe practice columns, steps for writing care notes, a quick check question and a closing reminder panel."
-    caption: "October 2026, page 2: a guidance page with a quick-check question."
-    edited: true
   - src: "../../assets/work/newsletter-wellbeing.webp"
     alt: "A newsletter page headed Employee Health and Wellbeing Helpline, with a phone number, a grid of ten support topics, a zero-tolerance statement, local mental health services and an urgent support box."
     caption: "November 2026 issue: a wellbeing page with support topics and local services."
-    edited: true
-closeupsTitle: "Close-ups of the October page"
-closeups:
-  - src: "../../assets/work/newsletter-ai-safety-top.webp"
-    alt: "The top half of the Using AI Safely page: a banner heading, a warning strip, and safe and unsafe practice listed side by side."
-    caption: "Heading, key message and safe versus unsafe practice."
-  - src: "../../assets/work/newsletter-ai-safety-bottom.webp"
-    alt: "The lower half of the Using AI Safely page: numbered steps for what to do instead, an errors and concerns box, a quick check question and a closing reminder panel."
-    caption: "Numbered steps, a quick check and a closing reminder."
     edited: true
 ---
 
 ## Overview
 
-BlayCare Monthly is a newsletter for staff. Three pages are shown: a first page with the regular sections, a guidance page and a wellbeing page. Staff names and photographs are blurred, and other pages are not shown here.
+BlayCare Monthly is a newsletter for staff. Two pages are shown: a first page with the regular sections and a wellbeing page. Staff names and photographs are blurred, and other pages are not shown here.
 
 ## Purpose and audience
 

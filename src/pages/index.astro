@@ -8,15 +8,24 @@ import ProjectList from '../components/ProjectList.astro';
 import AboutSwitch from '../components/AboutSwitch.astro';
 import ContactEnd from '../components/ContactEnd.astro';
 import Lightbox from '../components/Lightbox.astro';
+import WorkShowcase from '../components/WorkShowcase.astro';
+import TwoStyle from '../components/TwoStyle.astro';
 import SkillsAndCerts from '../components/SkillsAndCerts.astro';
 import LearningList from '../components/LearningList.astro';
 
 const home = (await getEntry('home', 'home'))!.data;
 ---
 <Base>
-  <!-- The page title is hidden but kept for search engines and screen readers.
-       To bring the big headline back, replace this line with the old h1 (see home.md). -->
-  <h1 class="sr-only">{home.headline}</h1>
+  <!-- 1. Opening: your name in two styles, gliding in. -->
+  <section class="hero" aria-labelledby="hero-name">
+    <p class="label hero-rise" style="--r:0">Marketing portfolio</p>
+    <h1 id="hero-name" class="hero-name">
+      <span class="hero-line"><span class="ts-light hero-rise" style="--r:1">Jason</span></span>
+      <span class="hero-line"><span class="ts-bold hero-rise" style="--r:2">Belgica Paguntalan</span></span>
+    </h1>
+    <p class="hero-sub hero-rise" style="--r:3">Junior marketer · East Midlands</p>
+    <a href="#about" class="hero-more hero-rise" style="--r:4" data-umami-event="Learn more click">Learn more <span aria-hidden="true">↓</span></a>
+  </section>
 
   <!-- Switched off, saved: the "See my work" and "Email me" buttons under the headline, and the
        Design / Digital / Tools columns (src/components/WhatIBring.astro, words in home.md under "bring:").
@@ -25,7 +34,7 @@ const home = (await getEntry('home', 'home'))!.data;
 
   <!-- 2. Bio: the page opens here. "More about me" opens the longer story. -->
   <section id="about" aria-labelledby="about-heading" class="scroll-mt-20">
-    <h2 id="about-heading" class="section-title">Bio</h2>
+    <h2 id="about-heading" class="big-title"><TwoStyle text="Bio" /></h2>
     <div class="mt-3">
       <AboutSwitch short={home.shortIntro} reflectionsTitle={home.reflectionsTitle} reflections={home.reflections} />
     </div>
@@ -34,7 +43,7 @@ const home = (await getEntry('home', 'home'))!.data;
   <!-- 3. Selected marketing work: calm icon cards, the work is on each project page -->
   <section aria-labelledby="work" class="section-rule">
     <div class="flex flex-wrap items-end justify-between gap-2">
-      <h2 id="work" class="section-title">Selected work</h2>
+      <h2 id="work" class="big-title"><TwoStyle text="Selected work" /></h2>
       <span class="flex flex-wrap gap-x-5">
         <a href="/marketing#gallery" data-umami-event="Work gallery link" class="inline-block py-1 font-mono text-xs tracking-wider text-primary uppercase underline-offset-4 hover:underline [@media(pointer:coarse)]:py-3">
           Work gallery <span aria-hidden="true">→</span>
@@ -44,7 +53,9 @@ const home = (await getEntry('home', 'home'))!.data;
         </a>
       </span>
     </div>
-    <div class="mt-3"><ProjectList category="marketing" featuredOnly variant="peek" /></div>
+    <!-- The boxed cards are switched off; to bring them back use:
+         <div class="mt-3"><ProjectList category="marketing" featuredOnly variant="peek" /></div> -->
+    <WorkShowcase ids={['womens-day', 'staff-newsletters', 'macmillan-coffee-morning', 'adult-care-brochure']} />
   </section>
 
   <!-- 4. Tools & Technologies, then what I'm learning -->

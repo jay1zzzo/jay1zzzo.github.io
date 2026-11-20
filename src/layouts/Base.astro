@@ -3,6 +3,7 @@
 import '@fontsource-variable/plus-jakarta-sans';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
+import 'lenis/dist/lenis.css';
 import '../styles/global.css';
 import { analytics } from '../analytics';
 
@@ -24,6 +25,8 @@ const nav = [
   { label: 'Contact', href: '/#contact' },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '');
+// A small Home link at the top of inner pages (project pages have their own back link).
+const showHome = current !== '' && !current.startsWith('/projects');
 const year = new Date().getFullYear();
 ---
 <!doctype html>
@@ -42,6 +45,8 @@ const year = new Date().getFullYear();
         try { t = localStorage.getItem('theme'); } catch (e) {}
         if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', t);
+        // Gentle motion (smooth scrolling and fade-ins) only for visitors who have not asked for reduced motion.
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
       })();
     </script>
     {analytics.websiteId && (
@@ -76,9 +81,18 @@ const year = new Date().getFullYear();
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="site-name" href="/">{siteName}</a>
+    <!-- No header bar: the menu and the light/dark switch live in the footer.
+         Inner pages get a small Home link at the top instead. -->
+
+    <main id="main" class="container">
+      {showHome && <a href="/" class="back-home"><span aria-hidden="true">←</span> Home</a>}
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© {year} {siteName}{analytics.websiteId && ' · Privacy-friendly visitor statistics, no cookies.'}</span>
+        <div class="footer-right">
         <nav aria-label="Main">
           <ul class="nav-list">
             {nav.map((item) => (
@@ -101,20 +115,51 @@ const year = new Date().getFullYear();
           <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g></svg>
           <span class="theme-label" aria-hidden="true">Dark</span>
         </button>
-      </div>
-    </header>
-
-    <main id="main" class="container">
-      <slot />
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <span>© {year} {siteName}{analytics.websiteId && ' · Privacy-friendly visitor statistics, no cookies.'}</span>
         <a href={linkedIn} rel="noopener" data-umami-event="LinkedIn click" data-umami-event-where="Footer">LinkedIn</a>
+        </div>
       </div>
     </footer>
     <script>
+      // Smooth scrolling (Lenis) and gentle fade-ins as sections come into view.
+      // Both are off for visitors who prefer reduced motion (no "motion" class on <html>).
+      import Lenis from 'lenis';
+      const html = document.documentElement;
+      if (html.classList.contains('motion')) {
+        const lenis = new Lenis({ autoRaf: true, anchors: { offset: -16 }, lerp: 0.09 });
+
+        // Sections fade in and lift slightly; cards in a grid follow one after another.
+        const targets: HTMLElement[] = [];
+        document.querySelectorAll<HTMLElement>('main > section, main > div, main > figure').forEach((el) => {
+          el.setAttribute('data-reveal', '');
+          targets.push(el);
+        });
+        document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
+          group.querySelectorAll<HTMLElement>(':scope > :not(style):not(script)').forEach((el, i) => {
+            el.setAttribute('data-reveal', '');
+            el.style.setProperty('--d', `${Math.min(i, 4) * 80}ms`);
+            targets.push(el);
+          });
+        });
+        // Show anything that has come into view. Checked on load and on every scroll.
+        let pending = targets;
+        const check = () => {
+          const line = window.innerHeight * 0.94;
+          pending = pending.filter((el) => {
+            if (el.getBoundingClientRect().top < line) {
+              el.classList.add('in');
+              return false;
+            }
+            return true;
+          });
+        };
+        check();
+        lenis.on('scroll', check);
+        window.addEventListener('scroll', check, { passive: true });
+        window.addEventListener('resize', check);
+        // Safety net: if the page jumps straight to a section (a link with #), show everything above it too.
+        window.addEventListener('load', check);
+      }
+
       // Theme toggle: remembers an explicit choice, and follows the device until then.
       const root = document.documentElement;
       const btn = document.getElementById('theme-toggle');
@@ -245,6 +290,29 @@ const year = new Date().getFullYear();
     text-underline-offset: 3px;
   }
   .footer-inner a:hover {
+    color: var(--site-accent);
+  }
+  .footer-inner {
+    align-items: center;
+  }
+  .footer-right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
+  }
+  .back-home {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--site-muted);
+    text-decoration: none;
+  }
+  .back-home:hover {
     color: var(--site-accent);
   }
 </style>

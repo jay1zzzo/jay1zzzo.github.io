@@ -53,10 +53,10 @@ export default function ProjectCard({ label, title, summary, href, image, varian
     <MagicCard
       className="group/card h-full rounded-[2px] border-2 transition-transform duration-150 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"
       gradientSize={220}
-      gradientColor="rgba(255, 200, 87, 0.14)"
+      gradientColor="rgba(255, 255, 255, 0.08)"
       gradientOpacity={1}
-      gradientFrom="#FFC857"
-      gradientTo="#B8862E"
+      gradientFrom="#FFFFFF"
+      gradientTo="#9AA0A8"
     >
       <article className="relative flex h-full flex-col overflow-hidden">
         {!peek && image && (

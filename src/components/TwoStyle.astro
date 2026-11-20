@@ -1,0 +1,12 @@
+---
+// A title in two styles: the words in a light weight, and the last word bold in capitals.
+// e.g. "Staff newsletters" → "Staff NEWSLETTERS". Styles (.ts-light, .ts-bold) are in global.css.
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+const words = text.trim().split(/\s+/);
+const last = words.pop() ?? '';
+---
+{words.length > 0 && <span class="ts-light">{words.join(' ')} </span>}<span class="ts-bold">{last}</span>
+

@@ -32,7 +32,7 @@ const grid =
       : 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3';
 ---
 {cards.length > 0 && (
-  <div class={grid}>
+  <div class={grid} data-reveal-group>
     {cards.map((p) => (
       <ProjectCard
         client:visible
