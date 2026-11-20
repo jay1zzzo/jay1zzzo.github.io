@@ -3,6 +3,7 @@
 // and certificates as "Name certification by Provider" lines with a badge icon.
 // Reads home.md (tools) and certifications.yaml. Certificate images and codes are never shown.
 import { getCollection } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import TwoStyle from './TwoStyle.astro';
 
@@ -35,6 +36,23 @@ const lines = [
   return { name, kind, provider };
 });
 const also = all.filter((c) => !c.data.provider);
+
+// Certificate pictures (web copies made in the private folder, with the certificate number
+// and certification codes blurred). The apprenticeship certificate is tall, so it sits on the left.
+const certFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/certificates/*.webp', { eager: true });
+const cert = async (file: string, alt: string, caption: string) => {
+  const src = certFiles[`/src/assets/certificates/${file}`]?.default;
+  if (!src) return undefined;
+  return { src, alt, caption, large: (await getImage({ src, width: 1400 })).src };
+};
+const certs = (
+  await Promise.all([
+    cert('level-3-apprenticeship.webp', 'Apprenticeship certificate of achievement: Jason Paguntalan has passed the Multi-Channel Marketer Level 3 apprenticeship, grade Pass, awarded 19 October 2026.', 'Level 3 Multi-Channel Marketer apprenticeship, Pass, October 2026.'),
+    cert('hubspot-seo.webp', 'HubSpot Academy certificate: SEO Certified, valid from 19 April 2026 to 19 May 2027.', 'HubSpot Academy, SEO Certified.'),
+    cert('hubspot-social-media.webp', 'HubSpot Academy certificate: Social Media Certified, valid from 7 July 2025 to 6 August 2027.', 'HubSpot Academy, Social Media Certified.'),
+  ])
+).filter((c) => c !== undefined);
+const CERT_NOTE = 'Certificate number and certification code blurred for portfolio display.';
 ---
 <section aria-labelledby="skills-heading" class="section-rule">
   <h2 id="skills-heading" class="big-title"><TwoStyle text="Skills & certifications" /></h2>
@@ -54,6 +72,25 @@ const also = all.filter((c) => !c.data.provider);
     </ul>
 
     <div>
+      {certs.length > 0 && (
+        <ul class="cert-pics" aria-label="Certificates">
+          {certs.map((c, i) => (
+            <li class={i === 0 ? 'cert-pic cert-pic-tall' : 'cert-pic'}>
+              <button
+                type="button"
+                class="lightbox-trigger"
+                data-lightbox-src={c.large}
+                data-lightbox-alt={c.alt}
+                data-lightbox-caption={c.caption}
+                data-lightbox-note={CERT_NOTE}
+                aria-label={`Enlarge certificate: ${c.caption}`}
+              >
+                <Image src={c.src} alt={c.alt} width={700} sizes="(min-width: 1024px) 18rem, 50vw" loading="lazy" />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
       <ul class="cert-lines">
         {lines.map((l) => (
           <li>
@@ -146,6 +183,36 @@ const also = all.filter((c) => !c.data.provider);
     font-size: 0.875rem;
     font-weight: 600;
     line-height: 1.2;
+  }
+  .cert-pics {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .cert-pic-tall {
+    grid-row: 1 / span 2;
+  }
+  .cert-pic :global(.lightbox-trigger) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: zoom-in;
+  }
+  .cert-pic :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 400ms ease;
+  }
+  .cert-pic:hover :global(img) {
+    transform: scale(1.03);
   }
   .cert-lines {
     display: grid;

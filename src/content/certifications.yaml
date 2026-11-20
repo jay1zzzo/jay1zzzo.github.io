@@ -3,7 +3,7 @@
 #   unique-name: { name: "Title", type: education, order: 1, detail: "Where and when", link: "https://public-link" }
 # type: education (qualifications and study), certification (named certificates) or course (short courses).
 # "detail" and "link" are optional. A group is hidden while it has no items.
-# Certificate images and certification codes are never published, only the words.
+# Certificate pictures are shown (src/assets/certificates), always with the certificate number and certification codes blurred.
 
 level-3-multichannel-marketer: { name: "Level 3 Multichannel Marketer", type: education, order: 1, featured: true, detail: "Apprenticeship qualification. Pass, completed October 2026.", provider: "Althaus Digital", providerLink: "https://althausdigital.co.uk/" }
 engineering-foundation: { name: "Engineering Foundation Pathways Programme", type: education, order: 2, detail: "University of Derby, completed 2022. A foundation programme, studying Mathematics, Physics, IT and Academic Skills." }
