@@ -1,0 +1,93 @@
+{
+  "_about": "Public facts for the Hearthside case study on the marketing portfolio. Copied from the other portfolio and reworded for this site.",
+  "name": "Hearthside",
+  "one_line": "Conversion-focused websites for UK home care providers: a fixed-price site live in 7 working days, with optional monthly plans that automate enquiry follow-up and carer recruitment.",
+  "status": "Pre-launch. Started 22 Nov 2026. No clients, no revenue and nothing sent or published yet.",
+  "started": "2026-11-22",
+  "role": "Founder: chose the market, niche, offer and name; directed and reviewed all the work.",
+  "offer": {
+    "build_price_gbp": 1450,
+    "founding_price_gbp": 950,
+    "founding_places": 3,
+    "days_to_live": 7,
+    "care_plan_gbp_per_month": 99,
+    "growth_plan_gbp_per_month": 349
+  },
+  "market": {
+    "home_care_services_england": "roughly 12,000 to 16,000 depending on the source",
+    "growth_since_2019": "about 42% more homecare services on the CQC register (Apr 2019 to Apr 2026)",
+    "typical_care_package_gbp_per_month": 1820,
+    "specialist_agency_retainers": "£750 to £4,000 a month"
+  },
+  "research": {
+    "business_models_compared": 5,
+    "chosen": "Websites for home care providers"
+  },
+  "pipeline": [
+    {
+      "count": "≈57,000",
+      "label": "CQC-regulated locations in the public directory (19 Nov 2026)"
+    },
+    {
+      "count": 2873,
+      "label": "independent home care agencies with a website"
+    },
+    {
+      "count": 744,
+      "label": "websites fetched and scored by a Python script for 13 signs of age"
+    },
+    {
+      "count": 115,
+      "label": "most dated, with CQC rating and registration checked"
+    },
+    {
+      "count": 45,
+      "label": "read page by page to confirm contact details"
+    },
+    {
+      "count": 44,
+      "label": "qualified prospects across 10 UK regions (39 from the pipeline plus 5 found by hand)"
+    }
+  ],
+  "outreach": {
+    "emailable_limited_companies": 37,
+    "phone_or_post_only": 7,
+    "why_split": "UK PECR rules: limited companies can be emailed without consent; sole traders and partnerships cannot.",
+    "sequence": "Four emails over 14 days with a phone call on day 5",
+    "personalised_first_emails": 37,
+    "sent": 0
+  },
+  "site": {
+    "framework": "Astro",
+    "total_size_kb": 252,
+    "checked_widths_px": [
+      375,
+      1280
+    ],
+    "features": [
+      "Offer and price above the fold",
+      "7-day process timeline",
+      "Pricing and monthly plans",
+      "Objection-handling FAQ",
+      "Enquiry form",
+      "SEO basics: titles, structured data, sitemap",
+      "Accessibility basics: skip link, keyboard focus, labelled fields, reduced motion"
+    ]
+  },
+  "emails": {
+    "enquiry_follow_up": 3,
+    "list_offer": 1,
+    "format": "Email-safe HTML, 600px, table layout, with plain-text versions"
+  },
+  "social": {
+    "post_graphics": 12,
+    "primary_platform": "LinkedIn company page",
+    "secondary_platforms": [
+      "Instagram",
+      "Facebook Page"
+    ],
+    "monthly_budget_gbp": "0 to about 12",
+    "hours_per_week": 3.75
+  },
+  "example_provider_in_mockups": "Larkmoor Home Care is made up. Its name, logo, phone number (Ofcom drama range), rating and inspection date are invented. Photo: Jsme MILA on Pexels, Pexels License."
+}

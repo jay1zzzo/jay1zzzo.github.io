@@ -1,0 +1,185 @@
+---
+// The Hearthside case study. Every number is read from src/data/hearthside.json, so nothing
+// is typed in by hand. Images click to enlarge.
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import h from '../data/hearthside.json';
+import Lightbox from './Lightbox.astro';
+import poster from '../assets/work/hearthside/05-site-iphone-poster.jpg';
+import siteDesktop from '../assets/work/hearthside/01-site-hero-desktop.png';
+import sitePhone from '../assets/work/hearthside/03-site-hero-phone.png';
+import posts from '../assets/work/hearthside/06-posts-sheet.png';
+import brand from '../assets/work/hearthside/07-brand-guidelines.png';
+import emails from '../assets/work/hearthside/08-emails-sheet.png';
+import beforeAfter from '../assets/work/hearthside/10-before-after.png';
+
+const gbp = (n: number) => `£${n.toLocaleString('en-GB')}`;
+const started = new Date(h.started + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const o = h.offer, m = h.market, out = h.outreach, site = h.site;
+const last = h.pipeline[h.pipeline.length - 1];
+const large = async (src: ImageMetadata) => (await getImage({ src, width: 2000 })).src;
+const pics = {
+  beforeAfter: { src: beforeAfter, large: await large(beforeAfter), alt: 'A post titled A care homepage, before and after. Before: a grey, text-heavy page. After: an example design for Larkmoor Home Care with a call button, areas covered, a CQC rating and a short careers form. Larkmoor Home Care is a made-up provider.' },
+  siteDesktop: { src: siteDesktop, large: await large(siteDesktop), alt: 'The Hearthside landing page on desktop: the heading A website families trust and carers apply through, the price, and a phone showing an example design for a made-up provider.' },
+  sitePhone: { src: sitePhone, large: await large(sitePhone), alt: 'The same Hearthside landing page on a phone.' },
+  brand: { src: brand, large: await large(brand), alt: 'Hearthside brand guidelines: the logo, five colours, two typefaces, button styles, voice rules and a do and don\'t list.' },
+  posts: { src: posts, large: await large(posts), alt: 'Six example posts in the Hearthside brand, giving plain advice to care providers. Two show the example design for a made-up provider.' },
+  emails: { src: emails, large: await large(emails), alt: 'Four email mockups: three enquiry follow-up emails and one founding-places offer. One has a placeholder box for proof, to be filled only with a real result.' },
+};
+---
+<div class="hs">
+  <section class="hs-top">
+    <video class="hs-phone" src="/work/hearthside/05-site-iphone-scroll-web.mp4" poster={poster.src} autoplay muted loop playsinline aria-label="The Hearthside website scrolling on an iPhone."></video>
+    <div>
+      <p class="hs-status">Pre-launch: started {started}</p>
+      <p class="hs-big">Websites for UK home care providers: a fixed-price site in {o.days_to_live} working days, with optional monthly plans that automate enquiry follow-up and carer recruitment.</p>
+      <p>No clients, no revenue, and nothing sent or published yet. What this page shows is the method.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">The problem</h2>
+    <div class="hs-split">
+      <p>Many small home care providers have dated websites: hard to use on a phone, no number to tap, no clear list of the areas they cover, and a careers page that asks carers to email a CV. Families and carers look elsewhere.</p>
+      <button type="button" class="lightbox-trigger hs-pic hs-narrow" data-lightbox-src={pics.beforeAfter.large} data-lightbox-alt={pics.beforeAfter.alt} data-lightbox-caption="A care homepage, before and after. Larkmoor Home Care is a made-up provider." aria-label={`Enlarge image: ${pics.beforeAfter.alt}`}>
+        <Image src={pics.beforeAfter.src} alt={pics.beforeAfter.alt} width={720} loading="lazy" />
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Research and the decision</h2>
+    <ul>
+      <li>I compared {h.research.business_models_compared} business models on who pays, price, time to first sale, start-up cost and risk, using sourced UK prices, and chose one: websites for home care providers.</li>
+      <li><strong>Why this niche.</strong> England's home care services number {m.home_care_services_england}, with {m.growth_since_2019}. One new private client is worth about {gbp(m.typical_care_package_gbp_per_month)} a month to a provider. Specialist care marketing agencies charge {m.specialist_agency_retainers}, which leaves small providers underserved. I also already work in home care marketing.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">The offer</h2>
+    <ul class="hs-nums">
+      <li><strong>{gbp(o.build_price_gbp)}</strong><span>fixed price for the website</span></li>
+      <li><strong>{gbp(o.founding_price_gbp)}</strong><span>for the first {o.founding_places} providers</span></li>
+      <li><strong>{o.days_to_live} days</strong><span>working days from first call to finished site</span></li>
+      <li><strong>{gbp(o.care_plan_gbp_per_month)} or {gbp(o.growth_plan_gbp_per_month)}</strong><span>optional monthly plans</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">The website</h2>
+    <p>One landing page built to turn visitors into enquiries, {site.total_size_kb} KB in total. Mobile-first and checked at {site.checked_widths_px.join('px and ')}px, with SEO and accessibility basics. The phone in the picture shows a made-up provider, so no real business is implied.</p>
+    <div class="hs-site">
+      <button type="button" class="lightbox-trigger hs-pic" data-lightbox-src={pics.siteDesktop.large} data-lightbox-alt={pics.siteDesktop.alt} data-lightbox-caption="The Hearthside landing page on desktop." aria-label={`Enlarge image: ${pics.siteDesktop.alt}`}>
+        <Image src={pics.siteDesktop.src} alt={pics.siteDesktop.alt} width={1400} loading="lazy" />
+      </button>
+      <button type="button" class="lightbox-trigger hs-pic hs-phone-shot" data-lightbox-src={pics.sitePhone.large} data-lightbox-alt={pics.sitePhone.alt} data-lightbox-caption="The same page on a phone." aria-label={`Enlarge image: ${pics.sitePhone.alt}`}>
+        <Image src={pics.sitePhone.src} alt={pics.sitePhone.alt} width={520} loading="lazy" />
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Brand</h2>
+    <p>Logo, colours, type and voice rules on one page. <a href="/work/hearthside/07-brand-guidelines.pdf" class="hs-link">Open the brand guidelines (PDF)</a></p>
+    <button type="button" class="lightbox-trigger hs-pic" data-lightbox-src={pics.brand.large} data-lightbox-alt={pics.brand.alt} data-lightbox-caption="Hearthside brand guidelines." aria-label={`Enlarge image: ${pics.brand.alt}`}>
+      <Image src={pics.brand.src} alt={pics.brand.alt} width={1400} loading="lazy" />
+    </button>
+  </section>
+
+  <section>
+    <h2 class="section-title">Posts</h2>
+    <p>A 30-day plan that starts with a {h.social.primary_platform}, with {h.social.post_graphics} post graphics.</p>
+    <button type="button" class="lightbox-trigger hs-pic" data-lightbox-src={pics.posts.large} data-lightbox-alt={pics.posts.alt} data-lightbox-caption="Example posts in the Hearthside brand." aria-label={`Enlarge image: ${pics.posts.alt}`}>
+      <Image src={pics.posts.src} alt={pics.posts.alt} width={1400} loading="lazy" />
+    </button>
+  </section>
+
+  <section>
+    <h2 class="section-title">Emails</h2>
+    <p>A {h.emails.enquiry_follow_up}-email follow-up to website enquiries and a founding-places offer to the list. {h.emails.format}.</p>
+    <button type="button" class="lightbox-trigger hs-pic" data-lightbox-src={pics.emails.large} data-lightbox-alt={pics.emails.alt} data-lightbox-caption="Email mockups: three enquiry follow-ups and a founding-places offer." aria-label={`Enlarge image: ${pics.emails.alt}`}>
+      <Image src={pics.emails.src} alt={pics.emails.alt} width={1400} loading="lazy" />
+    </button>
+  </section>
+
+  <section>
+    <h2 class="section-title">Finding customers</h2>
+    <p>A data pipeline, not guesswork. Public regulator data goes in, and a scored and ranked prospect list comes out.</p>
+    <ol class="hs-pipe">
+      {h.pipeline.map((p) => <li><strong>{typeof p.count === 'number' ? p.count.toLocaleString('en-GB') : p.count}</strong><span>{p.label}</span></li>)}
+    </ol>
+    <p><strong>Outreach that follows the law.</strong> The {last.count} prospects are split by UK marketing rules (PECR): {out.emailable_limited_companies} limited companies that can be emailed, and {out.phone_or_post_only} sole traders that are phone or post only. There are four emails over 14 days with a phone call on day 5, and {out.personalised_first_emails} personalised first emails built from verified facts. Emails sent so far: {out.sent}. Provider names are kept private.</p>
+  </section>
+
+  <section>
+    <h2 class="section-title">How it was checked</h2>
+    <ul>
+      <li><strong>Every email address</strong> was confirmed on the provider's own page, uncertain claims were flagged and not used, and sole traders were removed from the email list because the law requires their consent.</li>
+      <li><strong>Every page</strong> was tested at phone and desktop widths for overflow, contrast and form behaviour, and problems were fixed before anyone saw the work.</li>
+      <li><strong>Nothing made up.</strong> A licensed stock photo instead of staff photos, no health information in forms, and no invented reviews or results.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="section-title">Where it stands</h2>
+    <p>Pre-launch. Next: send the first emails and measure the replies. Results will be added here only when they are real.</p>
+    <p class="hs-credit">Photo in the example design: Jsme MILA, Pexels.</p>
+  </section>
+</div>
+
+<Lightbox />
+
+<style>
+  .hs { margin-top: 2.5rem; }
+  .hs section { margin-top: 4rem; }
+  .hs section:first-child { margin-top: 0; }
+  .hs p, .hs ul, .hs ol { margin: 0.75rem 0 0; max-width: 68ch; color: var(--site-muted); }
+  .hs ul { padding-left: 1.25rem; list-style: square; }
+  .hs li { margin-bottom: 0.5rem; }
+  .hs strong { color: var(--site-text); font-weight: 600; }
+
+  .hs-top { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 768px) { .hs-top { grid-template-columns: 17rem 1fr; gap: 3.5rem; } }
+  .hs-phone { width: 100%; max-width: 17rem; aspect-ratio: 9 / 16; border-radius: 12px; background: var(--site-card); justify-self: center; object-fit: cover; }
+  .hs-status { display: inline-block; margin: 0; padding: 0.35rem 0.75rem; border: 1px solid var(--site-line); border-radius: 4px; font-family: var(--site-mono); font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--site-text); }
+  .hs .hs-big { font-family: var(--site-serif); font-size: clamp(1.15rem, 1.9vw, 1.375rem); font-weight: 500; line-height: 1.45; color: var(--site-text); }
+
+  .hs-split { display: grid; gap: 1.5rem; align-items: start; }
+  @media (min-width: 768px) { .hs-split { grid-template-columns: 1fr 20rem; gap: 3rem; } }
+
+  .hs-pic { display: block; width: 100%; margin-top: 1.5rem; padding: 0; border: 1px solid var(--site-line); border-radius: 6px; overflow: hidden; background: transparent; cursor: zoom-in; }
+  .hs-pic :global(img) { display: block; width: 100%; height: auto; }
+  .hs-narrow { margin-top: 0; }
+  .hs-site { display: grid; gap: 1.5rem; align-items: start; }
+  @media (min-width: 768px) { .hs-site { grid-template-columns: minmax(0, 1fr) 14rem; } }
+  .hs-phone-shot { max-width: 14rem; }
+
+  .hs .hs-nums { list-style: none; padding: 0; max-width: none; display: grid; gap: 1.25rem 2rem; grid-template-columns: 1fr 1fr; margin-top: 1.25rem; }
+  @media (min-width: 860px) { .hs .hs-nums { grid-template-columns: repeat(4, 1fr); } }
+  .hs-nums li { display: flex; flex-direction: column; gap: 0.15rem; margin: 0; }
+  .hs-nums strong { font-family: var(--site-serif); font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; }
+  .hs-nums span { font-size: 0.875rem; color: var(--site-muted); }
+
+  .hs .hs-pipe { list-style: none; padding: 0; max-width: 48rem; border-top: 1px solid var(--site-line); margin-top: 1.25rem; }
+  .hs-pipe li { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; align-items: baseline; margin: 0; padding: 0.65rem 0; border-bottom: 1px solid var(--site-line); }
+  .hs-pipe strong { font-family: var(--site-serif); font-size: 1.125rem; }
+  .hs-pipe span { font-size: 0.9375rem; }
+
+  .hs-link { color: var(--site-text); text-decoration: underline; text-underline-offset: 3px; }
+  .hs-link:hover { color: var(--site-accent); }
+  .hs .hs-credit { margin-top: 1.25rem; font-size: 0.8125rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hs-phone { animation: none; }
+  }
+</style>
+
+<script>
+  // Visitors who prefer reduced motion get the video paused on its first frame.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLVideoElement>('.hs-phone').forEach((v) => {
+      v.removeAttribute('autoplay');
+      v.pause();
+    });
+  }
+</script>

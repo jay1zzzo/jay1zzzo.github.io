@@ -6,6 +6,7 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Lightbox from '../../components/Lightbox.astro';
 import Stats from '../../components/Stats.astro';
+import HearthsideCase from '../../components/HearthsideCase.astro';
 import { buttonVariants } from '@/components/ui/button';
 
 export async function getStaticPaths() {
@@ -74,9 +75,13 @@ const evidenceFirst = d.category !== 'tool' && !d.textFirst;
       </section>
     )}
 
-    <div class="prose-site mt-8">
-      <Content />
-    </div>
+    {d.custom === 'hearthside' ? (
+      <HearthsideCase />
+    ) : (
+      <div class="prose-site mt-8">
+        <Content />
+      </div>
+    )}
 
     {!evidenceFirst && images.length > 0 && (
       <section aria-labelledby="images-heading-b" class="mt-10">

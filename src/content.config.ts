@@ -66,7 +66,8 @@ const projects = defineCollection({
       imagesTitle: z.string().optional(),       // heading above the images, e.g. "Screenshots"
       imagesNote: z.string().optional(),        // small line under that heading
       imagesLayout: z.enum(['grid', 'wide', 'two']).optional(),
-      textFirst: z.boolean().optional(),        // true: show the written case study before the images
+      textFirst: z.boolean().optional(),
+      custom: z.string().optional(),            // a page with its own layout, e.g. "hearthside"        // true: show the written case study before the images
       icon: z.enum(['coffee', 'newspaper', 'brochure', 'swatch', 'megaphone', 'snowflake', 'browser', 'briefcase']).optional(), // line icon on the home page card
       featured: z.boolean().optional(),         // show on the home page under Selected marketing work
       thumb: image().optional(),                // card thumbnail (real work)
