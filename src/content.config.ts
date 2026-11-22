@@ -57,6 +57,7 @@ const projects = defineCollection({
       lesson: z.string().optional(),           // one line: what I'd do differently
       stat: z.string().optional(),             // a big figure shown when the project has no picture, e.g. "A+"
       statLabel: z.string().optional(),        // the words under that figure
+      statIcon: z.enum(["heart"]).optional(),  // a small icon beside the figure (heart = a like)
       order: z.number(),                       // 1 = first card
       link: z.string().optional(),             // public link (repo or live site)
       linkText: z.string().optional(),

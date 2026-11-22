@@ -7,8 +7,9 @@ summary: "A small paid Facebook test promoting an existing BlayCare post to peop
 result: "Likes went from 1 to over 40, with 40 post engagements, for £6.30. No enquiries."
 resultNote: "I counted the likes myself. Post engagements is Meta's figure, which counts every interaction with the post, likes included."
 lesson: "Change one thing at a time, so I can read the results properly."
-stat: "£6.30"
-statLabel: "spent, for over 40 likes"
+stat: "40+"
+statLabel: "likes, for £6.30 spent"
+statIcon: heart
 order: 9
 ---
 
