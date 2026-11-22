@@ -10,7 +10,11 @@ import Certifications from '../components/Certifications.astro';
 import { Image, getImage } from 'astro:assets';
 import mockup from '../assets/projects/email-campaign/email-mockup.webp';
 
+import concept from '../assets/work/email-enquiry-follow-up.webp';
+
 const mockupLarge = await getImage({ src: mockup, width: 1250 });
+const conceptLarge = await getImage({ src: concept, width: 1200 });
+const conceptAlt = 'A BlayCare email: a photo of a carer and an older woman having tea in a garden, the heading "Thank you for getting in touch. Here\'s what happens next.", two numbered steps (a phone call, a free care assessment), a "Book your free care assessment" button, a CQC Good rating, the BlayCare banner and accreditation logos.';
 const mockupAlt = 'A marketing email mockup: a brief summary at the top, then the email with a headline, short paragraphs, a list of benefits and a book-a-valuation button.';
 
 const page = (await getEntry('pages', 'marketing'))!;
@@ -34,6 +38,38 @@ const gallery = await getCollection('gallery');
   <section aria-labelledby="projects" class="section-rule">
     <h2 id="projects" class="section-title scroll-mt-20">Case studies</h2>
     <div class="mt-3"><ProjectList category="marketing" /></div>
+  </section>
+
+  <!-- Concept email: a practice piece in BlayCare's brand. Never sent. -->
+  <section aria-labelledby="concept-email" class="section-rule scroll-mt-20" id="concept-email-section">
+    <p class="label">Concept email · not sent</p>
+    <h2 id="concept-email" class="section-title mt-2">Enquiry follow-up email</h2>
+    <div class="concept-grid mt-6">
+      <figure>
+        <button
+          type="button"
+          class="lightbox-trigger email-mockup email-mockup-tall"
+          data-lightbox-src={conceptLarge.src}
+          data-lightbox-alt={conceptAlt}
+          data-lightbox-caption="Concept email, not sent: a follow-up for a family who has enquired about care, in BlayCare's brand."
+          data-lightbox-note="The name Sarah is a placeholder. The photo is from BlayCare's website draft."
+          aria-label={`Enlarge image: ${conceptAlt}`}
+        >
+          <Image src={concept} alt={conceptAlt} width={700} loading="lazy" class="email-mockup-img" />
+        </button>
+        <figcaption class="mt-2 text-sm text-muted-foreground">Click to see the whole email.</figcaption>
+      </figure>
+      <div class="concept-text">
+        <p>A practice piece I designed and built as a real HTML email, using BlayCare's brand guidelines, its email banner, its CQC rating display and its accreditations. It has not been sent.</p>
+        <dl class="concept-facts">
+          <div><dt>Who it's for</dt><dd>A family member who has just enquired about care, one of the two audiences I defined for the BlayCare website. The other is professional referrers.</dd></div>
+          <div><dt>When it's sent</dt><dd>The day after the enquiry form is submitted, before the team's phone call.</dd></div>
+          <div><dt>The aim</dt><dd>Reassure the family, explain the next two steps (a phone call, then a free care assessment at home by a team leader), and give one clear action: book the free care assessment.</dd></div>
+          <div><dt>How it's built</dt><dd>A 600px single column, one button, a phone number as the backup, an unsubscribe link, and trust signals (the CQC rating and accreditations) near the end, not the top.</dd></div>
+        </dl>
+        <a href="/projects/enquiry-follow-up-email" class="concept-link" data-umami-event="Project card click" data-umami-event-project="Enquiry follow-up email">How I planned it <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
   </section>
 
   {practice.length > 0 && (
@@ -69,6 +105,62 @@ const gallery = await getCollection('gallery');
 </Base>
 
 <style>
+  .concept-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .concept-grid {
+      grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+      gap: 3rem;
+      align-items: start;
+    }
+  }
+  .email-mockup.email-mockup-tall {
+    height: 30rem;
+  }
+  .email-mockup.email-mockup-tall :global(img) {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: top;
+  }
+  .concept-text > p {
+    max-width: 52ch;
+    color: var(--site-muted);
+  }
+  .concept-facts {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    max-width: 52ch;
+  }
+  .concept-facts dt {
+    font-family: var(--site-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--site-muted);
+  }
+  .concept-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.25rem 0;
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--site-accent);
+    text-underline-offset: 4px;
+  }
+  .concept-link:hover {
+    text-decoration: underline;
+  }
+  .concept-facts dd {
+    margin-top: 0.2rem;
+    color: var(--site-text);
+  }
   /* Show just the top of the tall email as a small preview; the full email opens in the lightbox. */
   .email-mockup {
     display: block;

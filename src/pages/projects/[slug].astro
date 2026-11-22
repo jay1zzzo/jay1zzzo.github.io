@@ -34,7 +34,7 @@ const gridClass = (layout?: string) =>
       ? 'mt-3 grid gap-4 sm:grid-cols-2'
       : 'mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3';
 const thumbWidth = (layout?: string) => (layout === 'wide' ? 1200 : layout === 'two' ? 800 : 500);
-const evidenceFirst = d.category !== 'tool';
+const evidenceFirst = d.category !== 'tool' && !d.textFirst;
 ---
 <Base title={d.title} description={d.summary}>
   <article class="max-w-4xl">
