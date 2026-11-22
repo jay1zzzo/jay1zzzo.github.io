@@ -8,23 +8,23 @@ result: "Staff responded to prompts in it, such as form reminders for staff prof
 decision: "Recurring sections, so staff knew where to look."
 order: 2
 featured: true
-thumb: "../../assets/work/newsletter-october-page-1.webp"
+thumb: "../../assets/work/newsletter-august-page-1.webp"
 imagesTitle: "Selected pages"
 imagesLayout: two
 images:
-  - src: "../../assets/work/newsletter-october-page-1.webp"
-    alt: "BlayCare Monthly, October 2026, page 1: a welcome banner, a carer of the month panel, October birthdays, local events in Derby, Halloween safety tips and a fire safety refresher. The photograph, names and birthday names are blurred."
-    caption: "October 2026, page 1: the regular sections, with local events and safety tips."
+  - src: "../../assets/work/newsletter-august-page-1.webp"
+    alt: "BlayCare newsletter for August 2026: a staff BBQ invitation, a carer of the month panel, birthdays, local events in Derby, a quick quiz and safety reminders. The photograph, names and birthday list are blurred."
+    caption: "August 2026: a staff BBQ invitation alongside the regular sections."
     edited: true
-  - src: "../../assets/work/newsletter-wellbeing.webp"
-    alt: "A newsletter page headed Employee Health and Wellbeing Helpline, with a phone number, a grid of ten support topics, a zero-tolerance statement, local mental health services and an urgent support box."
-    caption: "November 2026 issue: a wellbeing page with support topics and local services."
+  - src: "../../assets/work/newsletter-november-page-3.webp"
+    alt: "BlayCare newsletter for November 2026: staff appreciation, a company car scheme item, a farewell notice, a care corner quiz, a carer of the month panel, key events and local events in Derby. People, names and one staff story are blurred."
+    caption: "November 2026: staff appreciation, key events and the care corner quiz."
     edited: true
 ---
 
 ## Overview
 
-BlayCare Monthly is a newsletter for staff. Two pages are shown: a first page with the regular sections and a wellbeing page. Staff names and photographs are blurred, and other pages are not shown here.
+BlayCare Monthly is a newsletter for staff. Two editions are shown, from August and November 2026. Staff names and photographs are blurred, and other pages are not shown here.
 
 ## Purpose and audience
 
