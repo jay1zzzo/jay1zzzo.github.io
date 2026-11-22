@@ -4,6 +4,10 @@ label: "Marketing / Website"
 category: marketing
 icon: browser
 summary: "A rebuild of BlayCare's website in Wix Studio, with new copy, service pages, careers pages and enquiry forms. I researched local searches and competitors first. Launched 26 June 2026."
+result: "SEOptimer audit grade: A+."
+decision: "Researched local searches and three competitors before building anything."
+stat: "A+"
+statLabel: "SEOptimer audit grade"
 order: 7
 # No link yet: add a verified live link here when available.
 # link: "https://..."

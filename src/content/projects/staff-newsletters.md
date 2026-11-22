@@ -4,6 +4,8 @@ label: "Marketing / Internal communications"
 category: marketing
 icon: newspaper
 summary: "A monthly staff newsletter, BlayCare Monthly, that I designed, wrote and distributed."
+result: "Staff responded to prompts in it, such as form reminders for staff profiles."
+decision: "Recurring sections, so staff knew where to look."
 order: 2
 featured: true
 thumb: "../../assets/work/newsletter-october-page-1.webp"

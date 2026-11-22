@@ -4,6 +4,7 @@ label: "Marketing / Social media"
 category: marketing
 icon: megaphone
 summary: "A social media graphic recognising the women who work at BlayCare, from photography to published post."
+decision: "Real photographs of the team, to put the people at the centre of the post."
 order: 5
 featured: true
 thumb: "../../assets/work/womens-day.webp"

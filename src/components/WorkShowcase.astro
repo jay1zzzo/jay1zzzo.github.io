@@ -1,6 +1,8 @@
 ---
-// Selected work as big open sections: a large image of the real work and a two-style title,
-// alternating sides. No boxes. Each one links to its case study.
+// Selected work as big open sections: a large image of the real work (or one big figure when
+// there is no picture) and a two-style title, alternating sides. No boxes.
+// Each one can show a Result, a Decision and a "Next time" line, taken from the project file
+// (result, resultNote, decision, lesson). Only use figures you can back up.
 // Pick the projects (and their order) with the "ids" prop, using the file names in src/content/projects/.
 import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
@@ -11,23 +13,58 @@ interface Props {
 }
 const { ids } = Astro.props;
 const all = await getCollection('projects');
-const items = ids.map((id) => all.find((p) => p.id === id)).filter((p) => p && (p.data.thumb || p.data.images?.length));
+const items = ids
+  .map((id) => all.find((p) => p.id === id))
+  .filter((p) => p && (p.data.thumb || p.data.images?.length || p.data.stat));
 ---
 <ul class="showcase" data-reveal-group>
   {items.map((p, i) => {
     const d = p!.data;
-    const img = d.thumb ?? d.images![0].src;
+    const img = d.thumb ?? d.images?.[0]?.src;
     const alt = d.images?.[0]?.alt ?? d.thumbAlt ?? '';
+    const href = `/projects/${p!.id}`;
     return (
       <li class={i % 2 ? 'show-row flip' : 'show-row'}>
-        <a href={`/projects/${p!.id}`} class="show-img" tabindex="-1" aria-hidden="true">
-          <Image src={img} alt={alt} width={1200} sizes="(min-width: 768px) 55vw, 100vw" loading="lazy" />
-        </a>
+        {img ? (
+          <a href={href} class="show-img show-media" tabindex="-1" aria-hidden="true">
+            <Image src={img} alt={alt} width={1200} sizes="(min-width: 768px) 55vw, 100vw" loading="lazy" />
+          </a>
+        ) : (
+          <a href={href} class="show-stat show-media" tabindex="-1" aria-hidden="true">
+            <span class="show-stat-figure">{d.stat}</span>
+            {d.statLabel && <span class="show-stat-label">{d.statLabel}</span>}
+          </a>
+        )}
         <div class="show-text">
           <p class="label">{d.label}</p>
           <h3 class="show-title"><TwoStyle text={d.title} /></h3>
           <p class="show-summary">{d.summary}</p>
-          <a href={`/projects/${p!.id}`} class="show-link" data-umami-event="Project card click" data-umami-event-project={d.title}>
+          {(d.result || d.decision || d.lesson) && (
+            <dl class="show-facts">
+              {d.result && (
+                <div>
+                  <dt>Result</dt>
+                  <dd>
+                    {d.result}
+                    {d.resultNote && <span class="show-note">{d.resultNote}</span>}
+                  </dd>
+                </div>
+              )}
+              {d.decision && (
+                <div>
+                  <dt>Decision</dt>
+                  <dd>{d.decision}</dd>
+                </div>
+              )}
+              {d.lesson && (
+                <div>
+                  <dt>Next time</dt>
+                  <dd>{d.lesson}</dd>
+                </div>
+              )}
+            </dl>
+          )}
+          <a href={href} class="show-link" data-umami-event="Project card click" data-umami-event-project={d.title}>
             Read the case study <span aria-hidden="true">→</span><span class="sr-only">: {d.title}</span>
           </a>
         </div>
@@ -52,7 +89,7 @@ const items = ids.map((id) => all.find((p) => p.id === id)).filter((p) => p && (
       grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
       gap: 3rem;
     }
-    .show-row.flip .show-img {
+    .show-row.flip .show-media {
       order: 2;
     }
   }
@@ -73,6 +110,33 @@ const items = ids.map((id) => all.find((p) => p.id === id)).filter((p) => p && (
   .show-row:hover .show-img :global(img) {
     transform: scale(1.03);
   }
+  /* Projects with no picture show one big figure instead */
+  .show-stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 14rem;
+    padding: 2rem;
+    border: 1px solid var(--site-line);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--site-text);
+  }
+  .show-stat-figure {
+    font-family: var(--site-serif);
+    font-weight: 700;
+    font-size: clamp(3.5rem, 9vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .show-stat-label {
+    font-family: var(--site-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--site-muted);
+  }
   .show-title {
     margin-top: 0.5rem;
     font-size: clamp(1.875rem, 4vw, 2.75rem);
@@ -81,6 +145,36 @@ const items = ids.map((id) => all.find((p) => p.id === id)).filter((p) => p && (
   .show-summary {
     margin-top: 0.875rem;
     max-width: 42ch;
+    color: var(--site-muted);
+  }
+  .show-facts {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 1.1rem;
+    max-width: 44ch;
+  }
+  .show-facts div {
+    display: grid;
+    grid-template-columns: 5.25rem minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .show-facts dt {
+    font-family: var(--site-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--site-muted);
+  }
+  .show-facts dd {
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: var(--site-text);
+  }
+  .show-note {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.8125rem;
     color: var(--site-muted);
   }
   .show-link {

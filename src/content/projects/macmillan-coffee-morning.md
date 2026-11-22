@@ -4,6 +4,9 @@ label: "Marketing / Event"
 category: marketing
 icon: coffee
 summary: "A coffee morning at BlayCare for Macmillan Cancer Support. I supported the planning and made the invitation and promotion materials."
+result: "Views up 550% in one week, and about £50 raised."
+resultNote: "Facebook page views, 25 Sep to 1 Oct, against the week before."
+decision: "Printed invitations with a paper reply slip, as an alternative to booking online."
 order: 1
 featured: true
 thumb: "../../assets/work/macmillan-invitation.webp"

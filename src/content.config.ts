@@ -50,6 +50,13 @@ const projects = defineCollection({
       label: z.string(),                       // shown as [ LABEL ]
       category: z.enum(['marketing', 'tool', 'practice']), // which list page it appears on
       summary: z.string(),                     // one line on the card
+      // Shown on the home page under Selected work. Only use figures you can back up.
+      result: z.string().optional(),           // one line: what happened
+      resultNote: z.string().optional(),       // small grey line: where the figure comes from
+      decision: z.string().optional(),         // one line: a choice I made and why
+      lesson: z.string().optional(),           // one line: what I'd do differently
+      stat: z.string().optional(),             // a big figure shown when the project has no picture, e.g. "A+"
+      statLabel: z.string().optional(),        // the words under that figure
       order: z.number(),                       // 1 = first card
       link: z.string().optional(),             // public link (repo or live site)
       linkText: z.string().optional(),
