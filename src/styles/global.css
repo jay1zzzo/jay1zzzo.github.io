@@ -360,9 +360,37 @@
   min-height: calc(100svh - 4rem);
   padding: 2rem 0 3rem;
 }
+.hero-text {
+  display: flex;
+  flex-direction: column;
+}
+/* My photo beside my name (below it on a phone) */
+.hero-photo {
+  margin: 2.5rem 0 0;
+}
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+@media (min-width: 900px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: center;
+    align-content: center;
+    gap: 3.5rem;
+  }
+  .hero-photo {
+    margin: 0;
+  }
+}
 .hero-name {
   margin-top: 1rem;
-  font-size: clamp(3rem, 11vw, 8.5rem);
+  font-size: clamp(3rem, 9vw, 7rem);
   line-height: 0.92;
   color: var(--site-text);
 }

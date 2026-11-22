@@ -12,12 +12,15 @@ import WorkShowcase from '../components/WorkShowcase.astro';
 import TwoStyle from '../components/TwoStyle.astro';
 import SkillsAndCerts from '../components/SkillsAndCerts.astro';
 import LearningList from '../components/LearningList.astro';
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/about/lan-hero.webp';
 
 const home = (await getEntry('home', 'home'))!.data;
 ---
 <Base>
   <!-- 1. Opening: your name in two styles, gliding in. -->
   <section class="hero" aria-labelledby="hero-name">
+    <div class="hero-text">
     <p class="label hero-rise" style="--r:0">Marketing portfolio</p>
     <h1 id="hero-name" class="hero-name">
       <span class="hero-line"><span class="ts-light hero-rise" style="--r:1">Jason</span></span>
@@ -25,6 +28,10 @@ const home = (await getEntry('home', 'home'))!.data;
     </h1>
     <p class="hero-sub hero-rise" style="--r:3">Junior marketer · East Midlands</p>
     <a href="#about" class="hero-more hero-rise" style="--r:4" data-umami-event="Learn more click">Learn more <span aria-hidden="true">↓</span></a>
+    </div>
+    <figure class="hero-photo hero-rise" style="--r:3">
+      <Image src={heroPhoto} alt="Me smiling with my arms folded, with a blurred hall behind me." widths={[600, 900, 1200, 1600]} sizes="(min-width: 900px) 40vw, 92vw" loading="eager" fetchpriority="high" />
+    </figure>
   </section>
 
   <!-- Switched off, saved: the "See my work" and "Email me" buttons under the headline, and the
