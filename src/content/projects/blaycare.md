@@ -9,9 +9,15 @@ decision: "Researched local searches and three competitors before building anyth
 stat: "A+"
 statLabel: "SEOptimer audit grade"
 order: 7
-# No link yet: add a verified live link here when available.
-# link: "https://..."
-# linkText: "Visit the BlayCare website"
+textFirst: true
+imagesTitle: "Screenshots of the new website"
+imagesNote: "Shown with my manager's permission. Not live yet."
+imagesLayout: wide
+images:
+  - src: "../../assets/work/blaycare-new-site.webp"
+    alt: "The new BlayCare website home page on desktop and on a phone: the heading Home care and supported living tailored for everyone, a Get a free care assessment button, a Call button, a Google rating, a photo of a carer and an older woman in a garden, and a Help me choose button."
+    caption: "Home page on desktop and phone. A mobile number in the header is blurred."
+    edited: true
 ---
 
 ## Overview
@@ -62,3 +68,13 @@ The SEOptimer audit grade is now A+. This is an audit score for the site's techn
 To justify creative decisions with research, audience needs and performance data.
 
 I also taught myself Wix Studio techniques and landing page structure from YouTube tutorials, and applied them to this work.
+
+## The new website (in progress)
+
+I'm now working on a new BlayCare website with my manager. It is not live yet.
+
+- **Structure and pages:** which pages exist, the menu, and the order of each page.
+- **Copy and content:** writing and editing the wording across the site.
+- **Design direction:** the look and feel, using BlayCare's brand colours and fonts.
+- **Working with my manager:** planning it together and getting feedback and sign-off on each part.
+
