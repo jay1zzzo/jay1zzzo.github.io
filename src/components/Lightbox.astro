@@ -10,11 +10,12 @@
     <span class="lightbox-actions">
       <button type="button" class="lightbox-btn" data-lightbox-prev aria-label="Previous image">← Prev</button>
       <button type="button" class="lightbox-btn" data-lightbox-next aria-label="Next image">Next →</button>
+      <button type="button" class="lightbox-btn" data-lightbox-zoom aria-pressed="false">Zoom in</button>
       <button type="button" class="lightbox-btn" data-lightbox-close>Close <span aria-hidden="true">×</span></button>
     </span>
   </div>
   <div class="lightbox-stage">
-    <img id="lightbox-img" alt="" />
+    <img id="lightbox-img" alt="" data-lightbox-zoom-target />
   </div>
   <p id="lightbox-caption" class="lightbox-caption"></p>
   <p id="lightbox-note" class="lightbox-note"></p>
@@ -89,6 +90,25 @@
     border: 1px solid var(--site-doc-border);
     background: #fff;
   }
+  .lightbox img[data-lightbox-zoom-target] {
+    cursor: zoom-in;
+  }
+  /* Zoomed: the image at its full size, panned by scrolling (or dragging on a phone),
+     so small text in newsletters and certificates can be read. */
+  .lightbox.is-zoomed .lightbox-stage {
+    max-height: calc(94vh - 3.5rem);
+    overflow: auto;
+    padding: 0;
+  }
+  .lightbox.is-zoomed img {
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    cursor: zoom-out;
+  }
+  .lightbox-btn[aria-pressed='true'] {
+    color: var(--site-accent);
+  }
   .lightbox-caption {
     padding: 0.75rem 1rem 0.25rem;
     font-size: 0.9375rem;
@@ -138,10 +158,20 @@
     let index = 0;
     let opener: HTMLElement | null = null;
 
+    const zoomBtn = dialog.querySelector<HTMLButtonElement>('[data-lightbox-zoom]');
+    const setZoom = (on: boolean) => {
+      dialog.classList.toggle('is-zoomed', on);
+      if (zoomBtn) {
+        zoomBtn.setAttribute('aria-pressed', String(on));
+        zoomBtn.textContent = on ? 'Fit to screen' : 'Zoom in';
+      }
+    };
+
     const show = (i: number) => {
       const t = triggers[i];
       if (!t) return;
       index = i;
+      setZoom(false);
       img.src = t.dataset.lightboxSrc ?? '';
       img.alt = t.dataset.lightboxAlt ?? '';
       caption.textContent = t.dataset.lightboxCaption ?? '';
@@ -163,6 +193,10 @@
         dialog.showModal();
         // Counts which images get opened (only if visitor statistics are switched on)
         (window as any).umami?.track?.('Image opened', { image: (trigger.dataset.lightboxCaption ?? '').slice(0, 80) });
+        return;
+      }
+      if (target.closest('[data-lightbox-zoom]') || target.closest('[data-lightbox-zoom-target]')) {
+        setZoom(!dialog.classList.contains('is-zoomed'));
         return;
       }
       if (target.closest('[data-lightbox-prev]')) return step(-1);

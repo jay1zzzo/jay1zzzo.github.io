@@ -3,21 +3,27 @@ title: "BlayCare website"
 label: "Marketing / Website"
 category: marketing
 icon: browser
-summary: "A rebuild of BlayCare's website in Wix Studio, with new copy, service pages, careers pages and enquiry forms. I researched local searches and competitors first. Launched 26 June 2026."
-result: "SEOptimer audit grade: A+."
+summary: "A rebuild of BlayCare's website in Wix Studio, with new copy, service pages, careers pages and enquiry forms. Launched 26 June 2026."
+result: "A+ in an SEOptimer audit of the site's technical and on-page basics."
+resultNote: "An audit score, not a measure of enquiries or sales."
 decision: "Researched local searches and three competitors before building anything."
 stat: "A+"
 statLabel: "SEOptimer audit grade"
 order: 7
 textFirst: true
-imagesTitle: "Screenshots of the new website"
-imagesNote: "Shown with my manager's permission. Not live yet."
+imagesTitle: "The new website on desktop"
+imagesNote: "Not live yet."
 imagesLayout: wide
 images:
-  - src: "../../assets/work/blaycare-new-site.webp"
-    alt: "The new BlayCare website home page on desktop and on a phone: the heading Home care and supported living tailored for everyone, a Get a free care assessment button, a Call button, a Google rating, a photo of a carer and an older woman in a garden, and a Help me choose button."
-    caption: "Home page on desktop and phone. A mobile number in the header is blurred."
+  - src: "../../assets/work/blaycare-new-site-desktop.webp"
+    alt: "The new BlayCare website home page on desktop: the heading Home care and supported living tailored for everyone, a Get a free care assessment button, a Call button, a Google rating, a photo of a carer and an older woman in a garden, and a Help me choose button."
+    caption: "Home page on desktop. A mobile number in the header is blurred."
     edited: true
+closeupsTitle: "The new website on an iPhone"
+closeups:
+  - src: "../../assets/work/blaycare-new-site-phone.webp"
+    alt: "The new BlayCare website home page on an iPhone: the logo, a call button and menu, the heading, the free care assessment and call buttons, the Google rating and three trust points."
+    caption: "Home page on an iPhone."
 ---
 
 ## Overview

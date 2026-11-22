@@ -3,11 +3,12 @@ title: "Small paid Facebook post test"
 label: "Marketing / Paid social"
 category: marketing
 icon: megaphone
-summary: "A £6.30 Facebook test promoting an existing BlayCare post to people in Derby and Derbyshire, with 40 engagements, no enquiries, and some honest lessons about targeting."
-result: "Likes on the post went from 1 to over 40, for £6.30. No enquiries, and I say so."
+summary: "A small paid Facebook test promoting an existing BlayCare post to people in Derby and Derbyshire, and what it taught me about targeting."
+result: "Likes went from 1 to over 40, with 40 post engagements, for £6.30. No enquiries."
+resultNote: "I counted the likes myself. Post engagements is Meta's figure, which counts every interaction with the post, likes included."
 lesson: "Change one thing at a time, so I can read the results properly."
 stat: "£6.30"
-statLabel: "spent, for 40+ likes"
+statLabel: "spent, for over 40 likes"
 order: 9
 ---
 
