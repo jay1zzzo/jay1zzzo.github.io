@@ -5,6 +5,9 @@ category: marketing
 icon: megaphone
 summary: "A concept email for families who have just enquired about care, built as a real HTML email in BlayCare's brand. It has not been sent."
 order: 10
+thumb: "../../assets/work/email-enquiry-follow-up-top.webp"
+thumbAlt: "The top of a BlayCare email: the logo, a photo of a carer and an older woman having tea in a garden, and the heading Thank you for getting in touch."
+decision: "One call to action, book a free care assessment, with the phone number as a backup."
 imagesTitle: "The email"
 imagesLayout: two
 textFirst: true
