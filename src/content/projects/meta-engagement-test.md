@@ -4,10 +4,10 @@ label: "Marketing / Paid social"
 category: marketing
 icon: megaphone
 summary: "A £6.30 Facebook test promoting an existing BlayCare post to people in Derby and Derbyshire, with 40 engagements, no enquiries, and some honest lessons about targeting."
-result: "40 engagements for £6.30, about £0.16 each. No enquiries, and I say so."
+result: "Likes on the post went from 1 to over 40, for £6.30. No enquiries, and I say so."
 lesson: "Change one thing at a time, so I can read the results properly."
 stat: "£6.30"
-statLabel: "spent, for 40 engagements"
+statLabel: "spent, for 40+ likes"
 order: 9
 ---
 
