@@ -32,7 +32,7 @@ outside:
 
 I was around seven when I found a Mortal Kombat arcade machine in a little wooden hut by the beach opposite my home in Banate, Iloilo, in the Philippines. I used to sneak out and run there to play it. Around then I was also the one my older cousin asked to work the family computer.
 
-I've always liked making things. As a kid it was drawing. As a teenager it moved onto the computer: Minecraft texture packs and logos in Photoshop, then intros and gaming montages in Sony Vegas, After Effects and Cinema 4D. I definitely couldn't afford them, so let's just say my copies weren't from the official store (shhh). I learned them from YouTube tutorials and a lot of trial and error.
+I've always liked making things. As a kid it was drawing. As a teenager it moved onto the computer: Minecraft texture packs and logos in Photoshop, then intros and gaming montages in Sony Vegas, After Effects and Cinema 4D. I learned them from YouTube tutorials and a lot of trial and error.
 
 The same curiosity took me into the technical side. I built and upgraded my own PC, made private servers for browser games, and made websites on Wix, just to see how they worked.
 
