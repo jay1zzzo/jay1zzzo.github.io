@@ -86,6 +86,6 @@ I worked on a new BlayCare website with my manager. It replaced the Wix site and
 - **Design direction:** the look and feel, using BlayCare's brand colours and fonts.
 - **Working with my manager:** planning it together and getting feedback and sign-off on each part.
 
-**How I used AI:** the code was AI-assisted, using Claude Code. I directed and reviewed the work.
+**How I used AI:** the code was AI-assisted, using Claude Code. I directed and reviewed the work. The photos of people on the site are AI-generated.
 
 The site has only just gone live, so I have no results to show for it yet.
