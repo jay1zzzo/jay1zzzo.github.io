@@ -12,6 +12,9 @@ export default defineConfig({
   redirects: {
     '/about': '/#about',
     '/contact': '/#contact',
+    // Tomato Timer was renamed Ketchup in November 2026. Old links still work.
+    '/projects/tomato-timer': '/projects/ketchup/',
+    '/projects/tomato-mcp': '/projects/ketchup-mcp/',
   },
 
   // Keep text exactly as written: no automatic "smart" quotes or dashes.
