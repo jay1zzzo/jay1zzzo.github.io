@@ -3,8 +3,8 @@ title: "BlayCare website"
 label: "Marketing / Website"
 category: marketing
 icon: browser
-summary: "A rebuild of BlayCare's website in Wix Studio, with new copy, service pages, careers pages and enquiry forms. Launched 26 June 2026."
-result: "A+ in an SEOptimer audit of the site's technical and on-page basics."
+summary: "Two versions of BlayCare's website: a Wix Studio rebuild launched 26 June 2026, and the new site that replaced it in November 2026."
+result: "A+ in an SEOptimer audit of the June 2026 site's technical and on-page basics."
 resultNote: "An audit score, not a measure of enquiries or sales."
 decision: "Researched local searches and three competitors before building anything."
 stat: "A+"
@@ -12,7 +12,7 @@ statLabel: "SEOptimer audit grade"
 order: 7
 textFirst: true
 imagesTitle: "The new website on desktop"
-imagesNote: "Not live yet."
+imagesNote: "Live at www.bwahealth.com. Screenshots taken 25 November 2026."
 imagesLayout: wide
 images:
   - src: "../../assets/work/blaycare-new-site-desktop.webp"
@@ -27,6 +27,8 @@ closeups:
 ---
 
 ## Overview
+
+This page covers two versions of the website. The research, decisions and audit grade below are about the June 2026 version. The new site is at the end.
 
 I rebuilt BlayCare's website in Wix Studio. It has new copy, service pages, careers pages and enquiry forms, and it launched on 26 June 2026.
 
@@ -67,7 +69,7 @@ From the research, I recommended earlier trust signals, clearer service copy, vi
 
 ## Outcomes
 
-The SEOptimer audit grade is now A+. This is an audit score for the site's technical and on-page checks, not a measure of enquiries or sales. I have not included traffic or enquiry figures, because I do not have dated sources for them to show here.
+The SEOptimer audit grade for the June 2026 site was A+. This is an audit score for the site's technical and on-page checks, not a measure of enquiries or sales. I have not included traffic or enquiry figures, because I do not have dated sources for them to show here.
 
 ## What I learned
 
@@ -75,12 +77,15 @@ To justify creative decisions with research, audience needs and performance data
 
 I also taught myself Wix Studio techniques and landing page structure from YouTube tutorials, and applied them to this work.
 
-## The new website (in progress)
+## The new website (live November 2026)
 
-I'm now working on a new BlayCare website with my manager. It is not live yet.
+I worked on a new BlayCare website with my manager. It replaced the Wix site and is live at [www.bwahealth.com](https://www.bwahealth.com/).
 
 - **Structure and pages:** which pages exist, the menu, and the order of each page.
 - **Copy and content:** writing and editing the wording across the site.
 - **Design direction:** the look and feel, using BlayCare's brand colours and fonts.
 - **Working with my manager:** planning it together and getting feedback and sign-off on each part.
 
+**How I used AI:** the code was AI-assisted, using Claude Code. I directed and reviewed the work.
+
+The site has only just gone live, so I have no results to show for it yet.
