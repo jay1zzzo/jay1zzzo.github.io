@@ -6,7 +6,7 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Lightbox from '../../components/Lightbox.astro';
 import Stats from '../../components/Stats.astro';
-import HearthsideCase from '../../components/HearthsideCase.astro';
+// Hidden for now (see src/content.config.ts): import HearthsideCase from '../../components/HearthsideCase.astro';
 import { buttonVariants } from '@/components/ui/button';
 
 export async function getStaticPaths() {
@@ -76,7 +76,7 @@ const evidenceFirst = d.category !== 'tool' && !d.textFirst;
     )}
 
     {d.custom === 'hearthside' ? (
-      <HearthsideCase />
+      <Fragment>{/* Hidden for now: put <HearthsideCase /> back here */}</Fragment>
     ) : (
       <div class="prose-site mt-8">
         <Content />

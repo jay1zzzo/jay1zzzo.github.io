@@ -43,7 +43,9 @@ const home = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/content/projects' }),
+  // Hearthside is hidden for now. To bring it back: take '!hearthside.md' out of this list
+  // move hidden/hearthside back to public/work/hearthside, and restore the two HearthsideCase lines in src/pages/projects/[slug].astro.
+  loader: glob({ pattern: ['*.md', '!hearthside.md'], base: './src/content/projects' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
